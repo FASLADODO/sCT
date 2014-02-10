@@ -4,7 +4,7 @@
 <a href="http://scitation.aip.org/content/aapm/journal/medphys/38/5/10.1118/1.3578928">
 	http://scitation.aip.org/content/aapm/journal/medphys/38/5/10.1118/1.3578928
 </a><br />
-<a>
+<a href="https://github.com/Wadum/sCT/blob/master/Litteratur/CT%20substitute%20derived%20from%20MRI%20sequences%20with%20ultrashort%20echo%20time/Johansson11.pdf">
 	Johannson2011.pdf
 </a>
 <h2>
