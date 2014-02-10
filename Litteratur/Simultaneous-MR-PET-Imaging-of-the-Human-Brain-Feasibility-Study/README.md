@@ -11,7 +11,7 @@
 	Information
 </h2>
 <p>
-	Citeret i <a href="https://github.com/Wadum/sCT/blob/master/Litteratur/CT%20substitute%20derived%20from%20MRI%20sequences%20with%20ultrashort%20echo%20time/Johansson11.pdf"> Johansson </a>
+	Citeret i <a href="https://github.com/Wadum/sCT/blob/master/Litteratur/CT%20substitute%20derived%20from%20MRI%20sequences%20with%20ultrashort%20echo%20time"> Johansson </a>
 </p>
 <h2>
 	Resume
