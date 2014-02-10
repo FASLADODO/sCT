@@ -17,5 +17,5 @@
 	Resume
 </h2>
 <p>
-	Skriv resume her.
+	Gennemgang af PET/MR og fordele og ulemper i forhold til PET/CT
 </p>
