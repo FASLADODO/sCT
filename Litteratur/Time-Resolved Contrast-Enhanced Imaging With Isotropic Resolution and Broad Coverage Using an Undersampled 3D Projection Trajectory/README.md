@@ -19,14 +19,17 @@
 	Information
 </h2>
 <p>
-	Skriv information her.
+	Intet information.
 </p>
 <h2>
 	Resume
 </h2>
 <p>
-	Skriv resume her.
+	Beskriver en metode til at forbedre kvaliteten af skanninger på brystkassen
+	uden at forlænge skanningstiden. Da patienten skal holde vejret for ikke at
+	forstyrre billedet har man måtte tage en del kompromisser på kvaliteten for
+	holde skanningstiden nede.
 </p>
 <p>
-	Bør læses | Ikke relevant
+	Ikke relevant
 </p>
