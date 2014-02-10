@@ -8,6 +8,12 @@
 	Filnavn
 </a>
 <h2>
+	Kilde
+</h2>
+<a href="kilde">
+	Kilde
+</a>
+<h2>
 	Information
 </h2>
 <p>
