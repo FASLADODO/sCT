@@ -10,9 +10,9 @@
 <h2>
 	Kilde
 </h2>
-<a>
+<p>
 	Ingen kilde
-</a>
+</p>
 <h2>
 	Information
 </h2>
