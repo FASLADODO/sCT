@@ -4,8 +4,8 @@
 <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=906151&tag=1">
 	http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=906151&tag=1
 </a><br />
-<a href="Filnavn">
-	Filnavn
+<a href="Gaussian radial basis function.pdf">
+	Gaussian radial basis function.pdf
 </a>
 <h2>
 	Kilde
@@ -17,15 +17,16 @@
 	Information
 </h2>
 <p>
-	Skriv information her.
+	Kan være ligegyldigt hvis vi kun bruge indbyggede funktioner i matlab. Kan være interessant
+	hvis vi implementere vores egen gaussian mixture regression.
 </p>
 <h2>
 	Resume
 </h2>
 <p>
-	Skriv resume her.
+	Beskriver hvordan man kan approximere vha. guassian funktioner og hvordan man kan træne algoritmen.
 </p>
 <p>
-	Bør læses | Ikke relevant
+	Bør læses
 </p>
 
