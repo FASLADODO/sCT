@@ -7,15 +7,15 @@
 <a>
 	Filnavn
 </a>
-<h1>
+<h2>
 	Information
-</h1>
+</h2>
 <p>
 	Skriv information her.
 </p>
-<h1>
+<h2>
 	Resume
-</h1>
+</h2>
 <p>
 	Skriv resume her.
 </p>
