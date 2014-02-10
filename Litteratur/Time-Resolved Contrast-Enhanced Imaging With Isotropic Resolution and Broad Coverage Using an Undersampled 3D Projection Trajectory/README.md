@@ -1,5 +1,7 @@
 <h1>
-	Skabelon
+	Time-Resolved Contrast-Enhanced Imaging With Isotropic 
+	Resolution and Broad Coverage Using an Undersampled 3D 
+	Projection Trajectory
 </h1>
 <a href="http://onlinelibrary.wiley.com/doi/10.1002/mrm.10212/full">
 	http://onlinelibrary.wiley.com/doi/10.1002/mrm.10212/full
