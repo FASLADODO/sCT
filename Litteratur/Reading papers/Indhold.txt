@@ -12,7 +12,7 @@
 </Information>
 <Resume>
 	Læs 3 gange. 
-	Første gang: læs abstract, conclusion, skim matematiske formler, 
+	Første gang: læs abstract, introduction, conclusion, skim matematiske formler, 
 		læs overskrifter og læs listen af referencer.
 	Anden gang: læs hele paperet men undlad at kontrollere beviser. 
 		Tag noter til væsentlige pointer og marker referencer man bør læse.

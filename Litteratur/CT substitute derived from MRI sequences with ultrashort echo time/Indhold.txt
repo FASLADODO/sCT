@@ -11,5 +11,6 @@
 	Hoved artiklen der beskriver vores metode.
 </Information>
 <Resume>
-	
+	Ud fra en UTE sekvens genereres et sCT billede. Der bruges en gaussian
+	mixture regression algoritme.
 </Resume>
