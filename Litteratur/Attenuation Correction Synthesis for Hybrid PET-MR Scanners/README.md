@@ -20,8 +20,8 @@
 	Artiklen står beskrevet i Medical Image Computing and 
 	Computer-Assisted Intervention -- MICCAI 2013, hvilket 
 	stammer fra en konference i Nagoya, Japan. Vi skal kun 
-	bruge ovenst�ende kapitel fra bogen. Hele bogen kan ikke
-	l�gges i GitHub da man maks m� uploade filer p� 100Mb.
+	bruge ovenstående kapitel fra bogen. Hele bogen kan ikke
+	lægges i GitHub da man maks må uploade filer på 100Mb.
 </p>
 <h1>
 	Resume
@@ -29,7 +29,7 @@
 <p>
 	Beskriver en anden måde at syntetisere et CT billede. I stedet
 	for at bruge UTE sekvenser bruges der en database med MR og
-	tilh�rende CT billeder. Herfra sammenlignes patientens MR med
-	MR i databasen. Ud fra de bedst matchende MR fusioneres CT v�gtet
+	tilhørende CT billeder. Herfra sammenlignes patientens MR med
+	MR i databasen. Ud fra de bedst matchende MR fusioneres CT vægtet
 	i forhold til hvor godt MR matcher.
 </p>
