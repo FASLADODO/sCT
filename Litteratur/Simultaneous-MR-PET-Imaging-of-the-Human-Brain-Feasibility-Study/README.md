@@ -19,3 +19,6 @@
 <p>
 	Gennemgang af PET/MR og fordele og ulemper i forhold til PET/CT
 </p>
+<p>
+	Bør læses
+</p>
