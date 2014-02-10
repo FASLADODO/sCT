@@ -17,7 +17,7 @@
 	Information
 </h2>
 <p>
-	Hoved artiklen der beskriver vores metode.
+	Hovedartiklen der beskriver vores metode.
 </p>
 <h2>
 	Resume
