@@ -3,7 +3,7 @@
 </h1>
 <a href="http://link.springer.com/chapter/10.1007/978-3-642-40811-3_19">
 	http://link.springer.com/chapter/10.1007/978-3-642-40811-3_19
-</a>
+</a><br />
 <a>
 	Relevant chapter.pdf
 </a>
