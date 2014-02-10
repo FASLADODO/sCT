@@ -11,7 +11,7 @@
 	Kilde
 </h2>
 <p>
-	Ingen kilde
+	Adam Espe Hansen
 </p>
 <h2>
 	Information
