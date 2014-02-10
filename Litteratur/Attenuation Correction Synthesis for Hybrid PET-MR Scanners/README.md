@@ -4,26 +4,32 @@
 <a href="http://link.springer.com/chapter/10.1007/978-3-642-40811-3_19">
 	http://link.springer.com/chapter/10.1007/978-3-642-40811-3_19
 </a><br />
-<a>
+<a href="Relevant chapter.pdf">
 	Relevant chapter.pdf
 </a>
+<h1>
+	Kilde
+</h1>
+<p>
+	Udleveret inden start af projektet.
+</p>
 <h1>
 	Information
 </h1>
 <p>
-	Artiklen står beskrevet i Medical Image Computing and 
+	Artiklen stï¿½r beskrevet i Medical Image Computing and 
 	Computer-Assisted Intervention -- MICCAI 2013, hvilket 
 	stammer fra en konference i Nagoya, Japan. Vi skal kun 
-	bruge ovenstående kapitel fra bogen. Hele bogen kan ikke
-	lægges i GitHub da man maks må uploade filer på 100Mb.
+	bruge ovenstï¿½ende kapitel fra bogen. Hele bogen kan ikke
+	lï¿½gges i GitHub da man maks mï¿½ uploade filer pï¿½ 100Mb.
 </p>
 <h1>
 	Resume
 </h1>
 <p>
-	Beskriver en anden måde at syntetisere et CT billede. I stedet
+	Beskriver en anden mï¿½de at syntetisere et CT billede. I stedet
 	for at bruge UTE sekvenser bruges der en database med MR og
-	tilhørende CT billeder. Herfra sammenlignes patientens MR med
-	MR i databasen. Ud fra de bedst matchende MR fusioneres CT vægtet
+	tilhï¿½rende CT billeder. Herfra sammenlignes patientens MR med
+	MR i databasen. Ud fra de bedst matchende MR fusioneres CT vï¿½gtet
 	i forhold til hvor godt MR matcher.
 </p>
