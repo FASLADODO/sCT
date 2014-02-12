@@ -17,14 +17,16 @@
 	Information
 </h2>
 <p>
-	Skriv information her.
+	Ingen information.
 </p>
 <h2>
 	Resume
 </h2>
 <p>
-	Skriv resume her.
+	Beskriver brugen af attenuation correction og fremstiller en metode hvorpå det
+	kan genereres. Vi kan muligvis bruge noget af deres fremgangsmåde for at forbedre
+	resultatet af vores metode.
 </p>
 <p>
-	Bør læses | Ikke relevant
+	Bør læses
 </p>
