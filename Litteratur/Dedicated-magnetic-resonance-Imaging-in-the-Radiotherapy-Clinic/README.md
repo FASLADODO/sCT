@@ -1,10 +1,12 @@
 <h1>
-  Dedicated-magnetic-resonance-Imaging-in-the-Radiotherapy-Clinic
+	Dedicated-magnetic-resonance-Imaging-in-the-Radiotherapy-Clinic
 </h1>
 <a href="http://www.sciencedirect.com/science/article/pii/S0360301609002077">
-  http://www.sciencedirect.com/science/article/pii/S0360301609002077
+	http://www.sciencedirect.com/science/article/pii/S0360301609002077
 </a><br />
-Ikke hentet
+<a href="Dedicated MR.pdf">
+	Dedicated MR.pdf
+</a>
 <h2>
 	Kilde
 </h2>
@@ -25,6 +27,6 @@ Ikke hentet
 	Der konkluderes dog, at CT/MR stadig bør benyttes indtil, der findes bedre metoder til at se knogler i MR billeder.
 </p>
 <p>
-  Bør læses
+	Bør læses
 </p>
 
