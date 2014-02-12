@@ -4,8 +4,8 @@
 <a href="http://pubs.rsna.org/doi/pdf/10.1148/radiol.2483071927">
 	http://pubs.rsna.org/doi/pdf/10.1148/radiol.2483071927
 </a><br />
-<a>
-	Ikke hentet
+<a href="radiol.pdf">
+	radiol.pdf
 </a>
 <h2>
 	Kilde
