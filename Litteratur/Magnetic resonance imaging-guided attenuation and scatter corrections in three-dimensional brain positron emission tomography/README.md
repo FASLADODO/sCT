@@ -25,8 +25,10 @@
 	Resume
 </h2>
 <p>
-	Skriv resume her.
+	Artiklen beskriver hvordan attenuation correction bruges i forhold til PET
+	billeder. Der fremstilles en måde at gøre det på, men mest interessant 
+	henviser den også til andre metoder.
 </p>
 <p>
-	Bør læses | Ikke relevant
+	Bør læses
 </p>
