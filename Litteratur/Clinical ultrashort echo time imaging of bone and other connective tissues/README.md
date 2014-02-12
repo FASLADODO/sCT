@@ -17,15 +17,15 @@
 	Information
 </h2>
 <p>
-	Skriv information her.
+	Artiklen er muligvis relevant for baggrundsviden omkring UTE og MR.
 </p>
 <h2>
 	Resume
 </h2>
 <p>
-	Skriv resume her.
+	Artiklen beskriver hvad en UTE sekvens er og hvordan den kan bruges i sammensætning med andre former for MR sekvenser, fx. T1- og T2-wieghted. Den beskriver også hvor styrkerne er for UTE.
 </p>
 <p>
-	Bør læses | Ikke relevant
+	Ikke relevant
 </p>
 
