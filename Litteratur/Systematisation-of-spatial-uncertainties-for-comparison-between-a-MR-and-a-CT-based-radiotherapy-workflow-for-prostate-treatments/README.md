@@ -1,8 +1,8 @@
 <h1>
-	On Gaussian radial basis function approximations: interpretation, extensions, and learning strategies 
+	Systematisation of spatial uncertainties for comparison between a MR and a CT-based radiotherapy workflow for prostate treatments 
 </h1>
-<a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=906151&tag=1">
-	http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=906151&tag=1
+<a href="http://www.biomedcentral.com/content/pdf/1748-717X-4-54.pdf">
+	http://www.biomedcentral.com/content/pdf/1748-717X-4-54.pdf
 </a><br />
 <a href="Gaussian radial basis function.pdf">
 	Gaussian radial basis function.pdf
@@ -17,16 +17,15 @@
 	Information
 </h2>
 <p>
-	Kan være ligegyldigt hvis vi kun bruge indbyggede funktioner i matlab. Kan være interessant
-	hvis vi implementere vores egen gaussian mixture regression.
+	No info
 </p>
 <h2>
 	Resume
 </h2>
 <p>
-	Beskriver hvordan man kan approximere vha. guassian funktioner og hvordan man kan træne algoritmen.
+	Sammenligning af MR og CT behandling af Prostatacancer.
 </p>
 <p>
-	Bør læses
+	Kan være relevant for forståelse af de to scannings typer, men nok ikke relevant
 </p>
 
