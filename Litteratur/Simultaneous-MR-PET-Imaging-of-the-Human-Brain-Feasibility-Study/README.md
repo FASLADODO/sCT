@@ -2,7 +2,7 @@
 	Simultaneous-MR-PET-Imaging-of-the-Human-Brain-Feasibility-Study
 </h1>
 <a href="http://pubs.rsna.org/doi/pdf/10.1148/radiol.2483071927">
-	Link
+	http://pubs.rsna.org/doi/pdf/10.1148/radiol.2483071927
 </a><br />
 <a>
 	Ikke hentet
