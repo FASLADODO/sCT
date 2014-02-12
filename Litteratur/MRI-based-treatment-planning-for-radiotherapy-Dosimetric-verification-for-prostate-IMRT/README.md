@@ -1,10 +1,12 @@
 <h1>
-  MRI-based treatment planning for radiotherapy: Dosimetric verification for prostate IMRT
+	MRI-based treatment planning for radiotherapy: Dosimetric verification for prostate IMRT
 </h1>
 <a href="http://www.sciencedirect.com/science/article/pii/S0360301604009605">
 	http://www.sciencedirect.com/science/article/pii/S0360301604009605
 </a><br />
-Ikke hentet
+<a href="MRI planning.pdf">
+	MRI planning.pdf
+</a>
 <h2>
 	Kilde
 </h2>
@@ -24,6 +26,6 @@ Ikke hentet
 	Beskriver hvordan man kan nøjes med at anvende MR-billeder til behandling af prostatakræft i stedet for både CT og MR. 
 </p>
 <p>
-  Ikke relevant
+	Ikke relevant
 </p>
 
