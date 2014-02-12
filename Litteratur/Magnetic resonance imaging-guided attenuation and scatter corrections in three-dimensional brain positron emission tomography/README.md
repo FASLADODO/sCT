@@ -19,7 +19,7 @@
 	Information
 </h2>
 <p>
-	Skriv information her.
+	Ingen information.
 </p>
 <h2>
 	Resume
