@@ -17,14 +17,16 @@
 	Information
 </h2>
 <p>
-	Skriv information her.
+	Ingen information.
 </p>
 <h2>
 	Resume
 </h2>
 <p>
-	Skriv resume her.
+	Beskriver en model for ML til brug ved ufuldstændige datasets. Det ser ud 
+	til at være kursorisk stof i StatML, derfor bruger vi ikke mere tid på dette
+	paper.
 </p>
 <p>
-	Bør læses | Ikke relevant
+	Ikke relevant
 </p>
