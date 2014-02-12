@@ -1,8 +1,8 @@
 <h1>
-	MRI-Based Attenuation Correction for PET/MRI Using Ultrashort Echo Time Sequences
+	Toward Implementing an MRI-Based PET Attenuation-Correction Method for Neurologic Studies on the MR-PET Brain Prototype
 </h1>
-<a href="http://jnm.snmjournals.org/content/51/5/812.full.pdf">
-	http://jnm.snmjournals.org/content/51/5/812.full.pdf
+<a href="http://jnm.snmjournals.org/content/51/9/1431.full.pdf">
+	http://jnm.snmjournals.org/content/51/9/1431.full.pdf
 </a><br />
 <a href="Gaussian radial basis function.pdf">
 	Gaussian radial basis function.pdf
@@ -23,7 +23,7 @@
 	Resume
 </h2>
 <p>
-	Kombinering af CT og MR using UTE, og visning af at det kan bruges til behandling af hjerner.
+	Forsøg hvor man benyttede en Dual-UTE MRI sekvens til at genkende knogle og luft
 </p>
 <p>
 	Baggrundsinfo, ikke helt relevant.
