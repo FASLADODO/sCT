@@ -26,8 +26,12 @@ Lasse Ahlbech Madsen}
 
 \pagenumbering{arabic}
 
-\section*{Beskrivelse}
+\section*{Problemformulering}
+Konstruer et sCT med metoden, som beskrevet i "CT substitute derived from 
+MRI sequences with ultrashort echo time" af Adam Johansson m. fl. fra 2011\footnote{\url{http://scitation.aip.org/content/aapm/journal/medphys/38/5/10.1118/1.3578928}}.
+Er sCT billedet sammenligneligt med et CT, og er metoden stabil over tid?
 
+\section*{Begrundelse}
 Når en patient får foretaget en PET/MR skanning indeholder den kun
 information om de vandholdige legemer i kroppen. Derfor tager man også en
 CT skanning for at kunne se patientens knoglestruktur. Der er to problemer
@@ -37,14 +41,13 @@ er sammensætningen af de to skanninger, der kan forårsage forringelse af
 billedkvaliteten.
 
 Et forskningshold i Umeå har fundet en metode til at beregne et
-substitute-CT (sCT) fra PET/MR skanningen som kan erstatte CT skanningen. Vores
-håb er at vi kan implementere samme metode til brug for Rigshospitalet. Vi
-vil desvidere undersøge korrektheden og kvaliteten af vores sCT for at se om
-det kan bruges klinisk.\\
+substitute-CT (sCT) fra PET/MR skanningen som kan erstatte CT skanningen.
+Metoden benytter tre MRI sekvenser (to UTE og en T2). Ved hjælp af MR sekvenserne
+og et CT billede trænes en parametriseret Gaussian mixture regression model.\\
 
-*Vores plan er at skrive en kort forklaing af metoden, som beskrevet i
-Johansson2011, men det har været ret stresset her op til jul, så den kommer
-senere.*\\
+Vores håb er at vi kan implementere samme metode til brug for Rigshospitalet.
+Vi vil desvidere undersøge korrektheden og kvaliteten af vores sCT for at se
+om det kan bruges klinisk.\\
 
 Vi vil i vores projekt gøre følgende.
 \begin{itemize}
