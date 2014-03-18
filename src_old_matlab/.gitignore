@@ -1,0 +1,7 @@
+*.swp
+*~
+*#
+*.beam
+*.svg
+*.asv
+test_patient*
