@@ -6,6 +6,8 @@
 #include "itkImageFileWriter.h"
 #include "itkRescaleIntensityImageFilter.h"
 
+#include "itkOtsuThresholdImageFilter.h"
+
 #include "itkExtractImageFilter.h"
 
 #include "QuickView.h"
@@ -59,6 +61,13 @@ int main(int argc, const char* argv[])
 
 	OutputImageType* outputImage = filter->GetOutput();
 
+
+	typedef itk::OtsuThresholdImageFilter< OutputImageType, OutputImageType >
+		OtsuFilterType;
+	OtsuFilterType::Pointer otsuFilter = OtsuFilterType::New();
+	otsuFilter->SetInput(outputImage);
+	otsuFilter->Update();
+
 	typedef itk::RescaleIntensityImageFilter< OutputImageType, OutputImageType > RescaleFilterType;
 	RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
 	rescaleFilter->SetInput(outputImage);
@@ -68,6 +77,7 @@ int main(int argc, const char* argv[])
 	QuickView viewer;
 	viewer.AddImage(outputImage);
 	viewer.AddImage(rescaleFilter->GetOutput());
+	viewer.AddImage(otsuFilter->GetOutput());
 	viewer.Visualize();
 
 	return 0;

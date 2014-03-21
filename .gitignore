@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+*/test_patient/
 
 # Build results
 
