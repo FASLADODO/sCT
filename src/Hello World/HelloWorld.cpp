@@ -64,6 +64,7 @@ int main(int argc, const char* argv[])
 {
 	if (argc < 2)
 	{
+		std::cout << "Too few arguments." << argc - 1 << "supplied, needs at least 2." << std::endl;
 		return -1;
 	}
 
@@ -201,9 +202,14 @@ int main(int argc, const char* argv[])
 
 	OutputImageType* outputImage = duplicator->GetModifiableOutput();
 
-	filter->SetInput(resampler->GetOutput());
+	filter->SetInput(reader2->GetOutput());
+	filter->Update();
 
-	OutputImageType* outputImage2 = filter->GetOutput();
+	DuplicatorType::Pointer duplicator2 = DuplicatorType::New();
+	duplicator2->SetInputImage(filter->GetOutput());
+	duplicator2->Update();
+
+	OutputImageType* outputImage2 = duplicator2->GetModifiableOutput();
 
 	typedef itk::SubtractImageFilter<
 		InputImageType,
