@@ -1,5 +1,4 @@
 #include <iostream>
-#include "stdio.h"
 #include "itkImageFileReader.h"
 
 #include "itkImage.h"
@@ -70,7 +69,7 @@ int main(int argc, const char* argv[])
 		std::cout << "Too few arguments." << argc - 1 << "supplied, needs at least 2." << std::endl;
 		char str[2];
 		const char* format = "%1s";
-		scanf_s(format, str);
+		scanf(format, str);
 		return -1;
 	}
 
