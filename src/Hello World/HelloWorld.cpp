@@ -233,6 +233,8 @@ int main(int argc, const char* argv[])
 		OtsuFilterType;
 	OtsuFilterType::Pointer otsuFilter = OtsuFilterType::New();
 	otsuFilter->SetInput(outputImage);
+    otsuFilter->SetOutsideValue(0);
+    otsuFilter->SetInsideValue(1);
 	otsuFilter->Update();
 
 	typedef itk::RescaleIntensityImageFilter< OutputImageType, OutputImageType > RescaleFilterType;
@@ -257,7 +259,7 @@ int main(int argc, const char* argv[])
     CastingFilterType::Pointer caster = CastingFilterType::New();
 
 
-    smoothing->SetInput( outputImage );
+    smoothing->SetInput( otsuFilter->GetOutput() );
     neighborhoodConnected->SetInput( smoothing->GetOutput() );
     caster->SetInput( neighborhoodConnected->GetOutput() );
     neighborhoodConnected->Update();
@@ -266,12 +268,12 @@ int main(int argc, const char* argv[])
     smoothing->SetTimeStep( 0.125 );
 
     neighborhoodConnected->SetLower(  0  );
-    neighborhoodConnected->SetUpper(  10  );
+    neighborhoodConnected->SetUpper(  0  );
 
     OutputImageType::SizeType radius;
 
-    radius[0] = 10;   // two pixels along X
-    radius[1] = 10;   // two pixels along Y
+    radius[0] = 2;   // two pixels along X
+    radius[1] = 2;   // two pixels along Y
 
     neighborhoodConnected->SetRadius( radius );
 
