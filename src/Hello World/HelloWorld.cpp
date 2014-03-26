@@ -19,6 +19,7 @@
 
 #include "itkSubtractImageFilter.h"
 #include "itkImageDuplicator.h"
+#include "itkInvertIntensityImageFilter.h"
 
 #include "QuickView.h"
 #include "itkNeighborhoodConnectedImageFilter.h"
@@ -288,6 +289,13 @@ int main(int argc, const char* argv[])
     neighborhoodConnected->SetSeed( index );
     neighborhoodConnected->SetReplaceValue( 255 );
 
+	typedef itk::InvertIntensityImageFilter< OutputImageType, OutputImageType >
+		InvertFilterType;
+	InvertFilterType::Pointer invertFilter = InvertFilterType::New();
+	invertFilter->SetInput(caster->GetOutput());
+	invertFilter->SetMaximum(255);
+	invertFilter->Update();
+
 
 
 	QuickView viewer;
@@ -297,7 +305,8 @@ int main(int argc, const char* argv[])
 	viewer.AddImage(otsuFilter->GetOutput());
 	viewer.AddImage(outputImage2);
 	viewer.AddImage(rescaleFilter->GetOutput());
-    viewer.AddImage(caster->GetOutput());
+	viewer.AddImage(caster->GetOutput());
+	viewer.AddImage(invertFilter->GetOutput());
 	viewer.Visualize();
 
 	return 0;
