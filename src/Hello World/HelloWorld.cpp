@@ -22,6 +22,8 @@
 #include "itkImageDuplicator.h"
 
 #include "QuickView.h"
+#include "itkNeighborhoodConnectedImageFilter.h"
+#include "itkCurvatureFlowImageFilter.h"
 
 class CommandIterationUpdate : public itk::Command
 {
@@ -71,6 +73,8 @@ int main(int argc, const char* argv[])
 		scanf_s(format, str);
 		return -1;
 	}
+
+	const unsigned int sliceNumber = 89;
 
 	std::cout << "ITK Hello World !" << std::endl;
 
@@ -187,7 +191,6 @@ int main(int argc, const char* argv[])
 	size[2] = 0;
 
 	InputImageType::IndexType start = inputRegion.GetIndex();
-	const unsigned int sliceNumber = 50;
 	start[2] = sliceNumber;
 
 	InputImageType::RegionType desiredRegion;
@@ -227,13 +230,15 @@ int main(int argc, const char* argv[])
 
 	filter->SetInput(difference->GetOutput());
 
-	OutputImageType* outputImage3 = filter->GetOutput();
+    OutputImageType* outputImage3 = filter->GetOutput();
 
 
 	typedef itk::OtsuThresholdImageFilter< OutputImageType, OutputImageType >
 		OtsuFilterType;
 	OtsuFilterType::Pointer otsuFilter = OtsuFilterType::New();
 	otsuFilter->SetInput(outputImage);
+    otsuFilter->SetOutsideValue(0);
+    otsuFilter->SetInsideValue(1);
 	otsuFilter->Update();
 
 	typedef itk::RescaleIntensityImageFilter< OutputImageType, OutputImageType > RescaleFilterType;
@@ -242,6 +247,51 @@ int main(int argc, const char* argv[])
 	rescaleFilter->SetOutputMinimum(0);
 	rescaleFilter->SetOutputMaximum(255);
 
+
+    // NNC
+    typedef   itk::CurvatureFlowImageFilter< OutputImageType, OutputImageType> CurvatureFlowImageFilterType;
+
+    CurvatureFlowImageFilterType::Pointer smoothing = CurvatureFlowImageFilterType::New();
+
+    typedef itk::NeighborhoodConnectedImageFilter<OutputImageType, OutputImageType > ConnectedFilterType;
+
+
+    ConnectedFilterType::Pointer neighborhoodConnected = ConnectedFilterType::New();
+   
+    typedef itk::CastImageFilter< OutputImageType, OutputImageType >
+                                    CastingFilterType;
+    CastingFilterType::Pointer caster = CastingFilterType::New();
+
+
+    smoothing->SetInput( otsuFilter->GetOutput() );
+    neighborhoodConnected->SetInput( smoothing->GetOutput() );
+    caster->SetInput( neighborhoodConnected->GetOutput() );
+    neighborhoodConnected->Update();
+
+    smoothing->SetNumberOfIterations( 5 );
+    smoothing->SetTimeStep( 0.125 );
+
+    neighborhoodConnected->SetLower(  0  );
+    neighborhoodConnected->SetUpper(  0  );
+
+    OutputImageType::SizeType radius;
+
+    radius[0] = 2;   // two pixels along X
+    radius[1] = 2;   // two pixels along Y
+
+    neighborhoodConnected->SetRadius( radius );
+
+    OutputImageType::IndexType  index;
+
+    index[0] = 0;
+    index[1] = 0;
+    index[2] = 0;
+
+    neighborhoodConnected->SetSeed( index );
+    neighborhoodConnected->SetReplaceValue( 255 );
+
+
+
 	QuickView viewer;
 	viewer.AddImage(outputImage);
 	viewer.AddImage(rescaleFilter->GetOutput());
@@ -249,6 +299,7 @@ int main(int argc, const char* argv[])
 	viewer.AddImage(otsuFilter->GetOutput());
 	viewer.AddImage(outputImage2);
 	viewer.AddImage(rescaleFilter->GetOutput());
+    viewer.AddImage(caster->GetOutput());
 	viewer.Visualize();
 
 	return 0;
