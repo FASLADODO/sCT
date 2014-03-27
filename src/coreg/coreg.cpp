@@ -1,14 +1,10 @@
 #include <iostream>
-#include "itkImageFileReader.h"
 
 #include "itkImage.h"
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
-#include "itkRescaleIntensityImageFilter.h"
 
 #include "itkOtsuThresholdImageFilter.h"
-
-#include "itkExtractImageFilter.h"
 
 #include "itkImageRegistrationMethod.h"
 #include "itkTranslationTransform.h"
@@ -16,15 +12,10 @@
 #include "itkRegularStepGradientDescentOptimizer.h"
 #include "itkResampleImageFilter.h"
 #include "itkCastImageFilter.h"
-
-#include "itkSubtractImageFilter.h"
-#include "itkImageDuplicator.h"
 #include "itkInvertIntensityImageFilter.h"
 
-#include "QuickView.h"
 #include "itkNeighborhoodConnectedImageFilter.h"
 #include "itkCurvatureFlowImageFilter.h"
-
 #include "itkMaskImageFilter.h"
 
 class CommandIterationUpdate : public itk::Command
@@ -51,7 +42,7 @@ public:
 	void Execute(const itk::Object * object, const itk::EventObject & event)
 	{
 		OptimizerPointer optimizer =
-			dynamic_cast< OptimizerPointer >(object);
+			dynamic_cast<OptimizerPointer>(object);
 
 		if (!itk::IterationEvent().CheckEvent(&event))
 		{
@@ -76,15 +67,10 @@ int main(int argc, const char* argv[])
 		return -1;
 	}
 
-	const unsigned int sliceNumber = 89;
-
-	std::cout << "ITK Hello World !" << std::endl;
+	std::cout << "Starting registration." << std::endl;
 
 	const    unsigned int    InputDimension = 3;
-	const    unsigned int    OutputDimension = 2;
 	typedef float InputPixelType;
-	typedef float OutputPixelType;
-	typedef itk::Image< OutputPixelType, OutputDimension > OutputImageType;
 	typedef itk::Image<InputPixelType, InputDimension>  InputImageType;
 
 	typedef itk::TranslationTransform< double, InputDimension > TransformType;
@@ -118,26 +104,16 @@ int main(int argc, const char* argv[])
 	ReaderType::Pointer reader = ReaderType::New();
 	ReaderType::Pointer reader2 = ReaderType::New();
 
-	typedef itk::ImageFileWriter<InputImageType> WriterType;
-	WriterType::Pointer writer = WriterType::New();
-
-	typedef itk::ExtractImageFilter< InputImageType,
-		OutputImageType > FilterType;
-	FilterType::Pointer filter = FilterType::New();
-	filter->InPlaceOn();
-	filter->SetDirectionCollapseToSubmatrix();
-
 	reader->SetFileName(argv[1]);
 	reader->Update();
-
-
-	InputImageType* inputImage = reader->GetOutput();
-
 	reader2->SetFileName(argv[2]);
 	reader2->Update();
 
-	registration->SetFixedImage(reader->GetOutput());
-	registration->SetMovingImage(reader2->GetOutput());
+	InputImageType* fixedImage = reader->GetOutput();
+	InputImageType* floatingImage = reader2->GetOutput();
+
+	registration->SetFixedImage(fixedImage);
+	registration->SetMovingImage(floatingImage);
 
 	typedef RegistrationType::ParametersType ParametersType;
 	ParametersType initialParameters(transform->GetNumberOfParameters());
@@ -180,150 +156,102 @@ int main(int argc, const char* argv[])
 		InputImageType >    ResampleFilterType;
 
 	ResampleFilterType::Pointer resampler = ResampleFilterType::New();
-	resampler->SetInput(reader2->GetOutput());
+	resampler->SetInput(floatingImage);
 	resampler->SetTransform(registration->GetOutput()->Get());
-	InputImageType::Pointer fixedImage = reader->GetOutput();
 	resampler->SetSize(fixedImage->GetLargestPossibleRegion().GetSize());
 	resampler->SetOutputOrigin(fixedImage->GetOrigin());
 	resampler->SetOutputSpacing(fixedImage->GetSpacing());
 	resampler->SetOutputDirection(fixedImage->GetDirection());
-	resampler->SetDefaultPixelValue(100);
-
-	InputImageType::RegionType inputRegion =
-		reader->GetOutput()->GetLargestPossibleRegion();
-
-	InputImageType::SizeType size = inputRegion.GetSize();
-	size[2] = 0;
-
-	InputImageType::IndexType start = inputRegion.GetIndex();
-	start[2] = sliceNumber;
-
-	InputImageType::RegionType desiredRegion;
-	desiredRegion.SetSize(size);
-	desiredRegion.SetIndex(start);
-
-	filter->SetExtractionRegion(desiredRegion);
-
-	filter->SetInput(inputImage);
-	filter->Update();
-
-	typedef  itk::ImageDuplicator< OutputImageType > DuplicatorType;
-	DuplicatorType::Pointer duplicator = DuplicatorType::New();
-	duplicator->SetInputImage(filter->GetOutput());
-	duplicator->Update();
-
-	OutputImageType* outputImage = duplicator->GetModifiableOutput();
-
-	inputRegion = reader2->GetOutput()->GetLargestPossibleRegion();
-
-	DuplicatorType::Pointer duplicator2 = DuplicatorType::New();
-	duplicator2->SetInputImage(filter->GetOutput());
-	duplicator2->Update();
-
-	OutputImageType* outputImage2 = filter->GetOutput();
-
-	typedef itk::SubtractImageFilter<
-		InputImageType,
-		InputImageType,
-		InputImageType > DifferenceFilterType;
-
-	DifferenceFilterType::Pointer difference = DifferenceFilterType::New();
-
-	difference->SetInput1(reader->GetOutput());
-	difference->SetInput2(resampler->GetOutput());
-
-	filter->SetInput(difference->GetOutput());
-
-    OutputImageType* outputImage3 = filter->GetOutput();
+	resampler->SetDefaultPixelValue(0);
 
 
-	typedef itk::OtsuThresholdImageFilter< OutputImageType, OutputImageType >
+	std::cout << "Generating Otsu threshold image." << std::endl;
+
+	typedef itk::OtsuThresholdImageFilter< InputImageType, InputImageType >
 		OtsuFilterType;
 	OtsuFilterType::Pointer otsuFilter = OtsuFilterType::New();
-	otsuFilter->SetInput(outputImage);
-    otsuFilter->SetOutsideValue(0);
-    otsuFilter->SetInsideValue(255);
+	otsuFilter->SetInput(fixedImage);
+	otsuFilter->SetOutsideValue(0);
+	otsuFilter->SetInsideValue(255);
 	otsuFilter->Update();
 
-	typedef itk::RescaleIntensityImageFilter< OutputImageType, OutputImageType > RescaleFilterType;
-	RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
-	rescaleFilter->SetInput(outputImage);
-	rescaleFilter->SetOutputMinimum(0);
-	rescaleFilter->SetOutputMaximum(255);
+
+	// NNC
+	typedef itk::CurvatureFlowImageFilter< InputImageType, InputImageType> CurvatureFlowImageFilterType;
+
+	CurvatureFlowImageFilterType::Pointer smoothing = CurvatureFlowImageFilterType::New();
+
+	typedef itk::NeighborhoodConnectedImageFilter<InputImageType, InputImageType > ConnectedFilterType;
 
 
-    // NNC
-    typedef   itk::CurvatureFlowImageFilter< OutputImageType, OutputImageType> CurvatureFlowImageFilterType;
+	ConnectedFilterType::Pointer neighborhoodConnected = ConnectedFilterType::New();
 
-    CurvatureFlowImageFilterType::Pointer smoothing = CurvatureFlowImageFilterType::New();
-
-    typedef itk::NeighborhoodConnectedImageFilter<OutputImageType, OutputImageType > ConnectedFilterType;
-
-
-    ConnectedFilterType::Pointer neighborhoodConnected = ConnectedFilterType::New();
-   
-    typedef itk::CastImageFilter< OutputImageType, OutputImageType >
-                                    CastingFilterType;
-    CastingFilterType::Pointer caster = CastingFilterType::New();
+	typedef itk::CastImageFilter< InputImageType, InputImageType >
+		CastingFilterType;
+	CastingFilterType::Pointer caster = CastingFilterType::New();
 
 
-    smoothing->SetInput( otsuFilter->GetOutput() );
-    neighborhoodConnected->SetInput( smoothing->GetOutput() );
-    caster->SetInput( neighborhoodConnected->GetOutput() );
-    neighborhoodConnected->Update();
+	std::cout << "Generating neighborhood connected image." << std::endl;
 
-    smoothing->SetNumberOfIterations( 5 );
-    smoothing->SetTimeStep( 0.125 );
+	smoothing->SetInput(otsuFilter->GetOutput());
+	neighborhoodConnected->SetInput(smoothing->GetOutput());
+	caster->SetInput(neighborhoodConnected->GetOutput());
+	neighborhoodConnected->Update();
 
-    neighborhoodConnected->SetLower(  254  );
-    neighborhoodConnected->SetUpper(  255  );
+	smoothing->SetNumberOfIterations(5);
+	smoothing->SetTimeStep(0.125);
 
-    OutputImageType::SizeType radius;
+	neighborhoodConnected->SetLower(254);
+	neighborhoodConnected->SetUpper(255);
 
-    radius[0] = 5;   // two pixels along X
-    radius[1] = 5;   // two pixels along Y
+	InputImageType::SizeType radius;
 
-    neighborhoodConnected->SetRadius( radius );
+	radius[0] = 2;   // two pixels along X
+	radius[1] = 2;   // two pixels along Y
+	radius[2] = 3;   // two pixels along Z
 
-    OutputImageType::IndexType  index;
+	neighborhoodConnected->SetRadius(radius);
 
-    index[0] = 0;
-    index[1] = 0;
+	InputImageType::IndexType  index;
 
-    neighborhoodConnected->SetSeed( index );
-    neighborhoodConnected->SetReplaceValue( 255 );
+	index[0] = 0;
+	index[1] = 0;
+	index[2] = 0;
 
-	typedef itk::InvertIntensityImageFilter< OutputImageType, OutputImageType >
+	neighborhoodConnected->SetSeed(index);
+	neighborhoodConnected->SetReplaceValue(255);
+
+	typedef itk::InvertIntensityImageFilter< InputImageType, InputImageType >
 		InvertFilterType;
 	InvertFilterType::Pointer invertFilter = InvertFilterType::New();
 	invertFilter->SetInput(caster->GetOutput());
 	invertFilter->SetMaximum(255);
-	invertFilter->Update();
 
-	OutputImageType* mask = invertFilter->GetOutput();
+	std::cout << "Generating mask." << std::endl;
 
-	typedef itk::MaskImageFilter< OutputImageType, OutputImageType >
+	typedef itk::ImageFileWriter<InputImageType> WriterType;
+
+	WriterType::Pointer writer3 = WriterType::New();
+	writer3->SetInput(otsuFilter->GetOutput());
+	writer3->SetFileName("otsu.nii");
+	writer3->Update();
+
+	WriterType::Pointer writer2 = WriterType::New();
+	writer2->SetInput(caster->GetOutput());
+	writer2->SetFileName("mask.nii");
+	writer2->Update();
+
+	typedef itk::MaskImageFilter< InputImageType, InputImageType >
 		MaskImageType;
 	MaskImageType::Pointer maskFilter = MaskImageType::New();
-	maskFilter->SetInput(outputImage);
-	maskFilter->SetMaskImage(mask);
+	maskFilter->SetInput(resampler->GetOutput());
+	maskFilter->SetMaskImage(invertFilter->GetOutput());
 	maskFilter->Update();
 
-	writer->SetInput(resampler->GetOutput());
+	WriterType::Pointer writer = WriterType::New();
+	writer->SetInput(maskFilter->GetOutput());
 	writer->SetFileName("out.nii");
 	writer->Update();
-
-	QuickView viewer;
-	viewer.AddImage(outputImage);
-	viewer.AddImage(maskFilter->GetOutput());
-	viewer.AddImage(rescaleFilter->GetOutput());
-	rescaleFilter->SetInput(outputImage3);
-	viewer.AddImage(otsuFilter->GetOutput());
-	viewer.AddImage(outputImage2);
-	viewer.AddImage(rescaleFilter->GetOutput());
-	viewer.AddImage(caster->GetOutput());
-	viewer.AddImage(invertFilter->GetOutput());
-	viewer.Visualize();
 
 	return 0;
 }
