@@ -8,7 +8,7 @@
 
 #include "itkImageRegistrationMethod.h"
 #include "itkTranslationTransform.h"
-#include "itkMeanSquaresImageToImageMetric.h"
+#include "itkMattesMutualInformationImageToImageMetric.h"
 #include "itkRegularStepGradientDescentOptimizer.h"
 #include "itkResampleImageFilter.h"
 #include "itkCastImageFilter.h"
@@ -67,8 +67,6 @@ int main(int argc, const char* argv[])
 		return -1;
 	}
 
-	std::cout << "Starting registration." << std::endl;
-
 	const    unsigned int    InputDimension = 3;
 	typedef float InputPixelType;
 	typedef itk::Image<InputPixelType, InputDimension>  InputImageType;
@@ -77,7 +75,7 @@ int main(int argc, const char* argv[])
 
 	typedef itk::RegularStepGradientDescentOptimizer       OptimizerType;
 
-	typedef itk::MeanSquaresImageToImageMetric<
+	typedef itk::MattesMutualInformationImageToImageMetric<
 		InputImageType,
 		InputImageType >    MetricType;
 
@@ -95,10 +93,17 @@ int main(int argc, const char* argv[])
 	InterpolatorType::Pointer   interpolator = InterpolatorType::New();
 	RegistrationType::Pointer   registration = RegistrationType::New();
 
+	unsigned int numberOfBins = 24;
+	unsigned int numberOfSamples = 10000;
+	metric->SetNumberOfHistogramBins(numberOfBins);
+	metric->SetNumberOfSpatialSamples(numberOfSamples);
+
 	registration->SetMetric(metric);
 	registration->SetOptimizer(optimizer);
 	registration->SetTransform(transform);
 	registration->SetInterpolator(interpolator);
+
+	std::cout << "Reading information." << std::endl;
 
 	typedef itk::ImageFileReader<InputImageType> ReaderType;
 	ReaderType::Pointer reader = ReaderType::New();
@@ -112,6 +117,8 @@ int main(int argc, const char* argv[])
 	InputImageType* fixedImage = reader->GetOutput();
 	InputImageType* floatingImage = reader2->GetOutput();
 
+	std::cout << "Starting registration." << std::endl;
+
 	registration->SetFixedImage(fixedImage);
 	registration->SetMovingImage(floatingImage);
 
@@ -124,14 +131,14 @@ int main(int argc, const char* argv[])
 
 	registration->SetInitialTransformParameters(initialParameters);
 
-	optimizer->SetMaximumStepLength(4.00);
+	optimizer->SetMaximumStepLength(1.00);
 	optimizer->SetMinimumStepLength(0.01);
-
+	optimizer->MinimizeOn();
 	optimizer->SetNumberOfIterations(200);
 
 	CommandIterationUpdate::Pointer observer = CommandIterationUpdate::New();
 	optimizer->AddObserver(itk::IterationEvent(), observer);
-
+	
 	registration->Update();
 
 	ParametersType finalParameters = registration->GetLastTransformParameters();
@@ -236,16 +243,23 @@ int main(int argc, const char* argv[])
 	writer3->SetFileName("otsu.nii");
 	writer3->Update();
 
-	WriterType::Pointer writer2 = WriterType::New();
-	writer2->SetInput(caster->GetOutput());
-	writer2->SetFileName("mask.nii");
-	writer2->Update();
+	if (argc < 4)
+	{
+		WriterType::Pointer writer2 = WriterType::New();
+		writer2->SetInput(caster->GetOutput());
+		writer2->SetFileName("mask.nii");
+		writer2->Update();
+	}
+
+	ReaderType::Pointer maskreader = ReaderType::New();
+	maskreader->SetFileName("mask.nii");
+	maskreader->Update();
 
 	typedef itk::MaskImageFilter< InputImageType, InputImageType >
 		MaskImageType;
 	MaskImageType::Pointer maskFilter = MaskImageType::New();
 	maskFilter->SetInput(resampler->GetOutput());
-	maskFilter->SetMaskImage(invertFilter->GetOutput());
+	maskFilter->SetMaskImage(maskreader->GetOutput());
 	maskFilter->Update();
 
 	WriterType::Pointer writer = WriterType::New();

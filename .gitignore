@@ -6,6 +6,7 @@
 *.user
 *.sln.docstates
 */test_patient/
+*/test_patienter/
 
 # Build results
 
