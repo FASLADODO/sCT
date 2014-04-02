@@ -176,7 +176,7 @@ int main(int argc, const char* argv[])
 	resampler->SetOutputOrigin(fixedImage->GetOrigin());
 	resampler->SetOutputSpacing(fixedImage->GetSpacing());
 	resampler->SetOutputDirection(fixedImage->GetDirection());
-	resampler->SetDefaultPixelValue(-2000);
+	resampler->SetDefaultPixelValue(atoi(argv[5]));
 
 
 	std::cout << "Generating Otsu threshold image." << std::endl;
@@ -245,7 +245,7 @@ int main(int argc, const char* argv[])
 
 	typedef itk::ImageFileWriter<InputImageType> WriterType;
 
-	if (argc > 5)
+	if (argc > 6)
 	{
 		WriterType::Pointer writer2 = WriterType::New();
 		writer2->SetInput(invertFilter->GetOutput());
@@ -262,7 +262,7 @@ int main(int argc, const char* argv[])
 	MaskImageType::Pointer maskFilter = MaskImageType::New();
 	maskFilter->SetInput(resampler->GetOutput());
 	maskFilter->SetMaskImage(maskreader->GetOutput());
-	maskFilter->SetOutsideValue(-2000);
+	maskFilter->SetOutsideValue(atoi(argv[5]));
 	maskFilter->Update();
 
 	WriterType::Pointer writer = WriterType::New();
