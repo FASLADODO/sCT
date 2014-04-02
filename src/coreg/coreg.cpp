@@ -58,12 +58,19 @@ public:
 
 int main(int argc, const char* argv[])
 {
-	if (argc < 2)
+	if (argc < 5)
 	{
-		std::cout << "Too few arguments." << argc - 1 << "supplied, needs at least 2." << std::endl;
-		char str[2];
-		const char* format = "%1s";
-		scanf(format, str);
+		std::cout << std::endl;
+		if (!(argc == 2 && argv[1] == "-help"))
+		{
+			std::cout << "Too few arguments. " << argc - 1 << " supplied, needs at least 4." << std::endl << std::endl;
+		}
+		std::cout << "Usage: " << std::endl;
+		std::cout << "    Arg 1: Fixed image." << std::endl;
+		std::cout << "    Arg 2: Moving image." << std::endl;
+		std::cout << "    Arg 3: Output path." << std::endl;
+		std::cout << "    Arg 4: Mask image." << std::endl;
+		std::cout << "    Arg 5: If \"true\", generates a new mask. Optional." << std::endl;
 		return -1;
 	}
 
@@ -169,7 +176,7 @@ int main(int argc, const char* argv[])
 	resampler->SetOutputOrigin(fixedImage->GetOrigin());
 	resampler->SetOutputSpacing(fixedImage->GetSpacing());
 	resampler->SetOutputDirection(fixedImage->GetDirection());
-	resampler->SetDefaultPixelValue(0);
+	resampler->SetDefaultPixelValue(-2000);
 
 
 	std::cout << "Generating Otsu threshold image." << std::endl;
@@ -238,21 +245,16 @@ int main(int argc, const char* argv[])
 
 	typedef itk::ImageFileWriter<InputImageType> WriterType;
 
-	WriterType::Pointer writer3 = WriterType::New();
-	writer3->SetInput(otsuFilter->GetOutput());
-	writer3->SetFileName("otsu.nii");
-	writer3->Update();
-
-	if (argc < 4)
+	if (argc > 5)
 	{
 		WriterType::Pointer writer2 = WriterType::New();
-		writer2->SetInput(caster->GetOutput());
-		writer2->SetFileName("mask.nii");
+		writer2->SetInput(invertFilter->GetOutput());
+		writer2->SetFileName(argv[4]);
 		writer2->Update();
 	}
 
 	ReaderType::Pointer maskreader = ReaderType::New();
-	maskreader->SetFileName("mask.nii");
+	maskreader->SetFileName(argv[4]);
 	maskreader->Update();
 
 	typedef itk::MaskImageFilter< InputImageType, InputImageType >
@@ -260,11 +262,12 @@ int main(int argc, const char* argv[])
 	MaskImageType::Pointer maskFilter = MaskImageType::New();
 	maskFilter->SetInput(resampler->GetOutput());
 	maskFilter->SetMaskImage(maskreader->GetOutput());
+	maskFilter->SetOutsideValue(-2000);
 	maskFilter->Update();
 
 	WriterType::Pointer writer = WriterType::New();
 	writer->SetInput(maskFilter->GetOutput());
-	writer->SetFileName("out.nii");
+	writer->SetFileName(argv[3]);
 	writer->Update();
 
 	return 0;
