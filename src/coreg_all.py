@@ -1,7 +1,6 @@
 #!/bin/usr
 
 import os
-import time
 import shutil
 
 patienter_path = "C:/Users/chris_000/sCT/src/test_patienter"
