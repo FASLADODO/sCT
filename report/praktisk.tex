@@ -1,0 +1,33 @@
+\section{Praktisk}
+
+\subsection{Registrering}
+
+\todochristoffer{Der mangler referencer til registrering}
+
+\subsubsection{Co-registrering af UTE og T1 billeder}
+
+Til co-registrering af UTE og T1 billederne har vi valgt at bruge Insight ToolKit
+(ITK). Herfra benytter vi en implementation af Mattes Mutual Information algoritme
+samt linær translation og interpolering.
+
+\subsubsection{Co-registrering af UTE og CT}
+
+Co-registrering af UTE og CT billeder er modsat UTE/T1 en ikke-triviel opgave. Vi
+har valgt en landmark baseret løsning fra MINC's toolkit
+
+\subsubsection{Generering af maske}
+
+Ligesom ved co-registrering bruge vi ITK for at udregne en maske. I første step
+bruger vi en implementering af Otsu thresholding algoritme for at finde en binær
+repræsentation. For at sikre vi ikke misser noget af kanterne udvider vi det 
+binære billede vha. en neighborhood-connected algoritme med 2-3 pixel i x, y og z
+retningerne. Til sidst inverteres billedet og vi har dermed en binær maske vi kan
+bruge til at begrænse området sCT algoritmen arbejder på.
+
+\subsection{Metoden}
+
+\todochristoffer{Praktisk omkring metoden er ikke beskrevet}
+
+\subsection{Analyse af implementeringen}
+
+\todochristoffer{Analysen af implementeringen er ikke beskrevet}

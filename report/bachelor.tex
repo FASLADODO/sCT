@@ -1,36 +1,41 @@
 \documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage[danish,british]{babel}
-\usepackage[pdftex]{graphicx}
-\usepackage{pdfpages}
+\usepackage[utf8]{luainputenc}
+\usepackage[danish]{babel}
 \usepackage{listings}
-\usepackage{pgf}
 \usepackage{verbatim}
 \usepackage{hyperref}
-\usepackage{float}
-
-\usepackage{xcolor}
+\usepackage[danish, colorinlistoftodos]{todonotes}
 
 \definecolor{secnum}{RGB}{102,102,102} 
 
-\makeatletter
-    \def\@seccntformat#1{\llap{\color{secnum}\csname the#1\endcsname\hskip 16pt}}
-\makeatother
+\newcommand{\todolasse}[1]{\todo[color=green!40]{#1}}
+\newcommand{\todochristoffer}[1]{\todo[color=blue!40]{#1}}
+
 \title{sCT - working title}
 \author{Christoffer Wadum Larsen\\
 Lasse Ahlbech Madsen}
 \begin{document}
-\pagenumbering{roman}
 \maketitle
 \newpage
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
 
-\section{}
+\listoftodos
+\newpage
 
+\include{introduktion}
 
+\include{teori}
 
+\include{metoden}
+
+\include{praktisk}
+
+\include{tests}
+
+\include{vurdering}
+
+\include{konklusion}
 
 \end{document}
