@@ -22,7 +22,7 @@ def run(patients):
     for patient in os.listdir(patients):
         if os.path.isdir(os.path.join(patients, patient)):
             for image in os.listdir(os.path.join(patients, patient, coreg_folder)):
-                if "Head" in image and not "UMAP" in image:
+                if "Head" in image and not "UMAP" in image and not "mean_" in image and not "variance_" in image:
                     input_path = os.path.join(patients, patient, coreg_folder, image)
                     mean_output_path = os.path.join(patients, patient, coreg_folder, "mean_" + image)
                     var_output_path = os.path.join(patients, patient, coreg_folder, "variance_" + image)
