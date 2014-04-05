@@ -1,0 +1,34 @@
+Introduktion
+	- Hvad er der skrevet om området  L
+	- Hvad er målet med vores opgave  L
+
+Teori
+	- Kort introduktion til de forskellige type data og dannelse af disse. L
+	- Registrering C
+	- Attenuation correction C
+	- Statistikgøjl C
+	- Arbejdsgangen L
+		- FullCT (?)
+		- Rekonstruktion (?)
+	
+Metoden
+	- Hvad går den ud på C
+	- Hvorfor den ikke og en anden? L
+	- Hvordan han vi valgt at lave den (overlap med pratisk) L
+
+Praktisk
+	- Registrering C
+	- Metoden C
+	- Analyse af implementeringen C
+
+Afprøvning
+	- Test og vurdering af sCT L
+	- Test og vurdering af sCT - FullCT L
+ 	- Sammenligning med standard CT og FullCT L
+
+Vurderingen L
+	- Kvalitet L
+	- Problemer fx. Artifakter L
+	- Over tid L
+
+Konklusion L

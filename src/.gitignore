@@ -6,6 +6,7 @@
 *.user
 *.sln.docstates
 testpatient/
+run*.sh
 
 # Build results
 
