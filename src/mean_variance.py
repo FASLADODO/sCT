@@ -11,7 +11,10 @@ def calculate_variance(input, output):
     pass
 
 def calculate_mean(input, output):
-    os.system(os.path.normpath(mean_gen_exe) + " \""
+    calculate(mean_gen_exe, input, output)
+
+def calculate(exe, input, output):
+    os.system(os.path.normpath(exe) + " \""
                 + os.path.normpath(input) + "\" \""
                 + os.path.normpath(output) + "\"")
 
