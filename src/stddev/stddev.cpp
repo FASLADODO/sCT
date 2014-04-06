@@ -4,9 +4,7 @@
 #include "itkImageFileReader.h"
 #include "itkImageFileWriter.h"
 
-#include "itkNormalizeImageFilter.h"
-#include "itkStatisticsImageFilter.h"
-
+#include "itkNoiseImageFilter.h"
 
 int main(int argc, const char* argv[])
 {
@@ -32,24 +30,24 @@ int main(int argc, const char* argv[])
 	reader->SetFileName(argv[1]);
 	reader->Update();
 
-	std::cout << "Normalizing." << std::endl;
+	std::cout << "Calculating means." << std::endl;
 
-	typedef itk::NormalizeImageFilter<
-		InputImageType, InputImageType > NormalizeFilterType;
-	NormalizeFilterType::Pointer normalizeFilter = NormalizeFilterType::New();
-	normalizeFilter->SetInput(reader->GetOutput());
+	typedef itk::NoiseImageFilter<
+		InputImageType, InputImageType > FilterType;
+	FilterType::Pointer noiseFilter = FilterType::New();
+	noiseFilter->SetInput(reader->GetOutput());
+	InputImageType::SizeType indexRadius;
+	indexRadius[0] = 1; // radius along x
+	indexRadius[1] = 1; // radius along y
+	indexRadius[2] = 1; // radius along z
+	noiseFilter->SetRadius(indexRadius);
+	noiseFilter->Update();
 
-    typedef itk::StatisticsImageFilter< InputImageType >
-    StatisticsFilterType;
-    StatisticsFilterType::Pointer statistics = StatisticsFilterType::New();
-    statistics->SetInput(normalizeFilter->GetOutput());
-    statistics->Update();
-    
 	std::cout << "Writing image." << std::endl;
 
 	typedef itk::ImageFileWriter<InputImageType> WriterType;
 	WriterType::Pointer writer = WriterType::New();
-	writer->SetInput(normalizeFilter->GetOutput());
+	writer->SetInput(noiseFilter->GetOutput());
 	writer->SetFileName(argv[2]);
 	writer->Update();
 
