@@ -38,14 +38,19 @@ int main(int argc, const char* argv[])
 	typedef itk::ComposeImageFilter<InputImageType> ImageToVectorImageFilterType;
 	ImageToVectorImageFilterType::Pointer composeFilter = ImageToVectorImageFilterType::New();
 
-	for (unsigned int i = 0; i < numberOfImages; i++){
-		std::cout << "Reading image " << i << " ." << std::endl;
+	std::cout << "Reading image " << 0 << " ." << std::endl;
 
-		ReaderType::Pointer reader = ReaderType::New();
-		reader->SetFileName(argv[i+2]);
-		reader->Update();
-		composeFilter->SetInput(i, reader->GetOutput());
-	};
+	ReaderType::Pointer reader = ReaderType::New();
+	reader->SetFileName(argv[2]);
+	reader->Update();
+	composeFilter->SetInput(0, reader->GetOutput());
+
+	/*std::cout << "Reading image " << 1 << " ." << std::endl;
+
+	ReaderType::Pointer reader1 = ReaderType::New();
+	reader1->SetFileName(argv[3]);
+	reader1->Update();
+	composeFilter->SetInput(1, reader1->GetOutput());*/
 
 	std::cout << "Composing image." << std::endl;
 	composeFilter->Update();
@@ -66,20 +71,16 @@ int main(int argc, const char* argv[])
 	sample->Update();
 
 	typedef itk::Array< double > ParametersType;
-	ParametersType params(5);
+	ParametersType params(2);
 	std::vector< ParametersType > initialParameters(numberOfClasses);
 	params[0] = 110.0;
-	params[1] = 1.0;
-	params[2] = 0.5;
-	params[3] = 0.5;
-	params[4] = 1.0;
+
+	params[1] = 800.0;
 
 	initialParameters[0] = params;
 	params[0] = 210.0;
-	params[1] = 1.0;
-	params[2] = 0.5;
-	params[3] = 0.5;
-	params[4] = 1.0;
+
+	params[1] = 200.0;
 
 	initialParameters[1] = params;
 	typedef itk::Statistics::GaussianMixtureModelComponent< SampleType >

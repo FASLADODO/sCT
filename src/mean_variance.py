@@ -3,12 +3,13 @@
 import os
 import shutil
 
+stddev_gen_exe = "C:/Users/chris_000/sCT/src/stddev/build/Release/StdDev.exe"
 mean_gen_exe = "C:/Users/chris_000/sCT/src/mean_gen/build/Release/mean_gen.exe"
 patient_folder = "C:/Users/chris_000/sCT/src/test_patienter"
 coreg_folder = "coreg"
 
 def calculate_variance(input, output):
-    pass
+    calculate(stddev_gen_exe, input, output)
 
 def calculate_mean(input, output):
     calculate(mean_gen_exe, input, output)
