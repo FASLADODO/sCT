@@ -1,7 +1,5 @@
 startup;
 
-memory
-
 nii1 = load_nii('coreg/ct.nii');
 nii2 = load_nii('coreg/Head_CV_UTE_AC_WIP_719 - 13.nii');
 nii3 = load_nii('coreg/Head_CV_UTE_AC_WIP_719 - 14.nii');
@@ -52,14 +50,14 @@ end
 
 nii_list2 = nii_list(1:count-1, :);
 
-% clear nii1 nii2 nii3 nii4 nii5 nii6 nii7 nii8 nii9 nii10 nii11 nii12 nii13 nii14 nii15 nii16 count i j k nii_size;
+%options = statset('MaxIter',1000,'Display','final');
 
-options = statset('MaxIter',1000,'Display','final');
+%GMModel = fitgmdist(nii_list2, 20,'Options',options, 'Regularize',0.01)
 
-GMModel = fitgmdist(nii_list2, 20,'Options',options, 'Regularize',0.01)
-
-save('GMModel.mat','GMModel');
+%save('GMModel.mat','GMModel');
 
 % clusters = cluster(GMModel,nii_list);
 
 % view_nii(nii)
+
+clear i j k count;
