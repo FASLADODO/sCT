@@ -1,8 +1,7 @@
-function [ smu ] = samplemu( x2, mu1, mu2, sigma )
-%SAMPLEMU Summary of this function goes here
+function [ smu ] = samplemu( x, mu1, mu2, sigma )
+%SAMPLEMU Computes the sample mean.
 %   Detailed explanation goes here
 
-    smu = mu1 + sigma * (x2 - mu2);
-
+    smu = mu1 + (sigma * (x - mu2));
 end
 

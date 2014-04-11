@@ -1,8 +1,7 @@
-function [ output ] = h(x2, invsigmai22, mui2, constant )
-%H Summary of this function goes here
+function [ output ] = h(x, invsigma, mu, constant )
+%H Computes our gaussian.
 %   Detailed explanation goes here
-
-    output =  constant * exp(-.5 * ((x2-mui2).' * invsigmai22 * (x2-mui2)));
-
+    
+    output =  constant * exp(-.5 * ((x-mu).' * invsigma * (x-mu)));
 end
 
