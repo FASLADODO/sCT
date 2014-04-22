@@ -1,0 +1,53 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[danish,british]{babel}
+\usepackage[pdftex]{graphicx}
+\usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{pgf}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{gantt}
+\usepackage{xcolor}
+
+\definecolor{secnum}{RGB}{102,102,102} 
+
+\makeatletter
+    \def\@seccntformat#1{\llap{\color{secnum}\csname the#1\endcsname\hskip 16pt}}
+\makeatother
+\title{Status}
+\author{
+Christoffer Wadum Larsen\\
+Lasse Ahlbech Madsen}
+\begin{document}
+\maketitle
+
+\pagenumbering{arabic}
+
+\section{Status}
+
+Vi er et par uger bagud med at teste, og vi er ikke så langt med litteratur studiet, som planlagt. Tilgengæld er vi længere frem med implementation end planlagt, den er faktisk nærmest færdig. Vi har ladet et par uger blive på den, fordi vi måske vil optimere implementation.
+
+Vi er godt igang med rapporten, og vi har en udfyldig todoliste, for at få det hele med. Vi skal arbejde lidt med strukturen i opgaven.
+
+\section*{Arbejdsplan}
+\begin{enumerate}
+    \item Litteraturstudie 
+    \item Implementere metode
+    \item Teste og analysere implementationen
+    \item Rapportskrivning
+\end{enumerate}
+
+\begin{gantt}{5}{16}
+    \begin{ganttitle}
+      \numtitle{1}{1}{16}{1}
+    \end{ganttitle}
+    \ganttbar{(1)}{0}{10}
+    \ganttbar{(2)}{1}{9}
+    \ganttbar{(3)}{7}{7}
+    \ganttbar{(4)}{4}{12}
+\end{gantt}
+
+\end{document}
