@@ -5,86 +5,86 @@
 \todo{Beskriv joint histogram + mere}
 
 \subsection{Planlagte forsøg}
-\todo{Renskriv, mere tekst, omdøb "faldgrupper"}
+\todo{Renskriv, mere tekst, omdøb faldgrupper}
 
 \subsubsection{Leave-one-out cross validation (LOOCV)}
-\paragraph   {Fremgangsmåde}
+\paragraph{Fremgangsmåde}
 Tag 5 hjerner. Træn på 4 og test på 1 og roter.
 
 \todo{Uddyb}
 
-\paragraph   {Forventning}
+\paragraph{Forventning}
 Vi forventer, at vores joint histogram bliver nogenlunde lineær. 
 
-\paragraph   {Faldgrupper}
+\paragraph{Faldgrupper}
 Billeder med artifakter kan forstyrre algoritmen. 
 
-\paragraph   {Resultat}
+\paragraph{Resultat}
 \todo{Udfør LOOCV-forsøget}
 
 \subsubsection{Udregn sCT til hjerner med artifakter trænet på hjerner uden artifakter}
-\paragraph   {Fremgangsmåde}
+\paragraph{Fremgangsmåde}
 Træn på n hjerner test på m.
 
-\paragraph   {Forventning}
+\paragraph{Forventning}
 
-\paragraph   {Faldgrupper}
+\paragraph{Faldgrupper}
 
-\paragraph   {Resultat}
+\paragraph{Resultat}
 
 \subsubsection{Udregn sCT til hjerner trænet på hjerner med artifakter}
-\paragraph   {Fremgangsmåde}
+\paragraph{Fremgangsmåde}
 Iterativt træn på et antal hjerner og introducer hjerner med artifakter.
 Sammenlign kvaliteten af sCT afhængigt af andelen af hjerner, som har
 artifakter.
 
-\paragraph   {Forventning}
+\paragraph{Forventning}
 At sCT's kvalitet forværes for hver introduceret hjerne med artifakt.
 
-\paragraph   {Faldgrupper}
+\paragraph{Faldgrupper}
 
-\paragraph   {Resultat}
+\paragraph{Resultat}
 
 
 \subsubsection{Over tid}
-\paragraph   {Fremgangsmåde}
+\paragraph{Fremgangsmåde}
 Træn på gamle hjerner, test på ny hjerner. Og omvendt.
 
-\paragraph   {Forventning}
+\paragraph{Forventning}
 Forventningen er sCT af samme kvalitet, som dem ved LOOCV-forsøget.
 
-\paragraph   {Faldgrupper}
+\paragraph{Faldgrupper}
 
 
-\paragraph   {Resultat}
+\paragraph{Resultat}
 
 \subsubsection{Test på en masse}
-\paragraph   {Fremgangsmåde}
+\paragraph{Fremgangsmåde}
 Iterativt træn på n+1 hjerner
 
-\paragraph   {Forventning}
+\paragraph{Forventning}
 Forventning er at efter 7-8 hjerner giver det ikke rigtig nogen
 kvalitetsforskel.
 
-\paragraph   {Faldgrupper}
+\paragraph{Faldgrupper}
 Overfitting. 
 
 
-\paragraph   {Resultat}
+\paragraph{Resultat}
 
 \subsubsection{Hvorfor 20-gaussians?}
 
-\paragraph   {Fremgangsmåde}
+\paragraph{Fremgangsmåde}
 Test på forskelligt antal gaussians og sammenlign resultaterne.
 
-\paragraph   {Forventning}
+\paragraph{Forventning}
 Vi forventer, at kvaliteten falder under 20, men at metoden kræver mere tid
 efter 20 uden betydelig forbedringer.
 
-\paragraph   {Faldgrupper}
+\paragraph{Faldgrupper}
 Overfitting. 
 
-\paragraph   {Resultat}
+\paragraph{Resultat}
 
 
 
