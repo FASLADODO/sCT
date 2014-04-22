@@ -1,6 +1,8 @@
 import nibabel as nii
 import numpy as np
 import cv2
+import time
+import json
 
 nii1 = nii.load('D:/sCT/src/em_python_opencv/coreg/ct.nii').get_data();
 nii2 = nii.load('D:/sCT/src/em_python_opencv/coreg/Head_CV_UTE_AC_WIP_719 - 13.nii').get_data();
@@ -21,36 +23,36 @@ nii16 = nii.load('D:/sCT/src/em_python_opencv/coreg/variance_Head_t1_mprage_sag_
 
 mask = nii.load('D:/sCT/src/em_python_opencv/coreg/mask.nii').get_data();
 
-nii_list = np.zeros([192*192*192, 16],np.float32);
-count = 0;
+start_time = time.time()
 
-for i in range(192):
-    for j in range(192):
-        for k in range(192):
-            if mask[i, j, k] == 255:
-               nii_list[count, 0]  = np.float32(nii1[i, j, k])
-               nii_list[count, 1]  = np.float32(nii2[i, j, k])
-               nii_list[count, 2]  = np.float32(nii3[i, j, k])
-               nii_list[count, 3]  = np.float32(nii4[i, j, k])
-               nii_list[count, 4]  = np.float32(nii5[i, j, k])
-               nii_list[count, 5]  = np.float32(nii6[i, j, k])
-               nii_list[count, 6]  = np.float32(nii7[i, j, k])
-               nii_list[count, 7]  = np.float32(nii8[i, j, k])
-               nii_list[count, 8]  = np.float32(nii9[i, j, k])
-               nii_list[count, 9]  = np.float32(nii10[i, j, k])
-               nii_list[count, 10] = np.float32(nii11[i, j, k])
-               nii_list[count, 11] = np.float32(nii12[i, j, k])
-               nii_list[count, 12] = np.float32(nii13[i, j, k])
-               nii_list[count, 13] = np.float32(nii14[i, j, k])
-               nii_list[count, 14] = np.float32(nii15[i, j, k])
-               nii_list[count, 15] = np.float32(nii16[i, j, k])
-               count += 1
+nii_list = np.array([nii1[mask.nonzero()].flatten(),
+                     nii2[mask.nonzero()].flatten(),
+                     nii3[mask.nonzero()].flatten(),
+                     nii4[mask.nonzero()].flatten(),
+                     nii5[mask.nonzero()].flatten(),
+                     nii6[mask.nonzero()].flatten(),
+                     nii7[mask.nonzero()].flatten(),
+                     nii8[mask.nonzero()].flatten(),
+                     nii9[mask.nonzero()].flatten(),
+                     nii10[mask.nonzero()].flatten(),
+                     nii11[mask.nonzero()].flatten(),
+                     nii12[mask.nonzero()].flatten(),
+                     nii13[mask.nonzero()].flatten(),
+                     nii14[mask.nonzero()].flatten(),
+                     nii15[mask.nonzero()].flatten(),
+                     nii16[mask.nonzero()].flatten()]).T
 
-nii_list = nii_list[range(count-1), :]
+print "List", time.time() - start_time, "seconds"
 
-em = cv2.EM(20)
+start_time = time.time()
+
+em = cv2.EM()
+em.setInt("nclusters", 20)
+em.setInt("covMatType", cv2.EM_COV_MAT_GENERIC)
 
 em.train(nii_list)
+
+print "EM", time.time() - start_time, "seconds"
 
 weights = em.getMat('weights')
 
@@ -59,4 +61,4 @@ covs = em.getMatVector('covs')
 means = em.getMat('means')
 
 with open('parameters.json', 'w') as f:
-    f.write(json.dumps({'means': means.tolist(), 'covs': covs, 'weights': weights.tolist()}))
+    f.write(json.dumps({'means': means.tolist(), 'covs': [covs[x].tolist() for x in range(len(covs))], 'weights': weights.tolist()}))
