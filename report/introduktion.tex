@@ -5,4 +5,26 @@
 
 \subsection{Hvad er målet med vores opgave}
 
-\todolasse{Mangler at beskrive formålet}
+\todochristoffer{Læs}
+
+Når en patient får foretaget en PET/MR skanning indeholder den kun
+information om de vandholdige legemer i kroppen. Derfor tager man også en
+CT for at attenuationskorrigere MR billederne. Der er flere problemer ved denne
+fremgangsmåde. For det første er at patienten skal flyttes rundt mellem flere
+skannere, hvilket koster resourcer og tid, derudover kan sammensætningen af
+de to skanninger, forårsage forringelser af billedkvaliteten og CT scanninger
+kan også være kræftfremkaldende.
+
+Et forskningshold i Umeå har fundet en metode til at beregne et substitute-CT
+(sCT) fra PET/MR skanningen som kan erstatte CT skanningen. Metoden benytter
+5 MRI sekvenser; fire UTE og en T2. Da vi ikke har T2 på alle patienter,
+benytter vi T1-vægtede sekvenser i stedet. Ved hjælp af MR sekvenserne og
+et CT billede trænes en parametriseret Gaussian mixture regression model, som
+kan bruges til at udregne et sCT for andre patienter.\\
+
+Vores håb er at vi kan implementere samme metode til brug for Rigshospitalet.
+Vi vil desvidere undersøge korrektheden og kvaliteten af vores sCT for at se
+om det kan bruges klinisk.\\
+
+
+
