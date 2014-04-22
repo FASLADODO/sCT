@@ -1,0 +1,84 @@
+\section{Forsøgsplan}
+\todo{tekst, beskriv joint histogram, omdøb "faldgrupper"}
+
+\subsection{Leave-one-out cross validation (LOOCV)}
+\subsubsection{Fremgangsmåde}
+Tag 5 hjerner. Træn på 4 og test på 1 og roter.
+
+\todo{Uddyb}
+
+\subsubsection{Forventning}
+Vi forventer, at vores joint histogram bliver nogenlunde lineær. 
+
+\subsubsection{Faldgrupper}
+Billeder med artifakter kan forstyrre algoritmen. 
+
+\subsubsection{Resultat}
+\todo{Udfør LOOCV-forsøget}
+
+\subsection{Udregn sCT til hjerner med artifakter trænet på hjerner uden artifakter}
+\subsubsection{Fremgangsmåde}
+Træn på n hjerner test på m.
+
+\subsubsection{Forventning}
+
+\subsubsection{Faldgrupper}
+
+\subsubsection{Resultat}
+
+\subsection{Udregn sCT til hjerner trænet på hjerner med artifakter}
+\subsubsection{Fremgangsmåde}
+Iterativt træn på et antal hjerner og introducer hjerner med artifakter.
+Sammenlign kvaliteten af sCT afhængigt af andelen af hjerner, som har
+artifakter.
+
+\subsubsection{Forventning}
+At sCT's kvalitet forværes for hver introduceret hjerne med artifakt.
+
+\subsubsection{Faldgrupper}
+
+\subsubsection{Resultat}
+
+
+\subsection{Over tid}
+\subsubsection{Fremgangsmåde}
+Træn på gamle hjerner, test på ny hjerner. Og omvendt.
+
+\subsubsection{Forventning}
+Forventningen er sCT af samme kvalitet, som dem ved LOOCV-forsøget.
+
+\subsubsection{Faldgrupper}
+
+
+\subsubsection{Resultat}
+
+\subsection{Test på en masse}
+\subsubsection{Fremgangsmåde}
+Iterativt træn på n+1 hjerner
+
+\subsubsection{Forventning}
+Forventning er at efter 7-8 hjerner giver det ikke rigtig nogen
+kvalitetsforskel.
+
+\subsubsection{Faldgrupper}
+Overfitting. 
+
+
+\subsubsection{Resultat}
+
+\subsection{Hvorfor 20-gaussians?}
+
+\subsubsection{Fremgangsmåde}
+Test på forskelligt antal gaussians og sammenlign resultaterne.
+
+\subsubsection{Forventning}
+Vi forventer, at kvaliteten falder under 20, men at metoden kræver mere tid
+efter 20 uden betydelig forbedringer.
+
+\subsubsection{Faldgrupper}
+Overfitting. 
+
+\subsubsection{Resultat}
+
+
+
