@@ -1,7 +1,34 @@
 \section{Metoden}
-\subsection{Hvad går den ud på}
+\subsection{Gaussian Mixture Model}
 
-\todochristoffer{Metoden er ikke beskrevet}
+\subsubsection{At finde modellen}
+Vi bruger en mixtur af gaussians til at beregne voxel værdier
+for et sCT. For hver patient har vi 5 MR-billeder og 1 CT billede.
+
+For at øge præcisionen udregner vi for hvert MR-billede
+to nye billeder. De nye billeder beregnes ved at se på en 3x3x3
+kube omkring hvert voxel og finder henholdsvis middelværdi og varians.
+
+Herefter har vi 15 MR-billeder og 1 CT-billede som vi vil klassificere
+med en mixtur af gaussians. Fra Johannson et al. ved vi at vi kan få
+gode resultater med 20 gaussiske fordelinger.
+
+For at finde parametrene til hver gaussiske fordeling bruge vi 
+Expectation-Maximization(EM) algoritmen. Vi starter EM algoritmen med
+tilfældige værdier for ikke at ramme et lokalt minimum. Herefter er
+det blot at udregne afstanden til hvert voxel-sæt og klassificere dem.
+Efter klassifikationen udregnes nye paramtetre for hver gaussiske
+fordeling.
+
+Vi gentager herefter samme process indtil differencen imellem parametrene
+bliver små nok.
+\todochristoffer{Matematiske ekslempler}
+\todolasse{Gennemlæs}
+
+
+\subsubsection{At udregne et sCT}
+
+\todochristoffer{Beregning af sCT er ikke beskrevet}
 
 \subsection{Hvorfor den ikke og en anden?}
 
