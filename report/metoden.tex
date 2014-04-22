@@ -30,10 +30,15 @@ bliver små nok.
 
 \todochristoffer{Beregning af sCT er ikke beskrevet}
 
-\subsection{Hvorfor den ikke og en anden?}
-
-\todolasse{Valg af metoden er ikke beskrevet}
-
 \subsection{Hvordan han vi valgt at implementere den}
 
-\todolasse{Implementering af metoden er ikke beskrevet - Overlap med praktisk}
+\todochristoffer{Læs}
+
+Til metoden benytter vi for hvert træningssæt et CT, en T1 vægtet MR-sekvens
+og 4 MR UTE-sekvenser. Vi benytter Insight Toolkit (ITK) til at udregne et
+billede med middelværdi og et med varians for hvert MR billede.
+
+Disse henter vi ind i matlab, hvor vi benytter fitgmdist til at lave en
+gaussisk mixture fordelingsmodel. Med denne kan vi udregne et sCT udfra den
+samme slags MR-sekvenser vi brugte til at lave modellen, samt deres
+mean- og variansbilleder.

@@ -1,25 +1,46 @@
 \section{Teori}
 \subsection{Kort introduktion til de forskellige type data og dannelse af disse.}
 
-\todolasse{Introduktion til data er ikke beskrevet}
+\todochristoffer{Læs}
+\todolasse{Skriv om PET effekt på MR. Mere om forskel på UTE-sekvenserne}
+
+
+Til metoden benyttes Magnetic resonance- (MR) og Computed
+tomography-billedsekvenser (CT). CT er en røngtenscanning, som måler
+evnen til at blokkere stråling, hvilket har en direkte relation til
+elektrondensitet. Knoglen er meget tydelig i disse billeder. MR magnetiserer
+kroppen ganske svagt, når dette stoppes vil kroppens magnetisering bruge
+ganske kort tid på at gendannes, og der måles på denne for at kortlægge
+struktur.
+
+Vi benytter 5 MR-sekvenser: T1, som måles efter kroppen har gendannet en vis
+mændge magnetisme, og derudover 4 Ultrashort echo time MR-sekvenser (UTE)
+taget fra 2 forskellige vinkler og varierende ekko tider. Når man sænker echo
+tiden betydeligt bliver det muligt at se knogle på MR billeder, men ikke med
+en præcision, som kan matche CT.
+
 
 \subsection{Registrering}
 
 \todochristoffer{Mangler referencer i teori til registrering}
 
-Billeder taget på MRI/PET og PET/CT skannere kan som regelt ikke processeres sammen
-grundet flere faktorer. Patienten ligger sjældent præcis på samme måde, billederne
-bliver taget i forskellige opløsninger og patienten kan have implantater der
-forvrænger billederne. For at klargøre billederne skal de derfor co-registreres.
+Billeder taget på PET/MR og PET/CT skannere kan som regelt ikke processeres
+sammen grundet flere faktorer. Patienten ligger sjældent præcis på samme
+måde, billederne bliver taget i forskellige opløsninger og patienten kan have
+implantater der forvrænger billederne og de ligger også i forskellige image
+spaces. For at klargøre billederne skal de derfor co-registreres.
 
-Ved co-registrering forsøger man at få alle billederne til at ligge i samme rum.
-I forhold til MRI billederne er co-registrering ofte trivielt. At co-registrere
-et MRI og CT billede er derimod vanskeligere. Derfor har vi valgt to forskellige
-metoder.
+Ved co-registrering forsøger man at få alle billederne til at ligge i samme
+rum. I forhold til MRI billederne er co-registrering ofte trivielt. At
+co-registrere et MRI og CT billede er derimod vanskeligere. Derfor har vi valgt
+to forskellige metoder.
 
-I samme omgang som vi co-registrere billederne er vi interesserede også at finde
-en maske. Masken skal bruges til at begrænse udregningen af sCT billedet så vi
-ikke bruger lang tid på at lede efter knogle i luften rundt om patienten.
+\todo{Mangler der noget her?}
+
+I samme omgang som vi co-registrere billederne er vi interesserede også
+at finde en maske. Masken skal bruges til at begrænse udregningen af sCT
+billedet så vi ikke bruger lang tid på at lede efter knogle i luften rundt om
+patienten.
 
 \subsection{Attenuation correction}
 Ved PET billeder måles photoner fra materiale man har sprøjtet ind i blodet. Ved
@@ -40,14 +61,27 @@ Normalt bruges et CT billede for at korrigere for afbøjninger, men det
 
 \todochristoffer{Mangler at beskrive statistikken}
 
+\todo{Overvej ordenen på næste 3 sections}
+
 \subsection{Arbejdsgangen}
 
-\todolasse{Arbejdsgangen er ikke beskrevet}
+\todochristoffer{Arbejdsgangen er ikke beskrevet}
+
+På Rigshospitalet er fremgangsmåden med MR
+hjerneskanninger, at man også laver et CT scan. T1 billedet fra MR scanneren
+og CT co-registreres herefter og sammenlægges til et attenuationskorrigeret
+uMap kaldet FullCT. Derudover benyttes et Dixon uMap til at sætte dimensioner
+på det nye uMap. Dette rekonstrueres på hospitalets scanner.
+
 
 \subsubsection{FullCT}
 
-\todolasse{FullCT er ikke beskrevet}
+\todolasse{FullCT er ikke beskrevet. Snakker nærmere med Claes og justerer
+også i ovenstående snit}
+
+Det er noget funk
 
 \subsubsection{Rekonstruktion}
 
-\todolasse{Rekonstruktion er ikke beskrevet}
+\todolasse{Rekonstruktion er ikke beskrevet. Skal snakke med et par folk.
+Hvordan det }
