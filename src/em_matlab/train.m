@@ -3,11 +3,10 @@ function [ GMModel ] = train( data )
 %   Detailed explanation goes here
     
     startup;
-    
-    
+        
     options = statset('MaxIter',1000,'Display','final');
 
-    GMModel = fitgmdist(data, 20,'Options',options, 'Regularize',0.01)
+    GMModel = fitgmdist(data, 20,'Options',options, 'Regularize',0.01,'Replicates',5)
 
     
 end
