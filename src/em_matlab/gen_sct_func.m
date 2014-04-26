@@ -6,7 +6,7 @@ startup;
 % Compute the sCT values
 load('model0123.mat');
 
-load_nii(mask);
+mask = load_nii(mask);
 
 tic;
 sct_val = get_sct(nii_list, model0123.Sigma, model0123.mu, model0123.PComponents);
