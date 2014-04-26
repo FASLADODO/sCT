@@ -4,11 +4,13 @@ tic;
 [p0,p1,p2,p3,p4,p5,p6,p7,p8,p9] = load_all_patients_func();
 toc;
 
+gen_sct_func( p1, '010769/coreg/mask.nii','010769/coreg/ct.nii', 'sct1.nii');
+toc;
+
 gen_sct_func( p0, '010476/coreg/mask.nii','010476/coreg/ct.nii', 'sct0.nii');
 toc;
 
-gen_sct_func( p1, '010769/coreg/mask.nii','010769/coreg/ct.nii', 'sct1.nii');
-toc;
+
 
 gen_sct_func( p2, '010850/coreg/mask.nii','010850/coreg/ct.nii', 'sct2.nii');
 toc;

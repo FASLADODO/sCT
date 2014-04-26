@@ -9,9 +9,7 @@ mask = load_nii(maskpath);
 
 %mask = load_nii(maskpath);
 
-tic;
 sct_val = get_sct(nii_list, model0123.Sigma, model0123.mu, model0123.PComponents);
-toc;
 
 nii1 = load_nii(ctpath);
 
