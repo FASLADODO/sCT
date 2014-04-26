@@ -1,4 +1,4 @@
-function [ ct ] = gen_sct_func( nii_list, mask )
+function [ ct ] = gen_sct_func( nii_list, maskpath )
 %GEN_SCT_FUNC Summary of this function goes here
 %   Detailed explanation goes here
 startup;
@@ -6,7 +6,7 @@ startup;
 % Compute the sCT values
 load('model0123.mat');
 
-mask = load_nii(mask);
+mask = load_nii(maskpath);
 
 tic;
 sct_val = get_sct(nii_list, model0123.Sigma, model0123.mu, model0123.PComponents);
