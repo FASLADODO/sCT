@@ -8,4 +8,10 @@ sct_norm = sct.img ./ sct_max;
 
 pdct = ( abs( (ct.img) - (sct.img) ) ./ ( ct.img + sct.img )./2 ) .* 100;
 
+i = find(pdct > 100);
+pdct(i) = 100;
+
+i = find(pdct < -100);
+pdct(i) = -100;
+
 save_nii(make_nii(pdct), 'pdct.nii');
