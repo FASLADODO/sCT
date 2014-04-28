@@ -4,12 +4,27 @@
 
 \todo{Beskriv joint histogram + mere}
 
+Til at vurdere kvaliteten af de generede sCT finder vi den procentmæssige
+forskel på det målte CT og vores sCT i hjerne regionen, resten af kraniet
+interesser os ikke. 
+
+Vi benytter også joint histograms. Billede histogrammer er plots af
+pixelværdieren i et billede. Man kan sætte histogrammet af et sCT sammen med et
+rigtig CT og se om vi har nogenlunde lige store mængder pixel af de forskellige
+typer væv i kraniet. 
+
 \subsection{Planlagte forsøg}
 \todo{Renskriv, mere tekst, omdøb faldgrupper}
 
 \subsubsection{Leave-one-out cross validation (LOOCV)}
 \paragraph{Fremgangsmåde}
+Note: Ikke hvad vi rent faktisk har gjort:
 Tag 5 hjerner. Træn på 4 og test på 1 og roter.
+
+Vi tog 10 tilfældige patienter. Af de 10 lavede 7 forskellige modeller trænet
+på fire tilfældigt udvalgte hjerner. For hver af de 7 modeller fremstillede vi
+et sCT for alle ti patienter.  
+
 
 \todo{Uddyb}
 
