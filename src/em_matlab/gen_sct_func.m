@@ -4,12 +4,12 @@ function [ ] = gen_sct_func( nii_list, maskpath, ctpath, savename )
 startup;
 
 % Compute the sCT values
-load('model4567.mat');
+load('model0123.mat');
 mask = load_nii(maskpath);
 
 %mask = load_nii(maskpath);
 
-sct_val = get_sct(nii_list, model4567.Sigma, model4567.mu, model4567.PComponents);
+sct_val = get_sct(nii_list, model0123.Sigma, model0123.mu, model0123.PComponents);
 
 nii1 = load_nii(ctpath);
 
