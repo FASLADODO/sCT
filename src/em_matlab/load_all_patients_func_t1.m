@@ -1,5 +1,5 @@
 function [ nii_list1,nii_list2,nii_list3,nii_list4,nii_list5,...
-    nii_list6,nii_list7,nii_list8,nii_list9,nii_list10]  = load_all_patients_func( )
+    nii_list6,nii_list7,nii_list8,nii_list9,nii_list10]  = load_all_patients_func_t1( )
 %UNTITLED7 Summary of this function goes here
 %   Detailed explanation goes here
 tic;

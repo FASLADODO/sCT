@@ -4,7 +4,9 @@ function [ GMModel ] = train( data )
     
     startup;
     
-    IDX = kmeans(data,20);
+    kmeansoptions = statset('UseParallel',true,'MaxIter',200);
+    
+    IDX = kmeans(data,20,'Options',kmeansoptions);
         
     options = statset('MaxIter',1000,'Display','final');
 
