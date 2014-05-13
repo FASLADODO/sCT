@@ -30,6 +30,22 @@ mask = load_nii(strcat(patient,'/coreg/mask.nii'));
 % Pre-allocate list for voxel values
 nii_list = zeros(192*192*192, 16);
 count = 1;
+nii2.img = mat2gray(nii2.img);
+nii3.img = mat2gray(nii3.img);
+nii4.img = mat2gray(nii4.img);
+nii5.img = mat2gray(nii5.img);
+nii6.img = mat2gray(nii6.img);
+nii7.img = mat2gray(nii7.img);
+nii8.img = mat2gray(nii8.img);
+nii9.img = mat2gray(nii9.img);
+nii10.img = mat2gray(nii10.img);
+nii11.img = mat2gray(nii11.img);
+nii12.img = mat2gray(nii12.img);
+nii13.img = mat2gray(nii13.img);
+nii14.img = mat2gray(nii14.img);
+nii15.img = mat2gray(nii15.img);
+nii16.img = mat2gray(nii16.img);
+    
 
 % Extract the voxel values
 for i=1:192,
