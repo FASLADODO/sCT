@@ -7,7 +7,7 @@
 
 Til metoden benyttes Magnetic resonance- (MR) og Computed
 tomography-billedsekvenser (CT). CT er en røngtenscanning, som måler
-evnen til at blokkere stråling, hvilket har en direkte relation til
+evnen til at blokere stråling, hvilket har en direkte relation til
 elektrondensitet. Knoglen er meget tydelig i disse billeder. MR magnetiserer
 kroppen ganske svagt, når dette stoppes vil kroppens magnetisering bruge
 ganske kort tid på at gendannes, og der måles på denne for at kortlægge
@@ -18,6 +18,36 @@ mændge magnetisme, og derudover 4 Ultrashort echo time MR-sekvenser (UTE)
 taget fra 2 forskellige vinkler og varierende ekko tider. Når man sænker echo
 tiden betydeligt bliver det muligt at se knogle på MR billeder, men ikke med
 en præcision, som kan matche CT.
+
+Mens vi ikke træner på Positron emission tomography-billeder (PET),
+så er målet med udregning af et sCT i høj grad, at producerer
+attenuationskorrigerede PET-billeder. PET-billeder måles ved at injektere
+et radioaktivt sukkersporstof ind i en patient og måle henfaldet af dette. Da
+kræftceller kræver mere energi end andre celler, vil størstedelen af
+sporstoffet blive bundet til kræftcellerne, og strålingsaktivitetenvil derfor
+være størst i dette område. 
+
+\subsection{Attenuation correction} 
+
+Ved PET billeder måles photoner fra det radioaktive sporstof, som man har
+injekterer ind i blodet. Ved at se på hvor photonerne kommer fra kan man se
+hvor meget blod der flyder til forskellige steder. Det er særligt brugbart
+til at identificere kræftknuder i hjernen da kræftknuderne har et højere
+energiforbrug, og dermed får tilført mere af stoffet, kan man måle hvor de
+er henne.
+
+Men photonerne går ikke igennem alle materialer lige let, det bløde væv
+inde i hjernen har en nogenlunde jævn modstand, mens kranie afbøjer meget
+mere kraftigt og luft næsten slet ikke gør. Da billederne bliver optaget
+på en PET/MR scanner er det ikke muligt, at se forskel på luft og knogle,
+så man kan ikke korrigere for disse målingsfejl og de målte værdier bliver
+forvrænget.
+
+For at udbedre dette benyttes der, for eksempel, et CT billede målt på en anden
+scanner til at korrigere. Man erstatter \mu-mappet optaget på PET/MR scanneren
+med ct'et og rekonstruere PET billedet med korrigerede værdier.
+
+\todochristoffer{Mangler at beskrive AC}
 
 
 \subsection{Registrering}
@@ -35,6 +65,7 @@ rum. I forhold til MRI billederne er co-registrering ofte trivielt. At
 co-registrere et MRI og CT billede er derimod vanskeligere. Derfor har vi valgt
 to forskellige metoder.
 
+
 \todo{Mangler der noget her?}
 
 I samme omgang som vi co-registrere billederne er vi interesserede også
@@ -42,16 +73,6 @@ at finde en maske. Masken skal bruges til at begrænse udregningen af sCT
 billedet så vi ikke bruger lang tid på at lede efter knogle i luften rundt om
 patienten.
 
-\subsection{Attenuation correction}
-Ved PET billeder måles photoner fra materiale man har sprøjtet ind i blodet. Ved
-at se på hvor photonerne kommer fra kan man se hvor meget blod der flyder til
-forskellige steder. Det er særligt brugbart til at identificere kræftknuder i
-hjernen da kræftknuderne har et højere energiforbrug, og dermed får tilført
-mere blod kan man se hvor de er henne.
-
-Normalt bruges et CT billede for at korrigere for afbøjninger, men det  
-
-\todochristoffer{Mangler at beskrive AC}
 
 \subsection{Artifakter i hjerner}
 Artifakter i hjernen betegner mangler i MR-billederne. Ofte er de forårsaget
@@ -63,6 +84,54 @@ med artifakter eller udregne sCT-billeder fra MR-billeder med artifakter, efters
 simpelthen ikke er nogen data at bruge.
 
 \todolasse{Læs om artifakter}
+
+
+\subsection{k-means}
+
+K-means er en metode, som organiserer data i et flerdimensionalt rum ind i $k$
+clusters. Vi definerer $k$ clusters med centrum $\mu_k$, og målet er da at
+minimere den summerede afstand for alle datapunkter til nærmeste cluster
+centrum. Algoritmen startes typisk med tilfælde centre.
+
+Ved start af algoritmen finder man for hvert data punkt det nærmeste center
+og summerer den samlede afstand. For at finde den optimale inddeling skal
+denne afstand minimeres. Den minimeres iterativt ved at gentage to trin. Det
+første er at finde det nærmeste centrum for hvert datapunkt og i næste trin
+rykkes hvert af centrene for at minimere den samlede afstand i forhold til
+deres tilhørende datapunkter. Dette fortsættes indtil afstanden stopper med
+at ændre sig, hvilket er sikret, da begge trin reducerer den summerede
+afstand. 
+
+Den finder dog ikke nødvendigvis det globale minimum, men blot et
+lokalt minimum. Da vi blot benytter k-means til at initialisere expectation
+maximization, forsøger vi ikke at håndtere dette.
+
+\subsubsection{Expectation maximization}
+
+Expectation maximization (EM) er en metode til at finde de mest sandsynlige
+parametre i en statistiks model, hvor variablerne er ukendte. Metoden antager
+at data består af flere multivariate gaussiske fordelinger og returnerer en
+gaussisk mixtur fordelingsmodel. Metoden forsøger
+da, som k-means, at finde den lokalt optimale løsning ved at skifte mellem at
+forbedre modellen og tilhørsforholdene i modellen indtil den konvergerer.
+
+Til forskel fra k-means, som udfører en hård klassificering, hvor hvert
+datapunkt tilhører en enkelt gruppe, så laver EM en blød klassificering, hvor
+man finder sandsynlighed for tilhørsforhold for hvert enkelt punkt og finder et
+vægtet snit over alle data punkter for at udregne $\mu_k$s position.
+
+Da metoden ikke nødvendigvis finder det globale minimum, men blot et lokalt,
+så startes den typisk med tilfældige værdier og køres flere gange, og
+den mest sandsynlige model returneres. Alternativt kan den initialiseres med
+data, for at forbedre chancen for et godt resultat, og forhindre at metoden
+skal køres flere gange. Når vi initialiserer den med k-means, så har den
+allerede et bud på et cluster til alle datapunkter, og opgaven er da blot
+at "blødgøre" klassificeringen og lave gaussiske fordelinger i stedet. K-means
+fordelingen har også den ulempe, at den splitter halvvejs mellem centrene, så
+ved clusters af ulige størrelse, vil de mindre clusters ofte inddrage yder
+punkter fra de store. Dette undgår EM, da det er gaussiske fordelinger, der
+ikke nødvendigvis spreder sig lige meget.
+
 
 \subsection{Statistikgøjl}
 

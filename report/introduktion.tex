@@ -12,7 +12,7 @@ Phys. 31, 423 – 426.}
 
 Til diagnosticering af patienter fortages der ofte scanninger af patienter på
 Positron emission tomography (PET) scannere i forbindelse med sygomme og
-lignede i hjernen. PET scannere fungerer ved, at man injektere et radioaktivt
+lignede i hjernen. PET scannere fungerer ved, at man injekterer et radioaktivt
 sporstof ind i et legeme. Dette sporstof vil da binde sig til f.eks.
 kræftceller i hjernen. Dette udsender stråling, som PET scanneren kan opfange
 den og udregne placeringen af sporstoffet.\\
@@ -20,54 +20,57 @@ den og udregne placeringen af sporstoffet.\\
 <PET-billede, CT billede og MR billede. Vi må lige få styr på
 formateringen senere>\\
 
-PET har dog visse problemer. Man fanger kun strålingskoncentration, så det er
-umuligt at se knogle. Det giver problemer, da kraniet afbøjer photonerne giver
-det en forringelse i kvaliteten af scanningen, da man ikke er sikker på dens
-oprindelsessted. Dette betragtes, som den væsentligste årsag til foringelse af
-billederne (evt. kilde: Zaidi, H., Sossi, V., 2004). At udbedre denne
-forringelse er attenuationskorrigering. 
+PET har dog visse problemer. Man fanger kun strålingskoncentration, så det
+er umuligt at se knogle. Dette giver problemer, da kraniet afbøjer photonerne,
+hvilket forårsager forringelser i kvaliteten af scanningen, da man ikke
+er sikker på deres oprindelsessted. Dette betragtes, som den væsentligste
+årsag til foringelse af billederne (evt. kilde: Zaidi, H., Sossi, V., 2004).
+At udbedre denne forringelse er attenuationskorrigering.
 
 For at udbedre denne forringelse har man kombineret Computed Tomography- (CT)
 og PET scannere. CT er en røngtenstrålingsscan, der viser en tydeligt knogle,
 og denne kan man bruge til at attenuationskorigere og få et mere korrekt
 resultat. CT har dog andre problemer. Den viser meget lidt indhold i hjernen og
-kan desuden være yderlig skadelig for hjernen. \\
+kan desuden foresage skadelig for patienten (Kilde om ct skadelighed). \\
 
 Til at visse vævet i hjerne benyttes Magnetic Resonance Imaging (MRI). MR
 magnetiserer et legeme svagt, når dette stoppes vil legemet hurtigt gendanne
 sit oprindelige magnetfelt. Hastigheden med hvilken den gendannes afhænger
 af vævet. MR scanneren varierer magnetiseringen og starter og stopper det
 gentagne gange for at kortlægge legemet. Dette giver billeder af hjerne i
-høj kvalitet. Dette er også blevet sammensat med PET til en PET/MR scanner,
-men den kan ikke bruges til attenuationkorrektion, da knogle gendanner sig
-magnetfelt så hurtigt, at det ikke er til at måle. Så knogle ligner luft på
-billederne. Til at løse dette har man ofte også lavet et CT scan og benyttet
-dette til attenuationskorrigering. Dette medfører dog det tidligere nævnte
-problem med den skadende effekt af røngtenstråling, man skal flytte patienten
-rundt mellem flere scannere og da scanningerne er foretaget på forskellige
-scannere kan man ikke forvente at patienterne ligger ens. Dette problem skal
-også løse. Derfor er det meget interessant, om man kan foretage
-attenuationskorrigering udfra MR. \\
+høj kvalitet. 
+
+Som med CT er MR også blevet sammensat med PET til en PET/MR scanner, men den
+kan ikke bruges til attenuationkorrektion, da knogle gendanner sit magnetfelt
+så hurtigt, at det er meget svært at måle. Effektten er at knoglen kommer
+til at ligne luft på billederne. Dette problemer er forsøgt løst på flere måde.
+
+På Rigshospitalet har man hidtil kombineret MR billeder med CT billeder
+for at kunne lave attenuationskorrigerede billeder. Dette medfører dog det
+tidligere nævnte problem med den skadende effekt af røngtenstråling, man
+skal flytte patienten rundt mellem flere scannere og da scanningerne er
+foretaget på forskellige scannere kan man ikke forvente at patienterne ligger
+ens. Dette problem skal også løse. Derfor er man særdeles interesserede i,
+at foretage attenuationskorrigering udfra MR. \\
 
 Der er to hovedretninger til at udregne CT data ud fra MR data. De anatomiske
 og de voxelbaserede. De anatomiske forsøger at kortlægge hjernen og beskrive
-generelly træk, de matcher patient data op imod atlases og forsøger at
-korrigere udfra det. Det giver nogle problemer ved atypisk anatomi, men har
-vist sig at producere gode resultater (kilde kilde kilde). Alternativt er der
-voxelbaserede metoder, som for hver voxel forsøger at bestemme hvilken type
-væv den tilhører, men her er det selvfølgelig virkelig et problem, at man ikke
-kan skelne mellem luft og knogle
+generelly træk, de matcher patient data op imod et udregnet atlas, og
+forsøger at korrigere udfra det. Det giver nogle problemer ved atypisk
+anatomi, men har vist sig at producere gode resultater (kilde kilde kilde).
+Alternativt er der voxelbaserede metoder, som for hver voxel forsøger at
+bestemme hvilken type væv den tilhører, men her er det selvfølgelig virkelig
+et problem, at man ikke kan skelne mellem luft og knogle.
 
-Ved at benytte meget korte sekvenser UTE (Ultrashort Echo Times) er
-det muligt, at se knogle. Man måler fra to forskellige vinkler og med to
-forskellige echo tider. Det der er forsvundet i mellem de to billeder er
-da forventligt knogle. Der er stadig nogle problemer med, at man ikke med
-sikkerhed kan se forskel på knogle og blødt væv nær luft.
+Ved at benytte meget korte sekvenser UTE (Ultrashort Echo Times) er det muligt,
+at se knogle på MR scannere. Man måler fra to forskellige vinkler og med to
+forskellige echo tider. Der hvor, der er sket en markant ændring i mellem
+de to billeder er da forventligt knogle. Implementation af dette på Siemens
+scannerne, som Rigshospitalet benytter, har dog vist sig ikke at være på højde
+med kombinationen af CT og MR billeder (Kilde og UTE billede ved siden af CT).
 
 Målet med denne opgave er at implementere en metode beskrevet i
-(JOHANSSON), som kan udregne et substitut CT udfra de fire UTE sekvenser
+(JOHANSSON), som kan udregne et substitut CT udfra fire UTE sekvenser
 og et T2-vægtet MR billede for en vilkårlig patient. Dette vil vi gøre ved
 at træne en Gaussian Mixture Regression model ud fra de samme serier samt et
-målt CT på samme patient. Til forskel fra dem, vil vi benytte et T1 vægtet
-billede til at træne algoritmen, da der ikke er lavet T2 på alle
-rigshospitalets hjerner.
+målt CT på samme patient. 
