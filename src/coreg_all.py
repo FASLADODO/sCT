@@ -3,10 +3,10 @@
 import os
 import shutil
 
-patienter_path = "C:/Users/chris_000/sCT/src/test_patienter"
+patienter_path = "D:/sCT/src/test_patienter"
 mask_name = "mask.nii"
 ct_name = "ct.nii"
-coreg_exe = "C:/Users/chris_000/sCT/src/coreg/build/Release/CoReg.exe"
+coreg_exe = "./CoReg.exe"
 coreg_folder = "coreg"
 
 

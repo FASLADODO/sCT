@@ -3,9 +3,9 @@
 import os
 import shutil
 
-stddev_gen_exe = "C:/Users/chris_000/sCT/src/stddev/build/Release/StdDev.exe"
-mean_gen_exe = "C:/Users/chris_000/sCT/src/mean_gen/build/Release/mean_gen.exe"
-patient_folder = "C:/Users/chris_000/sCT/src/test_patienter"
+stddev_gen_exe = "./StdDev.exe"
+mean_gen_exe = "./mean_gen.exe"
+patient_folder = "D:/sCT/src/test_patienter"
 coreg_folder = "coreg"
 
 def calculate_variance(input, output):
