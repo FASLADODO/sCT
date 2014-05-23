@@ -1,0 +1,24 @@
+\subsubsection{k-means}
+
+K-means er en metoden, som organiserer data i et flerdimensionelt rum ind i k
+clusters. Vi definerer k clusters med centrom $\mu_k$, og målet er da at
+minimere den summerede afstand for alle datapunkter til nærmeste cluster
+centrum. 
+
+Ved start af algoritmen finder man for hvert data punkt det nærmeste center
+og summerer den samlede afstand. For at finde den optimale indeling skal
+denne afstand minimeres. Den minimers iterativt ved at gentage to trin. Det
+første er at finde det nærmeste centrum for hvert datapunkt og i næste trin
+rykkes hvert af centrene for at minimere den samlede afstand i forhold til
+deres tilhørende datapunkter. Dette fortsættes indtil afstanden stopper med
+at ændre sig, hvilket er sikret, da begge trin reducerer den summerede
+afstand. 
+
+Den finder dog ikke nødvendigvis det globale minimum, men blot et
+lokalt minimum. Da vi blot benytter k-means til at initialiserer expectation
+maximization, forsøger vi ikke at håndtere dette.
+
+
+
+
+

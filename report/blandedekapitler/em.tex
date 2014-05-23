@@ -1,0 +1,28 @@
+\subsubsection{Expectation maximization}
+
+Expectation maximization (EM) er en metode til at finde de mest sandsynlige
+parametere i en statistiks model, hvor variablerne er ukendte. Metoden antager
+at data består af flere multivariate gaussiske fordelinger og returnerer en
+gaussisk mixtur fordelingsmodel. Metoden forsøger
+da, som k-means at finde den lokalt optimale løsning ved at skifte mellem at
+forbedre modellen og tilhørsforholdene i modellen indtil den konvergerer.
+
+Til forskel fra k-means, som udfører en hård klassificering, hvor hvert
+datapunkt tilhører en enkelt gruppe, så laver EM en blød klassificering, hvor
+man finder sandsynlighed for tilhørsforhold for hvert enkelt punkt og finder et
+vægtet snit over alle data punkter for at udregne $\mu_k$s position.
+
+Da metoden ikke nødvendigvis finder det globale minimum, men blot et lokalt,
+så startes den typisk med tilfældige værdier og køres flere gange, og
+den mest sandsynlige model returneres. Alternativt kan den initialiseres med
+data, for at forbedre chancen for et godt resultat, og forhindre at metoden
+skal køres flere gange. Når vi initialiserer den med k-means, så har den
+allerede et bud på et cluster til alle datapunkter, og opgaven er da blot
+at "blødgøre" klassificeringen og lave gaussiske fordelinger i stedet. K-means
+fordelingen har også den ulempe, at den splitter halvejs mellem centrene, så
+ved clusters af ulige størrelse, vil de mindre clusters ofte indrage yder
+punkter fra de store. Dette undgår EM, da det er gaussiske fordelinger, der
+ikke nødvendigvis spreder sig lige meget.
+
+
+

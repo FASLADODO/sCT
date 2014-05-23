@@ -1,4 +1,4 @@
-function [ nii_list ] = load_patient( patient, ute1,ute2,ute3,ute4,t1 )
+function [ nii_list ] = load_patient( patient, ute1,ute2,ute3,ute4,t2 )
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -12,17 +12,17 @@ nii2 = load_nii(strcat(patient,'/coreg/',ute1));
 nii3 = load_nii(strcat(patient,'/coreg/',ute2));
 nii4 = load_nii(strcat(patient,'/coreg/',ute3));
 nii5 = load_nii(strcat(patient,'/coreg/',ute4));
-nii6 = load_nii(strcat(patient,'/coreg/',t1));
+nii6 = load_nii(strcat(patient,'/coreg/',t2));
 nii7 = load_nii(strcat(patient,'/coreg/mean_',ute1));
 nii8 = load_nii(strcat(patient,'/coreg/mean_',ute2));
 nii9 = load_nii(strcat(patient,'/coreg/mean_',ute3));
 nii10 = load_nii(strcat(patient,'/coreg/mean_',ute4));
-nii11 = load_nii(strcat(patient,'/coreg/mean_',t1));
+nii11 = load_nii(strcat(patient,'/coreg/mean_',t2));
 nii12 = load_nii(strcat(patient,'/coreg/variance_',ute1));
 nii13 = load_nii(strcat(patient,'/coreg/variance_',ute2));
 nii14 = load_nii(strcat(patient,'/coreg/variance_',ute3));
 nii15 = load_nii(strcat(patient,'/coreg/variance_',ute4));
-nii16 = load_nii(strcat(patient,'/coreg/variance_',t1));
+nii16 = load_nii(strcat(patient,'/coreg/variance_',t2));
 
 % Load the mask
 mask = load_nii(strcat(patient,'/coreg/mask.nii'));
@@ -30,6 +30,22 @@ mask = load_nii(strcat(patient,'/coreg/mask.nii'));
 % Pre-allocate list for voxel values
 nii_list = zeros(192*192*192, 16);
 count = 1;
+nii2.img = mat2gray(nii2.img);
+nii3.img = mat2gray(nii3.img);
+nii4.img = mat2gray(nii4.img);
+nii5.img = mat2gray(nii5.img);
+nii6.img = mat2gray(nii6.img);
+nii7.img = mat2gray(nii7.img);
+nii8.img = mat2gray(nii8.img);
+nii9.img = mat2gray(nii9.img);
+nii10.img = mat2gray(nii10.img);
+nii11.img = mat2gray(nii11.img);
+nii12.img = mat2gray(nii12.img);
+nii13.img = mat2gray(nii13.img);
+nii14.img = mat2gray(nii14.img);
+nii15.img = mat2gray(nii15.img);
+nii16.img = mat2gray(nii16.img);
+    
 
 % Extract the voxel values
 for i=1:192,

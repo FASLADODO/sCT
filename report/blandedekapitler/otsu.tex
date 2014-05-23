@@ -1,0 +1,20 @@
+\subsubsection{Otsu}
+
+Omkring patienterne på de optagede billeder er der en del støj, som vi ikke
+er interesserede i. For eksempel er der på alle CT billederne en hovedholder.
+Dette kan forstyrre vores algoritme. For at undgå dette benytte vi et Otsu
+filter (kilde) til at dele vores data op i hovede og ikke hovede. Mere konkret
+bruger vi den til at udregne en maske, som vi kan benytte på alle billeder af
+samme patient efter de er registrerede. 
+
+Algoritmen opdeler billedet i to clusters baseret på deres voxel værdier. Når
+man rykker threshold den ene vej eller den anden, så øger man spredningen i
+det ene cluster, mens det andets bliver mindre. Ideen er da at finde det
+threshold, som minimerer den kombinerede spredning. 
+
+(Matematik)
+
+Resultaten af metoden er et sort og hvidt billede. For at lave det om til en
+maske finder vi det største sorte område, altså det rundt om hovedet. For
+at sikre at masken ikke dækker dele af kraniet på andre billeder end det vi
+udregner masken fra, da kræver vi at alt inde for en 3x3x3 radius også er sort. 

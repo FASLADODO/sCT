@@ -1,6 +1,8 @@
+startup;
+
 patient = '010476';
-ct = load_nii(strcat(patient,'/coreg/ct.nii'));
-sct = load_nii(strcat(patient,'/coreg/sct.nii'));
+ct = load_nii(strcat(patient,'/foosct0t2.nii'));
+sct = load_nii(strcat(patient,'/sct0t2.nii'));
 ct_max = max( reshape( ct.img, numel( ct.img ), 1 ) );
 ct_norm = ct.img ./ ct_max;
 sct_max = max( reshape( sct.img, numel( sct.img ), 1 ) );

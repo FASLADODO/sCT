@@ -11,17 +11,16 @@ kube omkring hvert voxel og finder henholdsvis middelværdi og varians.
 
 Herefter har vi 15 MR-billeder og 1 CT-billede som vi vil klassificere
 med en mixtur af gaussians. Fra Johannson et al. ved vi at vi kan få
-gode resultater med 20 gaussiske fordelinger.
+gode resultater med 20 gaussiske fordelinger. 
 
-For at finde parametrene til hver gaussiske fordeling bruge vi 
-Expectation-Maximization(EM) algoritmen. Vi starter EM algoritmen med
-tilfældige værdier for ikke at ramme et lokalt minimum. Herefter er
-det blot at udregne afstanden til hvert voxel-sæt og klassificere dem.
-Efter klassifikationen udregnes nye paramtetre for hver gaussiske
-fordeling.
+For at finde parametrene til hver gaussiske fordeling bruger vi
+Expectation-Maximization (EM) algoritmen på en sammensætning af patienter
+vi vil træne på. Vi starter EM algoritmen med resultatet af k-means på
+dataen, hvor k er sat til 20. Dette betyder at vi ikke behøver køre
+EM-algoritmen flere gang og øger sandsynligheden for et godt resultat, da
+dataen allerede er klassificeret.
 
-Vi gentager herefter samme process indtil differencen imellem parametrene
-bliver små nok.
+
 \todochristoffer{Matematiske ekslempler}
 \todolasse{Gennemlæs}
 
