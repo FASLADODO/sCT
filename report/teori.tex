@@ -88,19 +88,31 @@ simpelthen ikke er nogen data at bruge.
 
 \subsection{k-means}
 
-K-means er en metode, som organiserer data i et flerdimensionalt rum ind i $k$
-clusters. Vi definerer $k$ clusters med centrum $\mu_k$, og målet er da at
-minimere den summerede afstand for alle datapunkter til nærmeste cluster
-centrum. Algoritmen startes typisk med tilfælde centre.
+K-means er en metode, som organiserer et datasæt ${x_1,...,x_N}$ beståemde
+af $N$ punkter i et flerdimensionalt rum ind i $K$ clusters. Man definerer
+$K$ clusters med centrum $\mu_k$, og målet er da at minimere den summerede
+afstand for alle datapunkter til nærmeste cluster centrum. Hvis man for hvert
+datapunkt definerer $K$ binære indikator variable $r_{nk}$, som beskriver
+hvilket cluster datapunktet tilhører, hvor $r_{nk}$ er lig 1, hvis den tilhører
+det $k$'te cluster og resten er lig 0. Da kan man definere en funktion, som
+beskriver den summerede afstand som
 
-Ved start af algoritmen finder man for hvert data punkt det nærmeste center
-og summerer den samlede afstand. For at finde den optimale inddeling skal
-denne afstand minimeres. Den minimeres iterativt ved at gentage to trin. Det
-første er at finde det nærmeste centrum for hvert datapunkt og i næste trin
-rykkes hvert af centrene for at minimere den samlede afstand i forhold til
-deres tilhørende datapunkter. Dette fortsættes indtil afstanden stopper med
-at ændre sig, hvilket er sikret, da begge trin reducerer den summerede
-afstand. 
+$$
+J = \sum_{n=1}^{N} \sum_{k=1}^{K} r_{nk} || x_n - \mu_k ||^2
+$$
+
+Målet er da at minimere denne funktion ved at finde de korrekte tilhørsforhold
+$r_{nk}$ og cluster placeringer $\mu_k$. 
+
+Algoritmen startes med nogle nogle clusterplacering, der typisk er tilfældigt
+valgt. Derefter finder man for hvert data punkt det nærmeste center og
+summerer den samlede afstand. For at finde den optimale inddeling skal denne
+afstand minimeres. Den minimeres iterativt ved at gentage to trin. Det første
+er at finde det nærmeste centrum for hvert datapunkt og i næste trin rykkes
+hvert af centrene for at minimere den samlede afstand i forhold til deres
+tilhørende datapunkter, dette gøres blot ved at udregne mean for alle
+punkterne i hvert cluster. Dette fortsættes indtil afstanden stopper med at
+ændre sig, hvilket er sikret, da begge trin reducerer den summerede afstand.
 
 Den finder dog ikke nødvendigvis det globale minimum, men blot et
 lokalt minimum. Da vi blot benytter k-means til at initialisere expectation
