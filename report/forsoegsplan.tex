@@ -1,17 +1,32 @@
 \section{Forsøgsplan}
+
+For at validere testresultaterne vil vi benytte os af joint histograms. For hvert sCT vi generer har vi det korrekte CT. Ved at plotte sCT værdier som x koordinaten og CT værdier som y koordinaten får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige de er jo længere fra den lige linje ligger punkterne.
+
+Fordelen ved denne metode er at vi nemt kan aflæse hvilke værdier vi har de største problemer med. Hvis vi har meget stor afvigelse i knoglerne vil vi få en stor klump omkring nul, mens der kan være store ligheder i det bløde væv der så giver en pæn linje omkring minus 500.
+
+Derudover er det samme valideringsmetode der bruges af Johannson et al., og vi vil derfor kunne sammenligne vores værdier med deres.
+
+For at finde ud af om vores sCT er godt nok til attenuationskorrektion af PET billeder vil vi generere PET billeder med vores sCT og det rigtige CT. Vi kan herefter konstruere et nyt billede, der er baseret på den procentvise forskel imellem PET/CT og PET/sCT. 
+
+Ud fra procentsforskelsbilledet kan vi se hvilke regioner der er forskellige fra PET/CT billedet, og giver samtidigt et godt overblik over hvor godt vores PET/sCT billede er blevet.
+
+Begge disse valideringsmetoder er objektive men skal valueres manuelt. Vi har ikke en metode til at give et enkelt tal for hvor godt vores PET/sCT billede er blevet. Vi forventer også at kvaliteten af sCT billedet, og dermed også PET/sCT billedet vil variere meget.
+
 \todo{tekst, beskriv joint histogram, omdøb "faldgrupper"}
 
 \subsection{Leave-one-out cross validation (LOOCV)}
 \subsubsection{Fremgangsmåde}
-Tag 5 hjerner. Træn på 4 og test på 1 og roter.
+Leave-one-out cross validation (LOOCV) er en gængs metode der bruges til at teste korrektheden af en algoritme. I alt sin enkelthed går metoden ud på at vi udvælger fem patienter. Fra de fem patienter lægger vi en patient til side, fx. den første patient, og træner algoritmen på de resterende fire patienter. Derefter udregner vi et sCT for den første patient. Vi gør herefter det samme igen, men udelader patient nummer to, træner på de resterende fire og udregner nummer to's sCT. 
 
-\todo{Uddyb}
+Ved at rotere træningssættet for vi testet metoden med data fra forskellige patienter, og vi får en basis for at sammenligne sCT'et.
+
 
 \subsubsection{Forventning}
-Vi forventer, at vores joint histogram bliver nogenlunde lineær. 
+Vi forventer at vores joint histograms bliver dårligere end Johannsons's, da vores hidtidige sCT er visuelt dårligere end deres.
+
 
 \subsubsection{Faldgrupper}
-Billeder med artifakter kan forstyrre algoritmen. 
+For at åbne stabile resultater er vi nødt til at filtrere patienter med artifakter fra. Da artifakter repræsentere områder med manglende data, tror vi det er nødvendigt for kvaliteten af vores algoritme, at de bliver sorteret fra.
 
 \subsubsection{Resultat}
 \todo{Udfør LOOCV-forsøget}
@@ -33,7 +48,7 @@ Sammenlign kvaliteten af sCT afhængigt af andelen af hjerner, som har
 artifakter.
 
 \subsubsection{Forventning}
-At sCT's kvalitet forværes for hver introduceret hjerne med artifakt.
+At sCT's kvalitet forværres for hvert introduceret hjerne med artifakt.
 
 \subsubsection{Faldgrupper}
 
