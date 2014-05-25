@@ -1,4 +1,4 @@
-\section{Afprøvning}
+\section{Forsøg}
 
 \subsection{Hvordan vil vi vurdere resultatet}
 
@@ -17,7 +17,6 @@ Begge disse valideringsmetoder er objektive men skal valueres manuelt. Vi har ik
 \todolasse{Læs}
 
 \subsection{Planlagte forsøg}
-\todo{Renskriv, mere tekst, omdøb faldgrupper}
 
 \subsubsection{Leave-one-out cross validation (LOOCV)}
 \paragraph{Fremgangsmåde}
@@ -33,9 +32,6 @@ Vi har valgt dette test scenarie for at kunne sammenligne vores resultater med J
 
 \paragraph{Forventning}
 Vi forventer, at vores resultater bliver nogenlunde ens med Johansson et al.
-
-\paragraph{Faldgrupper}
-Billeder med artifakter kan forstyrre algoritmen. 
 
 \paragraph{Resultat}
 \todo{Udfør LOOCV-forsøget}
@@ -66,8 +62,6 @@ Træn på n hjerner test på m.
 
 \paragraph{Forventning}
 
-\paragraph{Faldgrupper}
-
 \paragraph{Resultat}
 
 \subsubsection{Udregn sCT til hjerner trænet på hjerner med artifakter}
@@ -79,8 +73,6 @@ artifakter.
 \paragraph{Forventning}
 At sCT's kvalitet forværes for hver introduceret hjerne med artifakt.
 
-\paragraph{Faldgrupper}
-
 \paragraph{Resultat}
 
 
@@ -90,9 +82,6 @@ Træn på gamle hjerner, test på ny hjerner. Og omvendt.
 
 \paragraph{Forventning}
 Forventningen er sCT af samme kvalitet, som dem ved LOOCV-forsøget.
-
-\paragraph{Faldgrupper}
-
 
 \paragraph{Resultat}
 
@@ -104,38 +93,4 @@ Iterativt træn på n+1 hjerner
 Forventning er at efter 7-8 hjerner giver det ikke rigtig nogen
 kvalitetsforskel.
 
-\paragraph{Faldgrupper}
-Overfitting. 
-
-
 \paragraph{Resultat}
-
-\subsubsection{Hvorfor 20-gaussians?}
-
-\paragraph{Fremgangsmåde}
-Test på forskelligt antal gaussians og sammenlign resultaterne.
-
-\paragraph{Forventning}
-Vi forventer, at kvaliteten falder under 20, men at metoden kræver mere tid
-efter 20 uden betydelig forbedringer.
-
-\paragraph{Faldgrupper}
-Overfitting. 
-
-\paragraph{Resultat}
-
-
-
-\subsection{Test og vurdering af sCT}
-
-\todolasse{Vi mangler at teste sCT}
-\todolasse{Vi har ikke vurderet sCT}
-
-\subsection{Test og vurdering af sCT - FullCT}
-
-\todolasse{Vi mangler at teste sCT ved brug i FullCT}
-\todolasse{Vi har ikke vurderet sCT ved brug i FullCT}
-
-\subsection{Sammenligning med standard CT og FullCT}
-
-\todolasse{Sammenligning med standard CT mangler}
