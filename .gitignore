@@ -8,7 +8,7 @@
 *.toc
 *.synctex.gz
 *.nii
-*/bachelor.pdf
+report/bachelor.pdf
 
 # User-specific files
 *.suo
