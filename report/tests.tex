@@ -2,34 +2,37 @@
 
 \subsection{Hvordan vil vi vurdere resultatet}
 
-\todo{Beskriv joint histogram + mere}
+For at validere testresultaterne vil vi benytte os af joint histograms. For hvert sCT vi generer har vi det korrekte CT. Ved at plotte sCT værdier som x koordinaten og CT værdier som y koordinaten får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige de er jo længere fra den lige linje ligger punkterne.
 
-Til at vurdere kvaliteten af de generede sCT finder vi den procentmæssige
-forskel på det målte CT og vores sCT i hjerne regionen, resten af kraniet
-interesser os ikke. 
+Fordelen ved denne metode er at vi nemt kan aflæse hvilke værdier vi har de største problemer med. Hvis vi har meget stor afvigelse i knoglerne vil vi få en stor klump omkring nul, mens der kan være store ligheder i det bløde væv der så giver en pæn linje omkring minus 500.
 
-Vi benytter også joint histograms. Billede histogrammer er plots af
-pixelværdieren i et billede. Man kan sætte histogrammet af et sCT sammen med et
-rigtig CT og se om vi har nogenlunde lige store mængder pixel af de forskellige
-typer væv i kraniet. 
+Derudover er det samme valideringsmetode der bruges af Johannson et al., og vi vil derfor kunne sammenligne vores værdier med deres.
+
+For at finde ud af om vores sCT er godt nok til attenuationskorrektion af PET billeder vil vi generere PET billeder med vores sCT og det rigtige CT. Vi kan herefter konstruere et nyt billede, der er baseret på den procentvise forskel imellem PET/CT og PET/sCT. 
+
+Ud fra procentsforskelsbilledet kan vi se hvilke regioner der er forskellige fra PET/CT billedet, og giver samtidigt et godt overblik over hvor godt vores PET/sCT billede er blevet.
+
+Begge disse valideringsmetoder er objektive men skal valueres manuelt. Vi har ikke en metode til at give et enkelt tal for hvor godt vores PET/sCT billede er blevet. Vi forventer også at kvaliteten af sCT billedet, og dermed også PET/sCT billedet vil variere meget.
+
+\todolasse{Læs}
 
 \subsection{Planlagte forsøg}
 \todo{Renskriv, mere tekst, omdøb faldgrupper}
 
 \subsubsection{Leave-one-out cross validation (LOOCV)}
 \paragraph{Fremgangsmåde}
-Note: Ikke hvad vi rent faktisk har gjort:
-Tag 5 hjerner. Træn på 4 og test på 1 og roter.
+Ved Leave-One-Out-Cross-Validation (LOOCV) tager vi et mindre dataset på fem patienter.
 
-Vi tog 10 tilfældige patienter. Af de 10 lavede 7 forskellige modeller trænet
-på fire tilfældigt udvalgte hjerner. For hver af de 7 modeller fremstillede vi
-et sCT for alle ti patienter.  
+Ud af de fem patienter tager vi fire patienter og bruger dem til at træne algoritmen. Træningsparametrene her fra benytter vi til beregning af sCT billedet for den femte patient.
 
+Samme procedure gentages fem gange så vi i alt har fem sCT billeder til fem forskellige patienter.
 
-\todo{Uddyb}
+Vi har valgt dette test scenarie for at kunne sammenligne vores resultater med Johansson et al, da de benytter samme test.
+
+\todolasse{Læs}
 
 \paragraph{Forventning}
-Vi forventer, at vores joint histogram bliver nogenlunde lineær. 
+Vi forventer, at vores resultater bliver nogenlunde ens med Johansson et al.
 
 \paragraph{Faldgrupper}
 Billeder med artifakter kan forstyrre algoritmen. 
