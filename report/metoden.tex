@@ -25,7 +25,7 @@ dataen allerede er klassificeret.
 \todolasse{Gennemlæs}
 
 
-\subsubsection{At udregne et sCT}
+\subsubsection{Beregning af sCT}
 
 Vi generere sCT værdierne ved at udregne den forventede værdi af CT baseret på de 15 MR billeder. 
 
@@ -35,13 +35,38 @@ Som beskrevet i Johanson et al., så udregnes den forventede værdi af CT ved
 (X_1 | X_2 = x_2) = \frac{\Sigma^{N}_{i=1} \bar{\mu}_{1,i} a_i h_i(x_2)}{\Sigma^{N}_{i=1} a_i h_i(x_2)}
 \end{equation}
 
+Hvor $X_1$ er CT værdien, $X_2 = (X_2 \dots X_k)$ er MR værdierne, $a_i$ er blandingsforhold og $N$ er antallet af MR billeder samt
+
+\begin{equation}
+ \bar{\mu}_{1,i} = \mu_{1,i} + \Sigma_{1 2, i} \Sigma^{-1}_{22, i}(x_2 - \mu_{2,i})
+\end{equation}
+og
+\begin{equation}
+h_i(x_2)= \frac{1}{( 2 \pi )^{k/2}|\Sigma_{22,i}|^{1/2}}\exp^{-\frac{1}{2}(x_2 - \mu_{2,i})^T \Sigma^{-1}_{22, i}(x_2 - \mu_{2,i})}
+\end{equation}
+
+$\mu_{1,i}$, $\mu_{2,i}$, $\Sigma_{1 1, i}$, $\Sigma_{1 2, i}$, $\Sigma_{2 1, i}$, $\Sigma_{2 2, i}$ er værdierne $\mu_i$ og $\Sigma_i$ estimeret med EM algoritmen og segmenteret som
+
+\begin{equation}
+\mu_i = \left(\begin{array}{c}
+\mu_{i,1} \\ 1 \times 1 \\
+\mu_{i,1} \\ 1 \times (k - 1)  
+\end{array}\right)
+\end{equation} 
+\begin{equation}
+\Sigma_i = \left(\begin{array}{c c}
+\Sigma_{11,i} & \Sigma_{12,i} \\ 1 \times 1  & 1 \times (k-1)\\
+\Sigma_{21,i} & \Sigma_{22,i} \\ (k-1) \times 1  & (k-1) \times (k-1)\\  
+\end{array}\right)
+\end{equation}
+
 \todochristoffer{Beregning af sCT er ikke beskrevet}
 
 \subsection{Hvordan han vi valgt at implementere den}
 
 \todochristoffer{Læs}
 
-Til metoden benytter vi for hvert træningssæt et CT, en T1 vægtet MR-sekvens
+Til metoden benytter vi for hvert træningssæt et CT, en T2 vægtet MR-sekvens
 og 4 MR UTE-sekvenser. Vi benytter Insight Toolkit (ITK) til at udregne et
 billede med middelværdi og et med varians for hvert MR billede.
 
