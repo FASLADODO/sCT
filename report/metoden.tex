@@ -27,6 +27,14 @@ dataen allerede er klassificeret.
 
 \subsubsection{At udregne et sCT}
 
+Vi generere sCT værdierne ved at udregne den forventede værdi af CT baseret på de 15 MR billeder. 
+
+Som beskrevet i Johanson et al., så udregnes den forventede værdi af CT ved
+
+\begin{equation}
+(X_1 | X_2 = x_2) = \frac{\Sigma^{N}_{i=1} \bar{\mu}_{1,i} a_i h_i(x_2)}{\Sigma^{N}_{i=1} a_i h_i(x_2)}
+\end{equation}
+
 \todochristoffer{Beregning af sCT er ikke beskrevet}
 
 \subsection{Hvordan han vi valgt at implementere den}
