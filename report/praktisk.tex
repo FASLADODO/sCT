@@ -1,33 +1,19 @@
 \section{Praktisk}
 
-\subsection{Registrering}
+\subsection{Beregning af modellen}
 
-\todochristoffer{Der mangler referencer til registrering}
+Vi har valgt at implementerer metoden i Matlab da det giver os mulighed for hurtig prototyping. Derudover indeholder Matlab også en standard implementering af både k-means og EM algoritmerne.
 
-\subsubsection{Co-registrering af UTE og T1 billeder}
+For at beregne modellen skal vi først indlæse MR og CT billederne samt tilhørende maske for hver patient. Til det formål har vi brugt nifti_load \todo{link til toolbox}.
 
-Til co-registrering af UTE og T1 billederne har vi valgt at bruge Insight
-ToolKit (ITK). Herfra benytter vi en implementation af Mattes Mutual
-Information algoritme samt linær translation og interpolering.
+Herefter løber vi billederne igennem og udtager de værdier der ligger inden for masken. Alle værdier lægges i én stor 16-dimensionel liste.
 
-\subsubsection{Co-registrering af UTE og CT}
+For at udregne k-means bruger vi den indbyggede k-means algoritme, samt en sammensat liste med de patienter vi ønsker til grund for modellen.
 
-Co-registrering af UTE og CT billeder er modsat UTE/T1 en ikke-triviel
-opgave. Vi har valgt en landmark baseret løsning fra MINC's toolkit
+Output fra k-means algoritmen gives til EM algoritmen, samt samme liste med patienter. Output herfra er vores endelige model parametre.
 
-\subsubsection{Generering af maske}
+\todo{inkludér kode snippets}
 
-Ligesom ved co-registrering bruge vi ITK for at udregne en maske. I første step
-bruger vi en implementering af Otsu thresholding algoritme for at finde en binær
-repræsentation. For at sikre vi ikke misser noget af kanterne udvider vi det 
-binære billede vha. en neighborhood-connected algoritme med 2-3 pixel i x, y og z
-retningerne. Til sidst inverteres billedet og vi har dermed en binær maske vi kan
-bruge til at begrænse området sCT algoritmen arbejder på.
-
-\subsection{Metoden}
-
-\todochristoffer{Praktisk omkring metoden er ikke beskrevet}
-
-\subsection{Analyse af implementeringen}
+\subsection{Beregning af sCT}
 
 \todochristoffer{Analysen af implementeringen er ikke beskrevet}
