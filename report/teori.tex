@@ -85,67 +85,86 @@ simpelthen ikke er nogen data at bruge.
 
 \todolasse{Læs om artifakter}
 
-
 \subsection{k-means}
 
 K-means er en metode, som organiserer et datasæt ${x_1,...,x_N}$ beståemde
 af $N$ punkter i et flerdimensionalt rum ind i $K$ clusters. Man definerer
 $K$ clusters med centrum $\mu_k$, og målet er da at minimere den summerede
-afstand for alle datapunkter til nærmeste cluster centrum. Hvis man for hvert
+afstand for alle datapunkter til nærmeste cluster centrum. Hvis man for
+hvert
 datapunkt definerer $K$ binære indikator variable $r_{nk}$, som beskriver
-hvilket cluster datapunktet tilhører, hvor $r_{nk}$ er lig 1, hvis den tilhører
-det $k$'te cluster og resten er lig 0. Da kan man definere en funktion, som
+hvilket cluster datapunktet tilhører, hvor $r_{nk}$ er lig 1, hvis den
+tilhører
+det $k$'te cluster og resten er lig 0. Da kan man definere en funktion,
+som
 beskriver den summerede afstand som
 
 $$
 J = \sum_{n=1}^{N} \sum_{k=1}^{K} r_{nk} || x_n - \mu_k ||^2
 $$
 
-Målet er da at minimere denne funktion ved at finde de korrekte tilhørsforhold
+Målet er da at minimere denne funktion ved at finde de korrekte
+tilhørsforhold
 $r_{nk}$ og cluster placeringer $\mu_k$. 
 
-Algoritmen startes med nogle nogle clusterplacering, der typisk er tilfældigt
+Algoritmen startes med nogle nogle clusterplacering, der typisk er
+tilfældigt
 valgt. Derefter finder man for hvert data punkt det nærmeste center og
-summerer den samlede afstand. For at finde den optimale inddeling skal denne
-afstand minimeres. Den minimeres iterativt ved at gentage to trin. Det første
-er at finde det nærmeste centrum for hvert datapunkt og i næste trin rykkes
+summerer den samlede afstand. For at finde den optimale inddeling skal
+denne
+afstand minimeres. Den minimeres iterativt ved at gentage to trin. Det
+første
+er at finde det nærmeste centrum for hvert datapunkt og i næste trin
+rykkes
 hvert af centrene for at minimere den samlede afstand i forhold til deres
 tilhørende datapunkter, dette gøres blot ved at udregne mean for alle
-punkterne i hvert cluster. Dette fortsættes indtil afstanden stopper med at
-ændre sig, hvilket er sikret, da begge trin reducerer den summerede afstand.
+punkterne i hvert cluster. Dette fortsættes indtil afstanden stopper med
+at
+ændre sig, hvilket er sikret, da begge trin reducerer den summerede
+afstand.
 
 Den finder dog ikke nødvendigvis det globale minimum, men blot et
-lokalt minimum. Da vi blot benytter k-means til at initialisere expectation
+lokalt minimum. Da vi blot benytter k-means til at initialisere
+expectation
 maximization, forsøger vi ikke at håndtere dette.
 
 \subsection{Expectation maximization}
 
-Expectation maximization (EM) er en metode til at finde de mest sandsynlige
-parametre i en statistiks model, hvor variablerne er ukendte. Metoden antager
-at data består af flere multivariate gaussiske fordelinger og returnerer en
+Expectation maximization (EM) er en metode til at finde de mest
+sandsynlige
+parametre i en statistiks model, hvor variablerne er ukendte. Metoden
+antager
+at data består af flere multivariate gaussiske fordelinger og returnerer
+en
 gaussisk mikstur fordelingsmodel. 
 
 Til forskel fra k-means, som udfører en hård klassificering, hvor hvert
-datapunkt tilhører en enkelt gruppe, så laver EM en blød klassificering, hvor
-man finder sandsynlighed for tilhørsforhold for hvert enkelt punkt og finder et
+datapunkt tilhører en enkelt gruppe, så laver EM en blød klassificering,
+hvor
+man finder sandsynlighed for tilhørsforhold for hvert enkelt punkt og
+finder et
 vægtet snit over alle data punkter for at udregne $\mu_k$s position.
 
-Da metoden ikke nødvendigvis finder det globale minimum, men blot et lokalt,
+Da metoden ikke nødvendigvis finder det globale minimum, men blot et
+lokalt,
 så startes den typisk med tilfældige værdier og køres flere gange, og
-den mest sandsynlige model returneres. Alternativt kan den initialiseres med
-data, for at forbedre chancen for et godt resultat, og forhindre at metoden
+den mest sandsynlige model returneres. Alternativt kan den initialiseres
+med
+data, for at forbedre chancen for et godt resultat, og forhindre at
+metoden
 skal køres flere gange. Når vi initialiserer den med k-means, så har den
 allerede et bud på et cluster til alle datapunkter, og opgaven er da blot
 at "blødgøre" klassificeringen og lave gaussiske fordelinger i stedet. I
-expectation-trinet benyttes den nuværende estimering af de ukendte variable til
+expectation-trinet benyttes den nuværende estimering af de ukendte
+variable til
 at udregne den forventede loglikelihood funktion. Derefter i
-maximization-trinet findes de parametre, som maximerer loglikelihoodfunktionen.
+maximization-trinet findes de parametre, som maximerer
+loglikelihoodfunktionen.
 
 K-means fordelingen har også den ulempe, at den splitter halvvejs mellem
 centrene, så ved clusters af ulige størrelse, vil de mindre clusters ofte
 inddrage yder punkter fra de store. Dette undgår EM, da de gaussiske
 fordelinger, ikke nødvendigvis har ens spredning.
-
 
 
 \subsection{Arbejdsgangen}
