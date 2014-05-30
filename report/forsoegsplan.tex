@@ -15,7 +15,7 @@ Begge disse valideringsmetoder er objektive men skal evalueres manuelt. Vi har i
 
 Da flere af FullCT billederne er lavet uden en perfekt maske, som skjuler hovedholder og nakkestøtten på CT billedet, har vi valgt at generere nye FullCT baseret på CT billeder påført vores maske. Da støj rundt omkring hovedet påvirker attenuation korrektionen fik vi billeder med meget stor afvigelse imod den bagerste del af kraniet. Da vi er sikre på at både sCT og CT billederne er påført samme maske, er der større sandsynlighed for at vi sammenligner vores algoritme frem for støj. Der kan dog stadig fremkomme små rester af hovedstøtten tæt på kraniet, men det ser ikke ud til at være et problem.
 
-\todo{tekst, beskriv joint histogram, omdøb "faldgrupper"}
+\todo{tekst, beskriv joint histogram, omdoeb faldgrupper}
 
 \subsection{Leave-one-out cross validation (LOOCV)}
 \subsubsection{Fremgangsmåde}
@@ -39,7 +39,7 @@ Hvis vi ser på et PD billede lagt over et MR billede er det tydeligt at jo tæt
 
 Det er ikke muligt for os at evaluere korrektheden af algoritmen omkring mund og næse regionen da langt de fleste T2 sekvenser ikke indeholder data så langt nede. Ligeså er der problemer i toppen af kraniet da T2 sekvenserne også mangler en skive eller to, og derfor ikke har hele hjerneskallen med.
 
-I gennemsnit er der lidt under ti procent afvigelse i selve hjerne. Det 
+I gennemsnit er der lidt under ti procent afvigelse i selve hjerne.
 
 
 \todo{Udfør LOOCV-forsøget}
@@ -70,48 +70,15 @@ At sCT's kvalitet forværres for hvert introduceret hjerne med artifakt.
 
 \subsection{Over tid}
 \subsubsection{Fremgangsmåde}
-
-Der har fra Rigshopitalets side været en interesse i at undersøge, om
-metoden ville virke fremadrettet. Altså om en model trænet på noget data
-fra en periode, ville kunne bruges til at udregne et sCT for en patient
-fra en helt anden periode. 
-
-For at undersøge dette, har vi taget de seks
-tidligst optagede patienter med UTE, som ikke havde artifakter, og
-var nye nok til at den T2 serie, som vi træner udfra, er optaget.
-Derudover tog vi de seks nyeste UTE patienter, ligeledes uden artikater.
-
-\todo{Datoer}
-
-Derefter trænede vi to modeller. En på de gamle patienter, og en på de
-nye. Vi lavede da sCT'er for de gamle patienter, på den nye model og
-omvendt. For at vurdere om det virker, vil vi benytte samme fremgangsmåde,
-som i LOOCV, og hvis resultaterne minder tilstrækkeligt, om dem fra det
-tidligere forsøg, vil det være godt nok. Hvis forsøget ikke giver gode
-resultater vi ldet betyde, at man løbende skal træne nye modeller, for at
-få gode resultater.
+Træn på gamle hjerner, test på ny hjerner. Og omvendt.
 
 \subsubsection{Forventning}
-
 Forventningen er sCT af samme kvalitet, som dem ved LOOCV-forsøget.
-Ændringer på PET/MR scanneren kan sagtens påvirke resultaterne af et MR
-scan, men så længe ændringerne er nogenlunde lige fordelt, så er det ikke
-et problem, da MR-units er arbitrære og ikke kan sammenlignes fra scan til
-scan. Der skal være er en region af hjernen, som bliver målt anderledes i
-forhold til resten af hjernen før der bliver problemer.
 
 \subsubsection{Faldgrupper}
 
-Vores scanninger foreløber ikke over så lang en periode, og vi har
-kun valgt at sammenligne to perioder. Så kan det for det første
-bare ikke have haft nogen effekt med de hidtidige ændringer eller
-måske har der været flere ændringer indimellem, som har påvirket
-scanningsresultaterne, men på seneste tidspunkt er resultaterne meget
-lig de tidlige.
-
 
 \subsubsection{Resultat}
-
 
 \subsection{Test på en masse}
 \subsubsection{Fremgangsmåde}
