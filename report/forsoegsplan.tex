@@ -10,7 +10,10 @@ For at finde ud af om vores sCT er godt nok til attenuationskorrektion af PET bi
 
 Ud fra procentsforskelsbilledet kan vi se hvilke regioner der er forskellige fra PET/CT billedet, og giver samtidigt et godt overblik over hvor godt vores PET/sCT billede er blevet.
 
-Begge disse valideringsmetoder er objektive men skal valueres manuelt. Vi har ikke en metode til at give et enkelt tal for hvor godt vores PET/sCT billede er blevet. Vi forventer også at kvaliteten af sCT billedet, og dermed også PET/sCT billedet vil variere meget.
+Begge disse valideringsmetoder er objektive men skal evalueres manuelt. Vi har ikke en metode til at give et enkelt tal for hvor godt vores PET/sCT billede er blevet. Vi forventer også at kvaliteten af sCT billedet, og dermed også PET/sCT billedet vil variere meget.
+
+
+Da flere af FullCT billederne er lavet uden en perfekt maske, som skjuler hovedholder og nakkestøtten på CT billedet, har vi valgt at generere nye FullCT baseret på CT billeder påført vores maske. Da støj rundt omkring hovedet påvirker attenuation korrektionen fik vi billeder med meget stor afvigelse imod den bagerste del af kraniet. Da vi er sikre på at både sCT og CT billederne er påført samme maske, er der større sandsynlighed for at vi sammenligner vores algoritme frem for støj. Der kan dog stadig fremkomme små rester af hovedstøtten tæt på kraniet, men det ser ikke ud til at være et problem.
 
 \todo{tekst, beskriv joint histogram, omdøb "faldgrupper"}
 
@@ -18,7 +21,7 @@ Begge disse valideringsmetoder er objektive men skal valueres manuelt. Vi har ik
 \subsubsection{Fremgangsmåde}
 Leave-one-out cross validation (LOOCV) er en gængs metode der bruges til at teste korrektheden af en algoritme. I alt sin enkelthed går metoden ud på at vi udvælger fem patienter. Fra de fem patienter lægger vi en patient til side, fx. den første patient, og træner algoritmen på de resterende fire patienter. Derefter udregner vi et sCT for den første patient. Vi gør herefter det samme igen, men udelader patient nummer to, træner på de resterende fire og udregner nummer to's sCT. 
 
-Ved at rotere træningssættet for vi testet metoden med data fra forskellige patienter, og vi får en basis for at sammenligne sCT'et.
+Ved at rotere træningssættet får vi testet metoden med data fra forskellige patienter, og vi får en basis for at sammenligne sCT'et.
 
 
 \subsubsection{Forventning}
@@ -26,9 +29,19 @@ Vi forventer at vores joint histograms bliver dårligere end Johannsons's, da vo
 
 
 \subsubsection{Faldgrupper}
-For at åbne stabile resultater er vi nødt til at filtrere patienter med artifakter fra. Da artifakter repræsentere områder med manglende data, tror vi det er nødvendigt for kvaliteten af vores algoritme, at de bliver sorteret fra.
+For at opnå stabile resultater er vi nødt til at filtrere patienter med artifakter fra. Da artifakter repræsentere områder med manglende data, tror vi det er nødvendigt for kvaliteten af vores algoritme, at de bliver sorteret fra.
 
 \subsubsection{Resultat}
+
+Ud fra procent difference (PD) billederne kan vi se at algoritmen levere nogenlunde stabile resultater. Men vi kan også se at der er store problemer ved ventriklerne, hvor den procentvise forskel på flere af billederne sniger sig op over de ti procent.
+
+Hvis vi ser på et PD billede lagt over et MR billede er det tydeligt at jo tættere på hjerneskallen vi kommer, jo større bliver afvigelsen.
+
+Det er ikke muligt for os at evaluere korrektheden af algoritmen omkring mund og næse regionen da langt de fleste T2 sekvenser ikke indeholder data så langt nede. Ligeså er der problemer i toppen af kraniet da T2 sekvenserne også mangler en skive eller to, og derfor ikke har hele hjerneskallen med.
+
+I gennemsnit er der lidt under ti procent afvigelse i selve hjerne. Det 
+
+
 \todo{Udfør LOOCV-forsøget}
 
 \subsection{Udregn sCT til hjerner med artifakter trænet på hjerner uden artifakter}
