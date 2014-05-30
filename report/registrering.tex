@@ -1,35 +1,19 @@
 \section{Registrering}
 
-Billeder taget på MRI/PET og PET/CT skannere kan som regelt ikke processeres sammen
-grundet flere faktorer. Patienten ligger sjældent præcis på samme måde, billederne
-bliver taget i forskellige opløsninger og patienten kan have implantater der
-forvrænger billederne. For at klargøre billederne skal de derfor co-registreres.
+Billeder taget på MRI/PET og PET/CT skannere kan som regel ikke processeres sammen grundet flere faktorer. Patienten ligger sjældent præcis på samme måde, billederne bliver taget i forskellige opløsninger og patienten kan have implantater der forvrænger billederne. For at klargøre billederne skal de derfor co-registreres.
 
-Ved co-registrering forsøger man at få alle billederne til at ligge i samme rum.
-I forhold til MRI billederne er co-registrering ofte trivielt. At co-registrere
-et MRI og CT billede er derimod vanskeligere. Derfor har vi valgt to forskellige
-metoder.
+Ved co-registrering forsøger man at få alle billederne til at ligge i samme rum. I forhold til MRI billederne er co-registrering ofte trivielt. At co-registrere et MRI og CT billede er derimod vanskeligere. Derfor har vi valgt to forskellige metoder.
 
-I samme omgang som vi co-registrere billederne er vi interesserede også at finde
-en maske. Masken skal bruges til at begrænse udregningen af sCT billedet så vi
-ikke bruger lang tid på at lede efter knogle i luften rundt om patienten.
+I samme omgang som vi co-registrere billederne er vi interesserede i også at finde en maske. Masken skal bruges til at begrænse udregningen af sCT billedet så vi ikke bruger lang tid på at lede efter knogle i luften rundt om patienten. Masken skal også fjerne evt. nakkestøtte og hovedholdere på CT billederne.
 
 \subsection{Co-registrering af UTE og T1 billeder}
 
-Til co-registrering af UTE og T1 billederne har vi valgt at bruge Insight ToolKit
-(ITK). Herfra benytter vi en implementation af Mattes Mutual Information algoritme
-samt linær translation og interpolering.
+Til co-registrering af UTE og T2 billederne har vi valgt at bruge Insight ToolKit (ITK). Herfra benytter vi en implementation af Mattes Mutual Information algoritme samt linær translation og interpolering.
 
 \subsection{Co-registrering af UTE og CT}
 
-Co-registrering af UTE og CT billeder er modsat UTE/T1 en ikke-triviel opgave. Vi
-har valgt en landmark baseret løsning fra MINC's toolkit
+Co-registrering af UTE og CT billeder er modsat UTE/T2 en ikke-triviel opgave. Vi har valgt en landmark baseret løsning fra MINC's toolkit. Vi har ikke selv skrevet denne løsning, men bruger i stedet samme løsning som Rigshospitalet.\todo{Kreditér Claes}
 
 \subsection{Generering af maske}
 
-Ligesom ved co-registrering bruge vi ITK for at udregne en maske. I første step
-bruger vi en implementering af Otsu thresholding algoritme for at finde en binær
-repræsentation. For at sikre vi ikke misser noget af kanterne udvider vi det 
-binære billede vha. en neighborhood-connected algoritme med 2-3 pixel i x, y og z
-retningerne. Til sidst inverteres billedet og vi har dermed en binær maske vi kan
-bruge til at begrænse området sCT algoritmen arbejder på.
+Til generering af masken bruger vi først en implementering af Otsu thresholding algoritmen for at finde en binær repræsentation. For at sikre vores maske ikke bliver for lille udvider vi det binære billede vha. en neighborhood-connected algoritme med 2-3 pixel i x, y og z retningerne. Til sidst inverteres billedet hvilket efterlader os med en binær maske.
