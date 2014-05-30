@@ -4,7 +4,7 @@
 
 Vi har valgt at implementerer metoden i Matlab da det giver os mulighed for hurtig prototyping. Derudover indeholder Matlab også en standard implementering af både k-means og EM algoritmerne.
 
-For at beregne modellen skal vi først indlæse MR og CT billederne samt tilhørende maske for hver patient. Til det formål har vi brugt nifti\_load \todo{link til toolbox}.
+For at beregne modellen skal vi først indlæse MR og CT billederne samt tilhørende maske for hver patient. Til det formål har vi brugt nii\_load. \todo{link til toolbox}
 
 Herefter løber vi billederne igennem og udtager de værdier der ligger inden for masken. Alle værdier lægges i én stor 16-dimensionel liste.
 
@@ -14,4 +14,8 @@ Output fra k-means algoritmen gives til EM algoritmen, samt samme liste med pati
 
 \subsection{Beregning af sCT}
 
-\todochristoffer{Analysen af implementeringen er ikke beskrevet}
+Selve udregningen af sCT implementeres på samme måde som beskrevet i teorien. Koden ser en del mindre overskuelig ud, men det er primært fordi vi var nødt til at omstrukturere flere arrays, da de påvirkede køretiden negativt i en ekstrem grad. Vi udregner også de konstante dele af algoritmen på forhånd, igen for at mindske køretiden.
+
+Fordi beregningen er voxel baseret er det muligt for os at udregne flere punkter parallelt. Det tager omtrent to minutter at udregne et sCT hvilket er samme køretid Johannson et al. nævner.
+
+Resultatet af algoritmen gemmer vi vha. nii\_save, det er ikke nødvendigt for os at gemme headeren, eftersom vi i rekonstruktionen alligevel erstatter den med headeren fra tilhørende $\mu$-map.
