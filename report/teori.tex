@@ -169,23 +169,26 @@ fordelinger, ikke nødvendigvis har ens spredning.
 
 \subsection{Arbejdsgangen}
 
-\todochristoffer{Arbejdsgangen er ikke beskrevet}
-
-På Rigshospitalet er fremgangsmåden med MR
-hjerneskanninger, at man også laver et CT scan. T1 billedet fra MR scanneren
-og CT co-registreres herefter og sammenlægges til et attenuationskorrigeret
-uMap kaldet FullCT. Derudover benyttes et Dixon uMap til at sætte dimensioner
-på det nye uMap. Dette rekonstrueres på hospitalets scanner.
-
 
 \subsubsection{FullCT}
 
-\todolasse{FullCT er ikke beskrevet. Snakker nærmere med Claes og justerer
-også i ovenstående snit}
+FullCT er navnet på den implementation af CT baseret
+attenuationskorrigering, der benyttes på Rigshospitalet.
 
-Det er noget funk
+Det laves ved, at man udover at tage et PET/MR scan også lavet et CT
+scan. T1 billedet fra MR scanneren og CT co-registreres herefter
+og benyttes til at udregne et attenuationskorrigerende $\mu$-map kaldet
+FullCT. Derudover benyttes headerdataen fra et Dixon $\mu$-map til at sætte
+dimensioner på det nye $\mu$-map. Dette rekonstrueres på hospitalets
+scanner.
+
 
 \subsubsection{Rekonstruktion}
 
-\todolasse{Rekonstruktion er ikke beskrevet. Skal snakke med et par folk.
-Hvordan det }
+For at kunne attenuationskorrigere PET billeder har man behov for at
+genindlæse alt scanningsinformationen, blot med ekstra viden, f.eks.
+CT information. Siemens scanneren gemmer den rå uprocesserede data fra
+scannet, så man kan blot hente sit $\mu$-map ind og scanneren vil da
+processere rådataen med viden om knogleplacering og tage højde for det,
+når den gentager forsøget.
+
