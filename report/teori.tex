@@ -123,9 +123,7 @@ maximization, forsøger vi ikke at håndtere dette.
 Expectation maximization (EM) er en metode til at finde de mest sandsynlige
 parametre i en statistiks model, hvor variablerne er ukendte. Metoden antager
 at data består af flere multivariate gaussiske fordelinger og returnerer en
-gaussisk mixtur fordelingsmodel. Metoden forsøger
-da, som k-means, at finde den lokalt optimale løsning ved at skifte mellem at
-forbedre modellen og tilhørsforholdene i modellen indtil den konvergerer.
+gaussisk mikstur fordelingsmodel. 
 
 Til forskel fra k-means, som udfører en hård klassificering, hvor hvert
 datapunkt tilhører en enkelt gruppe, så laver EM en blød klassificering, hvor
@@ -138,18 +136,17 @@ den mest sandsynlige model returneres. Alternativt kan den initialiseres med
 data, for at forbedre chancen for et godt resultat, og forhindre at metoden
 skal køres flere gange. Når vi initialiserer den med k-means, så har den
 allerede et bud på et cluster til alle datapunkter, og opgaven er da blot
-at "blødgøre" klassificeringen og lave gaussiske fordelinger i stedet. K-means
-fordelingen har også den ulempe, at den splitter halvvejs mellem centrene, så
-ved clusters af ulige størrelse, vil de mindre clusters ofte inddrage yder
-punkter fra de store. Dette undgår EM, da det er gaussiske fordelinger, der
-ikke nødvendigvis spreder sig lige meget.
+at "blødgøre" klassificeringen og lave gaussiske fordelinger i stedet. I
+expectation-trinet benyttes den nuværende estimering af de ukendte variable til
+at udregne den forventede loglikelihood funktion. Derefter i
+maximization-trinet findes de parametre, som maximerer loglikelihoodfunktionen.
+
+K-means fordelingen har også den ulempe, at den splitter halvvejs mellem
+centrene, så ved clusters af ulige størrelse, vil de mindre clusters ofte
+inddrage yder punkter fra de store. Dette undgår EM, da de gaussiske
+fordelinger, ikke nødvendigvis har ens spredning.
 
 
-\subsection{Statistikgøjl}
-
-\todochristoffer{Mangler at beskrive statistikken}
-
-\todo{Overvej ordenen på næste 3 sections}
 
 \subsection{Arbejdsgangen}
 
