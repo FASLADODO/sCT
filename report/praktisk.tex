@@ -19,3 +19,24 @@ Selve udregningen af sCT implementeres på samme måde som beskrevet i teorien. 
 Fordi beregningen er voxel baseret er det muligt for os at udregne flere punkter parallelt. Det tager omtrent to minutter at udregne et sCT hvilket er samme køretid Johannson et al. nævner.
 
 Resultatet af algoritmen gemmer vi vha. nii\_save, det er ikke nødvendigt for os at gemme headeren, eftersom vi i rekonstruktionen alligevel erstatter den med headeren fra tilhørende $\mu$-map.
+
+
+\subsection{Transformering til $\mu$-map} 
+
+Når vi har vores sCT, skal vi have lavet det om til et $\mu$-map
+på Dicom format. For at opnå dette konverterer vi det først til
+Minc. I Minc lægger vi 2048 til for at gøre op for en justeringen i
+værdierne, der opstår i konveteringen fra Minc til Nifti. Derefter
+resampler vi billederne til samme format, som UTE $\mu$-mappet fra den
+tilhørende scanning og erstatter header information i sCT'et med det fra
+$\mu$-mappet, så det kan benyttes, som et $\mu$-map på scanneren. Til
+sidst konverterer vi det videre til Dicom, hvilket er det format scanneren
+benytter.
+
+
+
+
+
+
+
+
