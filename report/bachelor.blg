@@ -1,0 +1,20 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: bachelor.aux
+A level-1 auxiliary file: introduktion.aux
+A level-1 auxiliary file: teori.aux
+A level-1 auxiliary file: registrering.aux
+A level-1 auxiliary file: metoden.aux
+A level-1 auxiliary file: praktisk.aux
+A level-1 auxiliary file: forsoegsplan.aux
+A level-1 auxiliary file: diskussion.aux
+A level-1 auxiliary file: korrekthed.aux
+A level-1 auxiliary file: t1vst2.aux
+A level-1 auxiliary file: konklusion.aux
+I couldn't open database file bibtex.bib
+---line 90 of file bachelor.aux
+ : \bibdata{bibtex
+ :                }
+I'm skipping whatever remains of this command
+The style file: plain.bst
+I found no database files---while reading file bachelor.aux
+Warning--I didn't find a database entry for "accepteretAfvigelse"
+(There were 2 error messages)
