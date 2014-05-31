@@ -7,3 +7,37 @@
 \subsection{Over tid}
 
 \todolasse{Har ikke beskrevet korrektheden over tid}
+
+\subsection{Billedformater}
+
+I løbet af projektet har vi oplevet en del problemer med konverteringer
+mellem filtyper. Vi benyttertre forskellige. Siemens scannerne producerer
+Dicom billeder som vi arbejder med i Osirix, der er et medicinsk
+billedbehandlisk program. Men det er et meget stort format, der ikke er
+let at arbejde med. 
+
+På Rigshospitalet er normen at konvertere til Minc, men vi havde planer,
+om at bruge ITK, og Nifti var bedre understøttet i det. I sidste ende
+endte vi med at registrere vores CT billeder i Minc, så vores billeder gik
+igennem alle tre typer. 
+
+Fra Dicom til Minc mister man en skalar, som man skal tage højde for, når
+man konvertere tilbage. Ved konvertering fra Minc til Nifti, hvilket vi
+kun gør med vores registrerede CT billeder, bliver de laveste værdier til
+-1024, dem trækker vi endnu 1025 fra, så de kommer til at matche vores
+laveste værdier.
+
+\todo{Uddyb tab ved Dicom til Minc}
+
+At konvertere til Dicom er ikke helt trivielt, så vi konverterer først til
+Minc, hvor vi lægger 2048 til for at gøre op for det offset, der skete ved
+den tidligere konvertering. 
+
+Mange af disse problemer har vi opdaget så sent i processen, at vi ikke
+har kunnet nå at tage hånd om dem. Den gennemsnitlige værdi i alle vores
+Nifti billeder, som vi har trænet og testet på, har været for lav, og at
+lægge en værdi til ved tilbagekonverteringen udbedrer det ikke, men ændrer
+bare værdierne til samme størrelse, som i det målte CT.
+
+
+
