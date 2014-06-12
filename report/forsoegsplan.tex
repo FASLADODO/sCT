@@ -48,13 +48,13 @@ Eftersom det primære mål med denne test er at sammeligne os med Johannsonn et 
         \caption{kommulativt diagram for alle patienter i LOOCV forsøget.}
         \label{fig:cumm_diff_loocv}
     \end{subfigure}
-    \caption{figur1}
+    \caption{På figur~\ref{fig:loocv_j_h} ses et fælleshistogram for Patient 1. CT værdier ud af x-aksen og sCT værdier ud af y aksen. På figur~\ref{fig:loocv_j_h} ses den kommulative afvigelse af sCT fra CT normaliseret til 1.}
     \label{fig:loocv}
 \end{figure}
 
-På fælleshistogrammet~\ref{cumm_diff_loocv} kan vi se to koncentrationer af punkter lige omkring 0 HU. Under nul kommer vi ud i luft og blødt væv. Over 0 kan vi se hvordan knoglen ligger. Omkring 500 findes den største spredning af punkterne.
+På fælleshistogrammet på figur~\ref{fig:loocv_j_h} kan vi se to koncentrationer af punkter lige omkring 0 HU. Under nul kommer vi ud i luft og blødt væv. Over 0 kan vi se hvordan knoglen ligger. Omkring 500 findes den største spredning af punkterne.
 
-På det kommulative diagram kan vi se at vi generelt har et problem med for lave værdier i sCT i forhold til CT. Mere end 40\% af punkterne ligger for lavt.
+På det kommulative diagram på figur~\ref{fig:cumm_diff_loocv} kan vi se at vi generelt har et problem med for lave værdier i sCT i forhold til CT. Mere end 40\% af punkterne ligger for lavt.
 
 Ud fra procent difference (PD) billederne kan vi se at algoritmen levere nogenlunde stabile resultater. Men vi kan også se at der er store problemer ved ventriklerne, hvor den procentvise forskel på flere af billederne sniger sig op over de ti procent.
 
@@ -62,9 +62,7 @@ Hvis vi ser på et PD billede lagt over et MR billede er det tydeligt at jo tæt
 
 Det er ikke muligt for os at evaluere korrektheden af algoritmen omkring mund og næse regionen da langt de fleste T2 sekvenser ikke indeholder data så langt nede. Ligeså er der problemer i toppen af kraniet da T2 sekvenserne også mangler en skive eller to, og derfor ikke har hele hjerneskallen med.
 
-I gennemsnit er der lidt under ti procent afvigelse i selve hjerne.
-
-\todo{Udfør LOOCV-forsøget}
+I gennemsnit er der lidt under ti procent afvigelse i selve hjernen.
 
 \subsection{Over tid}
 \subsubsection{Fremgangsmåde}
