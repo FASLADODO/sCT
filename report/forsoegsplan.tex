@@ -42,32 +42,7 @@ Det er ikke muligt for os at evaluere korrektheden af algoritmen omkring mund og
 
 I gennemsnit er der lidt under ti procent afvigelse i selve hjerne.
 
-
 \todo{Udfør LOOCV-forsøget}
-
-\subsection{Udregn sCT til hjerner med artifakter trænet på hjerner uden artifakter}
-\subsubsection{Fremgangsmåde}
-Træn på n hjerner test på m.
-
-\subsubsection{Forventning}
-
-\subsubsection{Faldgrupper}
-
-\subsubsection{Resultat}
-
-\subsection{Udregn sCT til hjerner trænet på hjerner med artifakter}
-\subsubsection{Fremgangsmåde}
-Iterativt træn på et antal hjerner og introducer hjerner med artifakter.
-Sammenlign kvaliteten af sCT afhængigt af andelen af hjerner, som har
-artifakter.
-
-\subsubsection{Forventning}
-At sCT's kvalitet forværres for hvert introduceret hjerne med artifakt.
-
-\subsubsection{Faldgrupper}
-
-\subsubsection{Resultat}
-
 
 \subsection{Over tid}
 \subsubsection{Fremgangsmåde}
@@ -109,35 +84,3 @@ bare ikke have haft nogen effekt med de hidtidige ændringer eller
 måske har der været flere ændringer indimellem, som har påvirket
 scanningsresultaterne, men på seneste tidspunkt er resultaterne meget
 lig de tidlige.
-
-
-\subsection{Test på en masse}
-\subsubsection{Fremgangsmåde}
-Iterativt træn på n+1 hjerner
-
-\subsubsection{Forventning}
-Forventning er at efter 7-8 hjerner giver det ikke rigtig nogen
-kvalitetsforskel.
-
-\subsubsection{Faldgrupper}
-Overfitting. 
-
-
-\subsubsection{Resultat}
-
-\subsection{Hvorfor 20-gaussians?}
-
-\subsubsection{Fremgangsmåde}
-Test på forskelligt antal gaussians og sammenlign resultaterne.
-
-\subsubsection{Forventning}
-Vi forventer, at kvaliteten falder under 20, men at metoden kræver mere tid
-efter 20 uden betydelig forbedringer.
-
-\subsubsection{Faldgrupper}
-Overfitting. 
-
-\subsubsection{Resultat}
-
-
-
