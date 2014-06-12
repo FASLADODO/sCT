@@ -34,6 +34,28 @@ For at opnå stabile resultater er vi nødt til at filtrere patienter med artifa
 
 \subsubsection{Resultat}
 
+Eftersom det primære mål med denne test er at sammeligne os med Johannsonn et al. har vi valgt at genskabe de samme figure.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{loocv_joint_histogram.png}
+        \caption{Fælleshistogram for Patient 1.}
+        \label{fig:loocv_j_h}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{cumm_diff_loocv.png}
+        \caption{kommulativt diagram for alle patienter i LOOCV forsøget.}
+        \label{fig:cumm_diff_loocv}
+    \end{subfigure}
+    \caption{figur1}
+    \label{fig:loocv}
+\end{figure}
+
+På fælleshistogrammet~\ref{cumm_diff_loocv} kan vi se to koncentrationer af punkter lige omkring 0 HU. Under nul kommer vi ud i luft og blødt væv. Over 0 kan vi se hvordan knoglen ligger. Omkring 500 findes den største spredning af punkterne.
+
+På det kommulative diagram kan vi se at vi generelt har et problem med for lave værdier i sCT i forhold til CT. Mere end 40\% af punkterne ligger for lavt.
+
 Ud fra procent difference (PD) billederne kan vi se at algoritmen levere nogenlunde stabile resultater. Men vi kan også se at der er store problemer ved ventriklerne, hvor den procentvise forskel på flere af billederne sniger sig op over de ti procent.
 
 Hvis vi ser på et PD billede lagt over et MR billede er det tydeligt at jo tættere på hjerneskallen vi kommer, jo større bliver afvigelsen.
