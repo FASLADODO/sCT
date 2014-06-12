@@ -1,11 +1,13 @@
-cumm_diff_v1 = cumm_diff('010476');
-cumm_diff_v2 = cumm_diff('010769');
-cumm_diff_v3 = cumm_diff('010850');
-cumm_diff_v4 = cumm_diff('010960');
-cumm_diff_v5 = cumm_diff('011030');
+cumm_diff_v1 = cumm_diff('010476', 'loosctt2_new.nii');
+cumm_diff_v2 = cumm_diff('010769', 'loosctt2_new.nii');
+cumm_diff_v3 = cumm_diff('010850', 'loosctt2_new.nii');
+cumm_diff_v4 = cumm_diff('010960', 'loosctt2_new.nii');
+cumm_diff_v5 = cumm_diff('011030', 'loosctt2_new.nii');
 
 figure1 = figure;
-axes1 = axes('Parent',figure1);
+axes1 = axes('Parent',figure1,'YGrid','on','XGrid','on',...
+    'Position',[0.0345092838196287 0.124084507042254 0.775 0.815]);
+xlim(axes1,[-400 400]);
 box(axes1,'on');
 hold(axes1,'all');
 
@@ -23,5 +25,5 @@ set(plot1(5),'LineStyle','-.','DisplayName','Patient 5');
 
 % Create legend
 legend1 = legend(axes1,'show');
-set(legend1,...
-    'Position',[0.733142493638678 0.164512922465207 0.138040712468193 0.164015904572565]);
+set(legend1,'EdgeColor',[1 1 1],'Location','NorthWest','YColor',[1 1 1],...
+    'XColor',[1 1 1]);
