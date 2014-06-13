@@ -2,24 +2,40 @@
 
 \subsection{Beregning af modellen}
 
-Vi har valgt at implementerer metoden i Matlab da det giver os mulighed for hurtig prototyping. Derudover indeholder Matlab også en standard implementering af både k-means og EM algoritmerne.
+Vi har valgt at implementerer metoden i Matlab da det giver os mulighed
+for hurtig prototyping. Derudover indeholder Matlab også en standard
+implementering af både k-means og EM algoritmerne.
 
-For at beregne modellen skal vi først indlæse MR og CT billederne samt tilhørende maske for hver patient. Til det formål har vi brugt nii\_load. \todo{link til toolbox}
+For at beregne modellen skal vi først indlæse MR og CT billederne
+samt tilhørende maske for hver patient. Til det formål har vi brugt
+nii\_load fra matlab toolboxen "Tools for NIfTI and ANALYZE
+image"\footnote{http://www.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image}.
 
-Herefter løber vi billederne igennem og udtager de værdier der ligger inden for masken. Alle værdier lægges i én stor 16-dimensionel liste.
+Herefter løber vi billederne igennem og udtager de værdier der ligger
+inden for masken. Alle værdier lægges i én 16-dimensionel liste.
 
-For at udregne k-means bruger vi den indbyggede k-means algoritme, samt en sammensat liste med de patienter vi ønsker til grund for modellen.
+For at udregne k-means bruger vi den indbyggede k-means algoritme, samt
+en sammensat liste med de patienter, som vi ønsker at træne på
+modellen.
 
-Output fra k-means algoritmen gives til EM algoritmen, samt samme liste med patienter. Output herfra er vores endelige model parametre.
+Output fra k-means algoritmen gives til EM algoritmen, samt samme liste
+med patienter. Output herfra er vores endelige model parametre.
 
 \subsection{Beregning af sCT}
 
-Selve udregningen af sCT implementeres på samme måde som beskrevet i teorien. Koden ser en del mindre overskuelig ud, men det er primært fordi vi var nødt til at omstrukturere flere arrays, da de påvirkede køretiden negativt i en ekstrem grad. Vi udregner også de konstante dele af algoritmen på forhånd, igen for at mindske køretiden.
+Selve udregningen af sCT implementeres på samme måde, som beskrevet i
+teorien. Koden er en mindre overskuelig ud, men det er primært fordi
+vi var nødt til at omstrukturere flere arrays, da de påvirkede
+køretiden negativt i en ekstrem grad. Vi udregner også de konstante dele
+af algoritmen på forhånd, igen for at mindske køretiden.
 
-Fordi beregningen er voxel baseret er det muligt for os at udregne flere punkter parallelt. Det tager omtrent to minutter at udregne et sCT hvilket er samme køretid Johannson et al. nævner.
+Fordi beregningen er voxel baseret er det muligt for os at udregne flere
+punkter parallelt. Det tager os omtrent to minutter at udregne et sCT
+hvilket er samme køretid Johannson et al. nævner.
 
-Resultatet af algoritmen gemmer vi vha. nii\_save, det er ikke nødvendigt for os at gemme headeren, eftersom vi i rekonstruktionen alligevel erstatter den med headeren fra tilhørende $\mu$-map.
-
+Resultatet af algoritmen gemmer vi vha. nii\_save, det er ikke
+nødvendigt for os at gemme headeren, eftersom vi i rekonstruktionen
+alligevel erstatter den med headeren fra tilhørende $\mu$-map.
 
 \subsection{Transformering til $\mu$-map} 
 

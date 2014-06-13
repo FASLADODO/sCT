@@ -10,7 +10,7 @@ to nye billeder. De nye billeder beregnes ved at se på en 3x3x3
 kube omkring hvert voxel og finder henholdsvis middelværdi og varians.
 
 Herefter har vi 15 MR-billeder og 1 CT-billede som vi vil klassificere
-med en mixtur af gaussians. Fra Johannson et al. ved vi at vi kan få
+med en mixtur af gaussians. Fra Johansson et al. ved vi at vi kan få
 gode resultater med 20 gaussiske fordelinger. 
 
 For at finde parametrene til hver gaussiske fordeling bruger vi
@@ -20,16 +20,11 @@ dataen, hvor k er sat til 20. Dette betyder at vi ikke behøver køre
 EM-algoritmen flere gang og øger sandsynligheden for et godt resultat, da
 dataen allerede er klassificeret.
 
-
-\todochristoffer{Matematiske ekslempler}
-\todolasse{Gennemlæs}
-
-
 \subsubsection{Beregning af sCT}
 
 Vi generere sCT værdierne ved at udregne den forventede værdi af CT baseret på de 15 MR billeder. 
 
-Som beskrevet i Johanson et al., så udregnes den forventede værdi af CT ved
+Som beskrevet i Johansson et al., så udregnes den forventede værdi af CT ved
 
 \begin{equation}
 (X_1 | X_2 = x_2) = \frac{\Sigma^{N}_{i=1} \bar{\mu}_{1,i} a_i h_i(x_2)}{\Sigma^{N}_{i=1} a_i h_i(x_2)}
@@ -60,11 +55,7 @@ $\mu_{1,i}$, $\mu_{2,i}$, $\Sigma_{1 1, i}$, $\Sigma_{1 2, i}$, $\Sigma_{2 1, i}
 \end{array}\right)
 \end{equation}
 
-\todolasse{Læs}
-
 \subsection{Hvordan han vi valgt at implementere den}
-
-\todochristoffer{Læs}
 
 Til metoden benytter vi for hvert træningssæt et CT, en T2 vægtet MR-sekvens
 og 4 MR UTE-sekvenser. Vi benytter Insight Toolkit (ITK) til at udregne et
