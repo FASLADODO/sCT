@@ -9,6 +9,7 @@
 *.synctex.gz
 *.nii
 *.mnc
+*.sh
 report/bachelor.pdf
 
 # User-specific files
