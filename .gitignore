@@ -8,6 +8,7 @@
 *.toc
 *.synctex.gz
 *.nii
+*.mnc
 report/bachelor.pdf
 
 # User-specific files
