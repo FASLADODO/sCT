@@ -32,9 +32,18 @@ løsning som Rigshospitalet.
 
 \subsection{Generering af maske}
 
+For udregning af modellerne har maskerne en væsentlig betydning for korrektheden af klassifikationen. Vi har flere gange undervejs måtte ændre hvilke billeder vi brugte til at genskabe modellerne, og har ikke haft tid til at generere de tilhørende masker hver gang.
+
+Hvis ikke maskerne kun dækker punkter hvor der findes data på alle 16 billeder, risikerer vi en misklassificering. 
+
 Til generering af masken bruger vi først en implementering af Otsu
 thresholding algoritmen for at finde en binær repræsentation. For at
 sikre vores maske ikke bliver for lille udvider vi det binære billede
 vha. en neighborhood-connected algoritme med 2-3 pixel i x, y og z
 retningerne. Til sidst inverteres billedet hvilket efterlader os med en
 binær maske.
+
+De endelige masker vi brugte var alt for store i forhold til T2 sekvenserne, hvilket kan have haft en betydelig negativ effekt på kvaliteten af vores T2.
+
+Da det tager forholdsvis lang tid at udregne modellerne og endnu længere tid at lave rekonstruktionerne havde vi ikke tid til at prøve med nye masker.
+
