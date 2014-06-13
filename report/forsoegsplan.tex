@@ -1,6 +1,6 @@
 \section{Forsøgsplan}
 
-For at validere testresultaterne vil vi benytte os af joint histograms. For hvert sCT vi generer har vi det korrekte CT. Ved at plotte sCT værdier som x koordinaten og CT værdier som y koordinaten får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige de er jo længere fra den lige linje ligger punkterne.
+For at validere testresultaterne vil vi benytte os af joint histograms. For hvert sCT vi generer har vi det korrekte CT. Ved at plotte sCT værdier som x-koordinaten og CT værdier som y koordinaten får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige de er jo længere fra den lige linje ligger punkterne.
 
 Fordelen ved denne metode er at vi nemt kan aflæse hvilke værdier vi har de største problemer med. Hvis vi har meget stor afvigelse i knoglerne vil vi få en stor klump omkring nul, mens der kan være store ligheder i det bløde væv der så giver en pæn linje omkring minus 500.
 
@@ -72,12 +72,12 @@ I gennemsnit er der lidt under ti procent afvigelse i selve hjernen.
         \label{col:loocv_ct_pat1_ct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT for patient 1.}
+        \caption{sCT.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010476_sct.png}
         \label{col:loocv_ct_pat1_sct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens}
+        \caption{Differens.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010476_sub.png}
         \label{col:loocv_ct_pat1_sub}
     \end{subfigure}\\
@@ -87,12 +87,12 @@ I gennemsnit er der lidt under ti procent afvigelse i selve hjernen.
         \label{col:loocv_ct_pat2_ct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT for patient 2.}
+        \caption{sCT.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010769_sct.png}
         \label{col:loocv_ct_pat2_sct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens}
+        \caption{Differens.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010769_sub.png}
         \label{col:loocv_ct_pat2_sub}
     \end{subfigure}\\
@@ -102,12 +102,12 @@ I gennemsnit er der lidt under ti procent afvigelse i selve hjernen.
         \label{col:loocv_ct_pat3_ct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT for patient 3.}
+        \caption{sCT.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010850_sct.png}
         \label{col:loocv_ct_pat3_sct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens}
+        \caption{Differens.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010850_sub.png}
         \label{col:loocv_ct_pat3_sub}
     \end{subfigure}\\
@@ -117,12 +117,12 @@ I gennemsnit er der lidt under ti procent afvigelse i selve hjernen.
         \label{col:loocv_ct_pat4_ct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT for patient 4.}
+        \caption{sCT.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010960_sct.png}
         \label{col:loocv_ct_pat4_sct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens}
+        \caption{Differens.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010960_sub.png}
         \label{col:loocv_ct_pat4_sub}
     \end{subfigure}\\
@@ -132,12 +132,12 @@ I gennemsnit er der lidt under ti procent afvigelse i selve hjernen.
         \label{col:loocv_ct_pat5_ct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT for patient 5.}
+        \caption{sCT.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_011030_sct.png}
         \label{col:loocv_ct_pat5_sct}
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens}
+        \caption{Differens.}
         \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_011030_sub.png}
         \label{col:loocv_ct_pat5_sub}
     \end{subfigure}
@@ -266,3 +266,105 @@ bare ikke have haft nogen effekt med de hidtidige ændringer eller
 måske har der været flere ændringer indimellem, som har påvirket
 scanningsresultaterne, men på seneste tidspunkt er resultaterne meget
 lig de tidlige.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Tidligt for patient 1.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_121280_early.png}
+        \label{col:over_time_sct_pat1_early}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Sent.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_121280_late.png}
+        \label{col:over_time_sct_pat1_late}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Differens.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_121280_sub.png}
+        \label{col:over_time_sct_pat1_sub}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Tidligt for patient 2.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_140547_early.png}
+        \label{col:over_time_sct_pat2_early}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Sent.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_140547_late.png}
+        \label{col:over_time_sct_pat2_late}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Differens.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_140547_sub.png}
+        \label{col:over_time_sct_pat2_sub}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Tidligt for patient 3.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_210445_early.png}
+        \label{col:over_time_sct_pat3_early}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Sent.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_210445_late.png}
+        \label{col:over_time_sct_pat3_late}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Differens.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_sct/over_tid_sct_210445_sub.png}
+        \label{col:over_time_sct_pat3_sub}
+    \end{subfigure}
+    \caption{CT og sCT for de tre patient. På differens billedet er det orange ingen afvigelse, mørkere farver går mod negativ afvigelse og lysere farver går mod positiv afvigelse.}
+    \label{col:over_time_sct}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Tidligt for patient 1.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_121280_early.png}
+        \label{col:over_time_pet_pat1_early}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Sent.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_121280_late.png}
+        \label{col:over_time_pet_pat1_late}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Procentdifferens.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_121280_pd.png}
+        \label{col:over_time_pet_pat1_pd}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Tidligt for patient 2.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_140547_early.png}
+        \label{col:over_time_pet_pat2_early}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Sent.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_140547_late.png}
+        \label{col:over_time_pet_pat2_late}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Procentdifferens.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_140547_pd.png}
+        \label{col:over_time_pet_pat2_pd}
+    \end{subfigure}\\
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Tidligt for patient 3.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_210445_early.png}
+        \label{col:over_time_pet_pat3_early}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Sent.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_210445_late.png}
+        \label{col:over_time_pet_pat3_late}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \caption{Procentdifferens.}
+        \includegraphics[width=0.75\textwidth]{colager/over_tid_pet/over_tid_210445_pd.png}
+        \label{col:over_time_pet_pat3_pd}
+    \end{subfigure}
+    \caption{Tre patienter fra midten af vores tidsperiode hvor vi har genereret sCT ud fra modellen fra de tidlige og de sene patienter. }
+    \label{col:over_time_pet}
+\end{figure}
