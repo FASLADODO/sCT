@@ -1,13 +1,17 @@
-\subsection{T1 eller T2}
+\subsection{T1/T2}
 
-Ved MR er der to forskellige sekvenser man bruger for at lave et billede, den ene er T1 sekvensen, og den anden er T2 sekvensen. Hver sekvens har sine fordele, men oftest har Rigshospitalet brugt T1 sekvenserne til dianogsticering fordi de producere billeder i højere opløsning. Til gengæld er visse vævstyper mere fremtrædene på T2 billederne, specielt ventriklerne og væsken ved ydredelen af hjernen. Ved sCT er T2 sekvensen en fordel da den skaber større kontrast til knoglen, og formindsker misklassificering omkring ventriklerne. Derfor brugte Johannsonn et al. T2 sekvenser i deres forsøg.
+Ved et MR scan bliver der optager flere billede-sekvenser, blandt dem er T1-sekvensen, og T2 sekvensen, som måler mangetiseringen af legemet på forskellig vis. Hver sekvens har sine fordele, men oftest har Rigshospitalet brugt T1-sekvenserne til diagnosticering, derfor producerer de dem også i højere opløsning. Til gengæld er visse vævstyper mere fremtrædene på T2-billederne, specielt ventriklerne og væsken ved det yderste af hjernen. Ved sCT er T2-sekvensen en fordel da den skaber større kontrast til knoglen, og formindsker misklassificering omkring ventriklerne. Derfor brugte Johannsonn et al. T2 sekvenser i deres forsøg.
 
-Rigshospitalet har dog bedre T1 sekvenser, samt de består af flere slices og dækker derfor mere af hovedet. Det er specielt et problem, at T2 sekvensen ofte mangler den øverste del af kraniet. Derfor har der været et ønske om at teste brugen af T1 frem for T2.
+Rigshospitalet har dog bedre T1-sekvenser. De optager flere slices og dækker mere af hovedet. Det er specielt et problem, at T2-sekvensen ofte mangler den øverste og nederste del af kraniet og endda hjernen. Derfor har der været et ønske om at teste brugen af T1 frem for T2.
 
-Ved starten af projektet har vi fået hentet T1 sekvenserne, men ikke T2 sekvenserne, hvilket også gav anledning til håb om at vi kunne nøjes med T1.
-
-Dog kan vi konstatere at brug af T1 sekvensen i stedet for T2 resulterer i væsentlig misklassifikation omkring ventriklerne, hjerneskallen blev for tyk, og fragmenter af knogle kunne også observeres i selve hjernemassen. 
+Ved starten af projektet benyttede vi T1-sekvenserne, men vi måtte konstatere at brug af T1 sekvensen i stedet for T2 resulterede i væsentlig misklassifikation omkring ventriklerne, hjerneskallen blev for tyk, og fragmenter af knogle kunne også observeres i selve hjernemassen. De samme ting kan også observeres ved T2 sekvensen, men i meget mindre grad.
 
 På grund af disse observationer har vi valgt ikke at rekonstruere PET billeder ved hjælp af sCT baseret på T1 sekvensen - vi mente ikke det var den væsentlige tidsinvestering værd.
 
-\todo{indsæt billeder og vis med cirkler hvor misklassificeringen fremkommer.}
+T2-sekvensernes lave kvalitet har dog også påvirket de fremstillede sCT. Da T2 mangler toppen af kraniet og typisk det øverste af hjernen mangler der data til at udregne yderområderne. Resultatet er større usikkerhed i toppen og bunden af kraniet. I nogle tilfælde mangler dele af knoglen helt på sCT billedet. 
+
+T2-sekvensen stopper typisk midt i lillehjernen~\ref{sct_problemer}, og det har en tydeligt effekt på sCT, hvor der går en “streg” igennem det nederste af kraniet. 
+
+Når vi rekonstruerer sCT trænet med T2-sekvenser oplever vi relativt store udsving i lillehjernen, formentlig grundet ukorrekthed i sCT’et i den region. På nogle af vores PET-difference billeder kan man se værdier i det øverste af kraniet, som går over 20 \%, hvilket teknisk set ikke gør noget, men nogle gange går det også ned i hjernen, og så er det et problem.
+
+Vi har ikke forsøgt at håndtere problemerne forårsaget af T2’ens lave kvalitet, da det er et valg fra Rigshospitalets side ikke at gøre den bedre. Hvis metoden viser sig at være god, kan sekvensen fremover optages i god kvalitet. Det vil tage lidt ekstra tid for hver patient, men det er stadig hurtigere end at foretage en ekstra skanning.
