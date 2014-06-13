@@ -1,0 +1,11 @@
+T1/T2
+T2
+Værdier ændret sig over tid
+Forholdet mellem ct og sct KVAL
+Forholdet mellem fullct-pet og sct-pet KVAL
+Sammnhæng mellem ovenstående
+Valg af hjerner til modeller
+Valg af maske
+Klinisk
+(Regioner)
+Artifakter
