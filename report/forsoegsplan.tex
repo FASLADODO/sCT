@@ -1,21 +1,19 @@
 \section{Forsøgsplan}
 
-For at validere testresultaterne vil vi benytte os af joint histograms. For hvert sCT vi generer har vi det korrekte CT. Ved at plotte sCT værdier som x-koordinaten og CT værdier som y koordinaten får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige de er jo længere fra den lige linje ligger punkterne.
+For at validere testresultaterne vil vi benytte os af joint histograms. For hvert sCT vi generer har vi det korrekte CT. Ved at plotte sCT værdier ud af y-aksen og CT værdier ud af x-aksen får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige de er jo længere fra den lige linje ligger punkterne.
 
 Fordelen ved denne metode er at vi nemt kan aflæse hvilke værdier vi har de største problemer med. Hvis vi har meget stor afvigelse i knoglerne vil vi få en stor klump omkring nul, mens der kan være store ligheder i det bløde væv der så giver en pæn linje omkring minus 500.
 
-Derudover er det samme valideringsmetode der bruges af Johannson et al., og vi vil derfor kunne sammenligne vores værdier med deres.
+Derudover er det samme valideringsmetode der bruges af Johansson et al., og vi vil derfor kunne sammenligne vores værdier med deres.
 
-For at finde ud af om vores sCT er godt nok til attenuationskorrektion af PET billeder vil vi generere PET billeder med vores sCT og det rigtige CT. Vi kan herefter konstruere et nyt billede, der er baseret på den procentvise forskel imellem PET/CT og PET/sCT. 
+For at finde ud af om vores sCT er godt nok til attenuationskorrektion af PET billeder vil vi generere PET billeder med vores sCT og det rigtige CT. Vi kan herefter konstruere et nyt billede, der er baseret på den procentvise forskel imellem FullCT baseret PET og sCT baseret PET. 
 
-Ud fra procentsforskelsbilledet kan vi se hvilke regioner der er forskellige fra PET/CT billedet, og giver samtidigt et godt overblik over hvor godt vores PET/sCT billede er blevet.
+Ud fra procentsforskelsbilledet kan vi se hvilke regioner der er forskellige fra FullCT baseret PET billedet, og giver samtidigt et godt overblik over hvor godt vores sCT baseret PET billede er blevet.
 
-Begge disse valideringsmetoder er objektive men skal evalueres manuelt. Vi har ikke en metode til at give et enkelt tal for hvor godt vores PET/sCT billede er blevet. Vi forventer også at kvaliteten af sCT billedet, og dermed også PET/sCT billedet vil variere meget.
+Begge disse valideringsmetoder er objektive men skal evalueres manuelt. Vi har ikke en metode til at give et enkelt tal for hvor godt vores sCT baseret PET billede er blevet. Vi forventer også at kvaliteten af sCT billedet, og dermed også at det sCT baseret PET billede vil variere meget.
 
 
 Da flere af FullCT billederne er lavet uden en perfekt maske, som skjuler hovedholder og nakkestøtten på CT billedet, har vi valgt at generere nye FullCT baseret på CT billeder påført vores maske. Da støj rundt omkring hovedet påvirker attenuation korrektionen fik vi billeder med meget stor afvigelse imod den bagerste del af kraniet. Da vi er sikre på at både sCT og CT billederne er påført samme maske, er der større sandsynlighed for at vi sammenligner vores algoritme frem for støj. Der kan dog stadig fremkomme små rester af hovedstøtten tæt på kraniet, men det ser ikke ud til at være et problem.
-
-\todo{tekst, beskriv joint histogram, omdoeb faldgrupper}
 
 \subsection{Leave-one-out cross validation (LOOCV)}
 \subsubsection{Fremgangsmåde}
@@ -34,7 +32,7 @@ For at opnå stabile resultater er vi nødt til at filtrere patienter med artifa
 
 \subsubsection{Resultat}
 
-Eftersom det primære mål med denne test er at sammeligne os med Johannsonn et al. har vi valgt at genskabe de samme figure.
+Eftersom det primære mål med denne test er at sammeligne os med Johansson et al. har vi valgt at genskabe de samme figure.
 
 \begin{figure}
     \centering
