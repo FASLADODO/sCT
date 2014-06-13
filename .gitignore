@@ -17,6 +17,8 @@ report/bachelor.pdf
 *.sln.docstates
 */test_patient/
 */test_patienter/
+*/over_tid/
+*/tilrecon/
 */coreg/
 */coreg2/
 
