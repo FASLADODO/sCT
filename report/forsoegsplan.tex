@@ -165,14 +165,14 @@ i hjernen øverst og lillehjernen.
     \centering
     \begin{tabular}{| l | c | c | c | c |}
         \hline
-        x & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
+         & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
         Patient 1 & 6,31 \% & 4,91 \% & 48,86 \% & 13,19 \% \\ \hline
         Patient 2 & 3,38 \% & 1,67 \% & 18,33 \% & 8,16 \% \\ \hline
         Patient 3 & 3,64 \% & 2,15 \% & 19,92 \% & 18,15 \% \\ \hline
         Patient 4 & 4,15 \% & 3,35 \% & 23,76 \% & 5,16 \% \\ \hline
         Patient 5 & 2,66 \% & 1,89 \% & 10,33 \% & 3,36 \% \\ \hline
     \end{tabular}
-    \caption{Tabel for det forreste af hjernen. Læg mærke til at andelen over 10\% for alle ligger meget højt. 10\% er øverste grænse for at vi kan være tilfredse med billedet, hvilket betyder at sCT har store problemer i det forreste af hjernen.}
+    \caption{Tabel for forskellen i det forreste af hjernen. Læg mærke til at andelen over 10\% for alle ligger meget højt. 10\% er øverste grænse for at vi kan være tilfredse med billedet, hvilket betyder at sCT har store problemer i det forreste af hjernen.}
     \label{tab:loocv_forresthjerne}
 \end{figure}
 
@@ -180,14 +180,14 @@ i hjernen øverst og lillehjernen.
     \centering
     \begin{tabular}{| l | c | c | c | c |}
         \hline
-        x & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
+         & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
         Patient 1 & 3,99 \% & 3,73 \% & 14,98 \% & 1,1 \% \\ \hline
         Patient 2 & 1,98 \% & 1,17 \% & 6,99 \% & 3,04 \% \\ \hline
         Patient 3 & 2,28 \% & 1,28 \% & 9,42 \% & 2,89 \% \\ \hline
         Patient 4 & 4,05 \% & 3,89 \% & 17,34 \% & 1,22 \% \\ \hline
         Patient 5 & 1,84 \% & 1,45 \% & 4,11 \% & 0,65 \% \\ \hline
     \end{tabular}
-    \caption{Tabel for det bagerste af hjernen. Den bagerste del af hjernen er langt bedre end den forreste som set på figur~\ref{tab:loocv_forresthjerne}. Det skulle egentligt være godt, men det tyder også på at vi har store regionale problemer med sCT, hvilket er værre end hvis hele hjernen havde været ensformigt 10\% forkert.}
+    \caption{Tabel for forskellen i det bagerste af hjernen. Den bagerste del af hjernen er langt bedre end den forreste som set på figur~\ref{tab:loocv_forresthjerne}. Det skulle egentligt være godt, men det tyder også på at vi har store regionale problemer med sCT, hvilket er værre end hvis hele hjernen havde været ensformigt 10\% forkert.}
     \label{tab:loocv_bagersthjerne}
 \end{figure}
 
@@ -195,16 +195,18 @@ i hjernen øverst og lillehjernen.
     \centering
     \begin{tabular}{| l | c | c | c | c |}
         \hline
-        x & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
+         & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
         Patient 1 & 4,12 \% & 2,99 \% & 18,80 \% & 5,09 \% \\ \hline
         Patient 2 & 3,74 \% & 1,94 \% & 16,84 \% & 7,00 \% \\ \hline
         Patient 3 & 7,53 \% & 5,45 \% & 53,00 \% & 24,55 \% \\ \hline
         Patient 4 & 6,45 \% & 3,06 \% & 29,86 \% & 14,29 \% \\ \hline
         Patient 5 & 11,86 \% & 5,11 \% & 50.34 \% & 34,10 \% \\ \hline
     \end{tabular}
-    \caption{Tabel for lillehjernen. Lillehjernen fortæller meget den samme historie som figur~\ref{tab:loocv_forresthjerne}. Der er dog stor usikkerhed omkring kvaliteten af sCT specielt omkring lillehjernen. Problemet stammer fra for korte T2 sekvenser.}
+    \caption{Tabel for forskellen i lillehjernen. Lillehjernen fortæller meget den samme historie som figur~\ref{tab:loocv_forresthjerne}. Der er dog stor usikkerhed omkring kvaliteten af sCT specielt omkring lillehjernen. Problemet stammer fra for korte T2 sekvenser.}
     \label{tab:loocv_lillehjerne}
 \end{figure}
+
+
 Lillehjernen er meget ustabil. Dette skyldes formentlig, at t2-sekvensen
 ofte er stoppet før, den har fået nok hjerne og knogle med. Imens er der
 mindre usving forest i hjernen, men der er stadig en stor andel, som
@@ -359,6 +361,7 @@ lig de tidlige.
     \end{subfigure}
     \caption{Tre patienter fra midten af vores tidsperiode hvor vi har genereret sCT ud fra modellen fra de tidlige og de sene patienter. Farveskalaen for procentdifferencen går fra -20 til 20. Procentdifferensbilledet er også fusioneret med T1 billedet for at man kan se hvad der er hvad.}
     \label{col:over_time_pet}
+\end{figure}
 
 
 På PET-billedet, der er rekonstrueret ud fra modellen trænet på tidlige
@@ -367,24 +370,25 @@ lavaktivitetsområderne. Det ses specielt uden for hjernen, men
 lillehjernen er også blevet mindre. Udover dette ser det forreste af
 hjernen meget ens ud, og det bagerste ligeså.
 
-\paragraph{Forrest}
-
-\begin{center}
-    \begin{tabular}{| l | l | l | l | l |}
-    \hline
-    x & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
-    Patient 1 & 2,28 \% & 1,49 \% & 10,06 \% & 2,27 \% \\ \hline
-    Patient 2 & 2,10 \% & 1,12 \% & 9,47 \% & 2,75 \% \\ \hline
-    Patient 3 & 4,54 \% & 3,78 \% & 35,15 \% & 6,26 \% \\ \hline
+\begin{figure}
+    \centering
+    \begin{tabular}{| l | c | c | c | c |}
+        \hline
+         & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
+        Patient 1 & 2,28 \% & 1,49 \% & 10,06 \% & 2,27 \% \\ \hline
+        Patient 2 & 2,10 \% & 1,12 \% & 9,47 \% & 2,75 \% \\ \hline
+        Patient 3 & 4,54 \% & 3,78 \% & 35,15 \% & 6,26 \% \\ \hline
     \end{tabular}
-\end{center}
+    \caption{Tabel for forskellen i det forreste af hjernen imellem PET baseret på det tidlige sCT og det sene sCT. Patient 1 og patient 2 ser begge nogenlunde ud. Desværre har patient 3 store problemer med mere end en tredjedel af værdier mere end 5\% forskelle.}
+    \label{tab:over_tid_forrest}
+\end{figure}
 
 \paragraph{Bagerst}
 
 \begin{center}
     \begin{tabular}{| l | l | l | l | l |}
     \hline
-    x & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
+     & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
     Patient 1 & 1,14 \% & 0,83 \% & 1,71 \% & 0,06 \% \\ \hline
     Patient 2 & 1,57 \% & 1,15 \% & 4,23 \% & 0,50 \% \\ \hline
     Patient 3 & 2,20 \% & 1,73 \% & 6,92 \% & 1,21 \% \\ \hline
@@ -396,7 +400,7 @@ hjernen meget ens ud, og det bagerste ligeså.
 \begin{center}
     \begin{tabular}{| l | l | l | l | l |}
     \hline
-    x & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
+     & Gennemsnit & Median & Andel over 5 \% & Andel over 10 \% \\ \hline
     Patient 1 & 3,00 \% & 2,70 \% & 8,14 \% & 0,62 \% \\ \hline
     Patient 2 & 2,09 \% & 1,87 \% & 3,57 \% & 0,39 \% \\ \hline
     Patient 3 & 5,71 \% & 4,50 \% & 42,45 \% & 10,20 \% \\ \hline
@@ -408,9 +412,3 @@ forskelle ligger ved tæt ved knoglen og selv i de områder forbliver
 forskllen sig for det meste under de 10 \%. Patient 3 har betydelige
 problemer. Lillehjernen er betydeligt mindre med den ene model end den
 anden, hvilket givet store udslag i den region. 
-
-
-
-
-
-\end{figure}
