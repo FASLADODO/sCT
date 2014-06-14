@@ -163,4 +163,18 @@ lægge en værdi til ved tilbagekonverteringen udbedrer det ikke, men ændrer
 bare værdierne til samme størrelse, som i det målte CT.
 
 
+\subsection{Fullct-PET og sCT-PET kvalitet}
+
+
+Værdierne i et PET-billede kan ikke sammenlignes direkte på tværs af patienter, de har kun betydning i forhold til resten af hjernen. Så hvis det forreste af hjernen, for eksempel, afviger mere fra resten af hjernen end normalt, så er der et problem der. På samme måde er det ikke noget problem, hvis de rekonstruerede PET billeder baseret på sCT afviger med en relativ faktor i hele hjernen i forhold til dem baseret på FullCT. På figur~\ref{col:loocv_pet} ses der på procentdifferensbillederne en nogenlunde jævn grøn nuance i det meste af hjernen (pånær patient 5), hvilket taler for kvaliteten af resultaterne. 
+
+
+Vi oplever store forskelle i ventriklerne, som set på figur~\ref{col:loocv_pet_pat3_pd}~og~\ref{col:loocv_pet_pat3_pd}  men det er ikke noget problem. De består hovedsageligt af vand, og der foregår ikke nogen aktivitet i dem. Derfor er værdierne i ventriklerne meget lave, så afvigelser vil give større udslag der end andre steder i hjernen. I det hele taget er forskelle i alt andet end selve hjernen ikke relevant. Hvis selve knoglen giver store udslag, eller der er problemer i ansigtet betyder det ikke noget.
+
+
+I forhold til vores ønske, om at holde forskellen under 5 \% eller i hvert fald 10 \%  er det ikke lykkedes. Bagerst i hjernen ser det meget godt ud, men i regionerne ved øjnene og i lillehjernen ser vi i snit en procentdifference på over 5 \% i mere end en femtedel af voxelsne (~\ref{tab:loocv_lillehjerne} og \ref{tab:loocv_lillehjerne}). På figur~\ref{col:loocv_pet_pat3_pd} og~\ref{col:loocv_pet_pat5_pd}  kan man se en hvide bjælke med forskelle på over 20 \%, der matcher, hvor T2’en slutter. Bjælken går igennem lillehjernen, og resultaterne bliver derfor kraftigt forværet, som set på figur~\ref{tab:loocv_lillehjerne}. Det er også tydeligt at se på figur~\ref{col:loocv_pet_pat3_pd} og~\ref{col:loocv_pet_pat4_pd} at der mangler T2 værdier ved den øverste del af kraniet.
+
+
+Derudover kan vi på figur~\ref{tab:loocv_forresthjerne} og figur~\ref{tab:loocv_lillehjerne} se at halvdelen af patienterne har store problemer forrest i hjernen og ved lillehjernen. Dette tyder på vi i yder områderne ikke kan hamle op med PET baseret på FullCT’et. Dette kan også ses på billeder ne i figur~\ref{col:loocv_pet_pat1_pd} og figur~\ref{col:loocv_pet_pat3_pd} hvor forskellen er større i den forreste del af hjernen i forhold til resten.
+
 
