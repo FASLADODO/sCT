@@ -1,19 +1,30 @@
-\section{Forsøgsplan}
+\section{Forsøg}
 
-For at validere testresultaterne vil vi benytte os af joint histograms. For hvert sCT vi generer har vi det korrekte CT. Ved at plotte sCT værdier ud af y-aksen og CT værdier ud af x-aksen får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige de er jo længere fra den lige linje ligger punkterne.
+Da flere af FullCT billederne er lavet uden en perfekt maske, som skjuler hovedholder og nakkestøtten på CT billedet, har vi valgt at generere nye FullCT baseret på CT billeder påført vores maske. Da støj rundt omkring hovedet påvirker attenuation korrektionen fik vi billeder med meget stor afvigelse imod den bagerste del af kraniet. Da vi er sikre på at både sCT og CT billederne er påført samme maske, er der større sandsynlighed for at vi sammenligner vores algoritme frem for støj. Der kan dog stadig fremkomme små rester af hovedstøtten tæt på kraniet, men det ser ikke ud til at være et problem.
+
+\subsection{Validering af forsøgsresultater}
+
+\subsubsection{Fælles histogram}
+
+For at validere testresultaterne vil vi benytte os af fælles histogrammer. For hvert sCT vi generer har vi det korrekte CT. Ved at plotte sCT værdier ud af y-aksen og CT værdier ud af x-aksen får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige de er jo længere fra den lige linje ligger punkterne.
 
 Fordelen ved denne metode er at vi nemt kan aflæse hvilke værdier vi har de største problemer med. Hvis vi har meget stor afvigelse i knoglerne vil vi få en stor klump omkring nul, mens der kan være store ligheder i det bløde væv der så giver en pæn linje omkring minus 500.
 
 Derudover er det samme valideringsmetode der bruges af Johansson et al., og vi vil derfor kunne sammenligne vores værdier med deres.
 
+\subsubsection{Procentforskelle}
+
 For at finde ud af om vores sCT er godt nok til attenuationskorrektion af PET billeder vil vi generere PET billeder med vores sCT og det rigtige CT. Vi kan herefter konstruere et nyt billede, der er baseret på den procentvise forskel imellem FullCT baseret PET og sCT baseret PET. 
 
 Ud fra procentsforskelsbilledet kan vi se hvilke regioner der er forskellige fra FullCT baseret PET billedet, og giver samtidigt et godt overblik over hvor godt vores sCT baseret PET billede er blevet.
 
-Begge disse valideringsmetoder er objektive men skal evalueres manuelt. Vi har ikke en metode til at give et enkelt tal for hvor godt vores sCT baseret PET billede er blevet. Vi forventer også at kvaliteten af sCT billedet, og dermed også at det sCT baseret PET billede vil variere meget.
+Begge disse valideringsmetoder er objektive men skal evalueres manuelt. Vi forventer at kvaliteten af sCT billedet, og dermed også at det sCT baseret PET billede, vil variere meget.
 
+\subsubsection{Korrekthed}
 
-Da flere af FullCT billederne er lavet uden en perfekt maske, som skjuler hovedholder og nakkestøtten på CT billedet, har vi valgt at generere nye FullCT baseret på CT billeder påført vores maske. Da støj rundt omkring hovedet påvirker attenuation korrektionen fik vi billeder med meget stor afvigelse imod den bagerste del af kraniet. Da vi er sikre på at både sCT og CT billederne er påført samme maske, er der større sandsynlighed for at vi sammenligner vores algoritme frem for støj. Der kan dog stadig fremkomme små rester af hovedstøtten tæt på kraniet, men det ser ikke ud til at være et problem.
+For at bedømme korrektheden er vi nødt til at kende en parameter at måle på. Da vi har valgt at se på procent forskels billeder må vi derfor bestemme en procentvis afvigelse der er godt nok til klinisk brug. Vi har spurgt Ian der er overlæge på rigshospitalet om hvilken afvigelse han kan acceptere uden at det påvirker diagnosticeringen. Han mener at differencen i hjernen skal være under fem procent. Vi har også fundet en artikel af Matthias Hofmann der referere til en grænse på ti procent. Vi vil derfor se på billeder med en procentvis afvigelse på mindre end fem procent som "gold standard" - dvs. så godt som det kan blive, og billeder mellem fem og ti procent som acceptabelt~\cite{accepteretAfvigelse}.
+
+\todo{skriv om måling af korrekthed med masker}
 
 \subsection{Leave-one-out cross validation (LOOCV)}
 \subsubsection{Fremgangsmåde}
@@ -24,7 +35,7 @@ Ved at rotere træningssættet får vi testet metoden med data fra forskellige p
 Vi har valgt dette test scenarie for at kunne sammenligne vores resultater med Johansson et al, da de benytter samme test.
 
 \subsubsection{Forventning}
-Vi forventer at vores joint histograms bliver dårligere end Johannsons's, da vores hidtidige sCT er visuelt dårligere end deres.
+Vi forventer at vores fælles histogrammer bliver dårligere end Johannsons's, da vores hidtidige sCT er visuelt dårligere end deres.
 
 
 \subsubsection{Faldgrupper}
