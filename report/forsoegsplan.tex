@@ -34,6 +34,16 @@ For at opnå stabile resultater er vi nødt til at filtrere patienter med artifa
 
 Eftersom det primære mål med denne test er at sammeligne os med Johansson et al. har vi valgt at genskabe de samme figure.
 
+På fælleshistogrammet på figur~\ref{fig:loocv_j_h} kan vi se to koncentrationer af punkter lige omkring 0 HU. Under nul kommer vi ud i luft og blødt væv. Over 0 kan vi se hvordan knoglen ligger. Omkring 500 findes den største spredning af punkterne.
+
+På det kommulative diagram på figur~\ref{fig:cumm_diff_loocv} kan vi se at vi generelt har et problem med for lave værdier i sCT i forhold til CT. Mere end 40\% af punkterne ligger for lavt.
+
+Ud fra procent difference (PD) billederne kan vi se at algoritmen levere nogenlunde stabile resultater. Men vi kan også se at der er store problemer ved ventriklerne, hvor den procentvise forskel på flere af billederne sniger sig op over de ti procent.
+
+Hvis vi ser på et PD billede lagt over et MR billede er det tydeligt at jo tættere på hjerneskallen vi kommer, jo større bliver afvigelsen.
+
+Det er ikke muligt for os at evaluere korrektheden af algoritmen omkring mund og næse regionen da langt de fleste T2 sekvenser ikke indeholder data så langt nede. Ligeså er der problemer i toppen af kraniet da T2 sekvenserne også mangler en skive eller to, og derfor ikke har hele hjerneskallen med.
+
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.47\textwidth}
@@ -50,98 +60,7 @@ Eftersom det primære mål med denne test er at sammeligne os med Johansson et a
     \label{fig:loocv}
 \end{figure}
 
-På fælleshistogrammet på figur~\ref{fig:loocv_j_h} kan vi se to koncentrationer af punkter lige omkring 0 HU. Under nul kommer vi ud i luft og blødt væv. Over 0 kan vi se hvordan knoglen ligger. Omkring 500 findes den største spredning af punkterne.
-
-På det kommulative diagram på figur~\ref{fig:cumm_diff_loocv} kan vi se at vi generelt har et problem med for lave værdier i sCT i forhold til CT. Mere end 40\% af punkterne ligger for lavt.
-
-Ud fra procent difference (PD) billederne kan vi se at algoritmen levere nogenlunde stabile resultater. Men vi kan også se at der er store problemer ved ventriklerne, hvor den procentvise forskel på flere af billederne sniger sig op over de ti procent.
-
-Hvis vi ser på et PD billede lagt over et MR billede er det tydeligt at jo tættere på hjerneskallen vi kommer, jo større bliver afvigelsen.
-
-Det er ikke muligt for os at evaluere korrektheden af algoritmen omkring mund og næse regionen da langt de fleste T2 sekvenser ikke indeholder data så langt nede. Ligeså er der problemer i toppen af kraniet da T2 sekvenserne også mangler en skive eller to, og derfor ikke har hele hjerneskallen med.
-
 I gennemsnit er der lidt under ti procent afvigelse i selve hjernen.
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{CT for patient 1.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010476_ct.png}
-        \label{col:loocv_ct_pat1_ct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010476_sct.png}
-        \label{col:loocv_ct_pat1_sct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010476_sub.png}
-        \label{col:loocv_ct_pat1_sub}
-    \end{subfigure}\\
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{CT for patient 2.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010769_ct.png}
-        \label{col:loocv_ct_pat2_ct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010769_sct.png}
-        \label{col:loocv_ct_pat2_sct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010769_sub.png}
-        \label{col:loocv_ct_pat2_sub}
-    \end{subfigure}\\
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{CT for patient 3.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010850_ct.png}
-        \label{col:loocv_ct_pat3_ct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010850_sct.png}
-        \label{col:loocv_ct_pat3_sct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010850_sub.png}
-        \label{col:loocv_ct_pat3_sub}
-    \end{subfigure}\\
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{CT for patient 4.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010960_ct.png}
-        \label{col:loocv_ct_pat4_ct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010960_sct.png}
-        \label{col:loocv_ct_pat4_sct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_010960_sub.png}
-        \label{col:loocv_ct_pat4_sub}
-    \end{subfigure}\\
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{CT for patient 5.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_011030_ct.png}
-        \label{col:loocv_ct_pat5_ct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{sCT.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_011030_sct.png}
-        \label{col:loocv_ct_pat5_sct}
-    \end{subfigure}\hfill
-    \begin{subfigure}[b]{0.3\textwidth}
-        \caption{Differens.}
-        \includegraphics[width=0.75\textwidth]{colager/loocv_ct/loocv_011030_sub.png}
-        \label{col:loocv_ct_pat5_sub}
-    \end{subfigure}
-    \caption{CT, sCT og differencen imellem dem for de fem patienter.}
-    \label{col:loocv_ct}
-\end{figure}
 
 \begin{figure}
     \centering
