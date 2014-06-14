@@ -177,4 +177,37 @@ I forhold til vores ønske, om at holde forskellen under 5 \% eller i hvert fald
 
 Derudover kan vi på figur~\ref{tab:loocv_forresthjerne} og figur~\ref{tab:loocv_lillehjerne} se at halvdelen af patienterne har store problemer forrest i hjernen og ved lillehjernen. Dette tyder på vi i yder områderne ikke kan hamle op med PET baseret på FullCT’et. Dette kan også ses på billeder ne i figur~\ref{col:loocv_pet_pat1_pd} og figur~\ref{col:loocv_pet_pat3_pd} hvor forskellen er større i den forreste del af hjernen i forhold til resten.
 
+\subsection{Over tid}
+
+På figur~\ref{col:over_time_sct} kan ses de producerede sCT’er ud fra
+de to modeller. Det er iøjnefaldende at dem lavet ud fra den sene model
+har meget tydeligt markeret fejl ind i hovedet, mens der de samme
+steder i dem fra den tidlige model er langt svagere strukturer. Udover
+det er de sene også mørkere, og har dermed lavere værdier. Vi må
+konstatere at modellerne producerer ret forskelligt artede resultater.
+Vi har ikke håndplukket vores hjerner, men blot valgte de tidligste
+og seneste uden artefakter til at træne på, så det er muligt, at
+den ene model er bedre end den anden. Patient tre mangler desuden
+bunden af lillehjernen på T2-sekvensen, så formodentlig vil der være
+attenuationsproblemer i bunden af PET billedet.
+
+På figur~\ref{col:over_time_pet_pat1_pd} og
+figur~\ref{col:over_time_pet_pat2_pd} kan man se en jævn forskel i hele
+hjernen. På patient 2 kan man langs med den øverste kant se en større
+forskel. Det samme gør sig i mindre grad også gældende for de andre.
+På patient 3 figur~\ref{col:over_time_pet_pat3_pd} er der mærkbare
+udslag i billedet. Det bliver specielt et problem ved lillehjernen, hvor
+der opstår forskelle på over 20 \%. Dette skyldes, at lillehjernen
+er mindre på billedet lavet ud fra modellen trænet på sene hjerner
+figur~\ref{col:over_time_pet_pat3_late} end den fra de tidlige
+figur~\ref{col:over_time_pet_pat3_early}.
+
+Hvis Patient 3’s store udslag er et enkeltstående tilfælde, eller
+blot flot en fejl fremprovokeret af en dårlig model, så er billederne
+formodentlig lig nok til, at man ikke behøver at gentræne modeller
+løbene. Udslagene i mellem billederne er nogenlunde jævnt fordelt, så
+der er ikke problematiske. I kanterne har vi generelt samme problemer
+som vi ser i LOOCV-forsøget, så selvom der sker ændringer der, kan vi
+ikke påvise, om de bliver bedre eller dårligere.
+
 
