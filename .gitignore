@@ -5,6 +5,8 @@
 *.aux
 *.out
 *.tdo
+*.bbl
+*.blg
 *.toc
 *.synctex.gz
 *.nii
