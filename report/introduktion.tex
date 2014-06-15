@@ -70,6 +70,31 @@ knogle. Implementationen af dette på Siemens scannerne, som Rigshospitalet
 benytter, har dog vist sig ikke at være på højde med kombinationen af
 CT og MR billeder.
 
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.75\textwidth]{billeder/ct.png}
+        \caption{CT.}
+        \label{eksempel:ct}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.75\textwidth]{billeder/mr.png}
+        \caption{MR.}
+        \label{eksempel:mr}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.75\textwidth]{billeder/pet.png}
+        \caption{PER.}
+        \label{eksempel:pet}
+    \end{subfigure}\hfill
+    \caption{Eksempler på billeder. Bemærk at de kun er en slice af et 3D billede.}
+    \label{eksempel}
+\end{figure}
+
+
 Målet med denne opgave er at implementere metoden beskrevet i
 Johansson et al.~\cite{johansson}, som kan udregne et substitut-CT (sCT)
 ud fra fire UTE sekvenser og et T2-vægtet MR billede for en vilkårlig
