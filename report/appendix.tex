@@ -1,0 +1,67 @@
+\section{Appendix}
+
+\subsection{Synopsis}
+
+\subsubsection{Problemformulering}
+Konstruer et sCT med metoden, som beskrevet i "CT substitute derived from 
+MRI sequences with ultrashort echo time" af Adam Johansson m. fl. fra 2011~\cite{johansson}.
+Er sCT billedet sammenligneligt med et CT, og er metoden stabil over tid?
+
+\subsubsection{Begrundelse}
+Når en patient får foretaget en PET/MR skanning indeholder den kun
+information om de vandholdige legemer i kroppen. Derfor tager man også en
+CT skanning for at kunne se patientens knoglestruktur. Der er to problemer
+ved denne fremgangsmåde. Den første er at patienten skal flyttes rundt
+mellem flere skannere, hvilket koster resourcer og tid. Det andet problem
+er sammensætningen af de to skanninger, der kan forårsage forringelse af
+billedkvaliteten.
+
+Et forskningshold i Umeå har fundet en metode til at beregne et
+substitute-CT (sCT) fra PET/MR skanningen som kan erstatte CT skanningen.
+Metoden benytter tre MRI sekvenser (to UTE og en T2). Ved hjælp af MR sekvenserne
+og et CT billede trænes en parametriseret Gaussian mixture regression model.\\
+
+Vores håb er at vi kan implementere samme metode til brug for Rigshospitalet.
+Vi vil desvidere undersøge korrektheden og kvaliteten af vores sCT for at se
+om det kan bruges klinisk.\\
+
+Vi vil i vores projekt gøre følgende.
+\begin{itemize}
+    \item Redegøre for attenuation correction.
+    \item Beskrive dannelse af PET, MR, CT og UTE billeder.
+    \item Redegørelse for dannelse af sCT med udgangspunkt i Johansson2011.
+    \item At kunne fremstille substitute-CT (sCT) udfra PET/MR- og
+        UTE-sekvenser,
+        som beskrevet i ~"Johanson 2011". Og ud fra dette danne vores eget 
+        sCT-uMap.
+    \item Sammenlign vores sCT med det faktiske CT og Umeås sCT.
+    \item At bedømme kvaliteten af vores implementation. 
+Scanneren kan drifte og modificeres over tid, hvilket kan ændre på
+scanningsresultaterne. Hvilken effekt har dette på vores implementation.
+    \item Analysere korrektheden af en implementation og redegøre for
+        eventuelle mangler og svagheder.
+\end{itemize}
+
+\subsubsection{Arbejdsplan}
+\begin{enumerate}
+    \item Litteraturstudie 
+    \item Implementere metode
+    \item Teste og analysere implementationen
+    \item Rapportskrivning
+\end{enumerate}
+
+\begin{gantt}{5}{16}
+    \begin{ganttitle}
+      \numtitle{1}{1}{16}{1}
+    \end{ganttitle}
+    \ganttbar{(1)}{0}{9}
+    \ganttbar{(2)}{1}{11}
+    \ganttbar{(3)}{5}{9}
+    \ganttbar{(4)}{4}{12}
+\end{gantt}
+
+\newpage
+
+\subsection{Kildekode}
+
+Kildekoden til vores projekt kan findes på \url{https://github.com/Wadum/sCT/tree/master/src}.
