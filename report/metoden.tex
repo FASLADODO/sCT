@@ -2,7 +2,7 @@
 \subsection{Gaussian Mixture Model}
 
 \subsubsection{At finde modellen}
-Vi bruger en mikstur af gaussians til at beregne voxelværdier
+Vi bruger en gaussian mixture til at beregne voxelværdier
 for et sCT. Til hver patient har vi fem MR-billeder og et CT-billede.
 
 For at øge præcisionen udregner vi for hvert MR-billede
@@ -10,11 +10,11 @@ to nye billeder. De nye billeder beregnes ved at se på en 3x3x3
 kube omkring hvert voxel og finde henholdsvis middelværdi og varians.
 
 Herefter har vi 15 MR-billeder og et CT-billede, som vi vil klassificere
-med en mikstur af gaussians. Fra Johansson et al. ved vi, at vi kan få
-gode resultater med 20 gaussiske fordelinger. 
+med en gaussian mixture. Fra Johansson et al. ved vi, at vi kan få
+gode resultater med 20 gaussians. 
 
-For at finde parametrene til hver gaussisk fordeling bruger vi
-Ex\-pecta\-tion-Maximization (EM) algoritmen på en sammensætning af patienter, som
+For at finde parametrene til hver gaussian bruger vi
+Expectation-Maximization (EM) algoritmen på en sammensætning af patienter, som
 vi vil træne på. Vi starter EM algoritmen med resultatet af k-means på
 data, hvor k er sat til 20. Dette betyder, at vi ikke behøver køre
 EM-algoritmen flere gange, og øger sandsynligheden for et godt resultat, da
@@ -62,7 +62,7 @@ og fire MR UTE-sekvenser. Vi benytter ITK til at udregne et
 billede med middelværdi og et med varians for hvert MR-billede.
 
 Disse henter vi ind i matlab, hvor vi benytter fitgmdist til at lave en
-gaussisk mikstur fordelingsmodel. Med denne kan vi udregne et sCT udfra den
+gaussian mixture model. Med denne kan vi udregne et sCT udfra den
 samme slags MR-sekvenser, som vi brugte til at lave modellen, samt deres
 gennemsnits- og variansbilleder.
 
