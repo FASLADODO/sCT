@@ -181,7 +181,7 @@ Derudover kan vi på figur~\ref{tab:loocv_forresthjerne} og figur~\ref{tab:loocv
 
 På figur~\ref{col:over_time_sct} kan ses de producerede sCT’er ud fra
 de to modeller. Det er iøjnefaldende at dem lavet ud fra den sene model
-har meget tydeligt markeret fejl ind i hovedet, mens der de samme
+har meget tydeligt markeret fejl inde i hovedet, mens der de samme
 steder i dem fra den tidlige model er langt svagere strukturer. Udover
 det er de sene også mørkere, og har dermed lavere værdier. Vi må
 konstatere at modellerne producerer ret forskelligt artede resultater.
@@ -190,6 +190,14 @@ og seneste uden artefakter til at træne på, så det er muligt, at
 den ene model er bedre end den anden. Patient tre mangler desuden
 bunden af lillehjernen på T2-sekvensen, så formodentlig vil der være
 attenuationsproblemer i bunden af PET billedet.
+
+For at undersøge om der var et problem med lavere værdier jo senere modeller vi brugte fandt vi en ny patient og generede sCT billeder med modeller fra sene og tidlige patienter, samt en model med patienter fra midten. Den nye patient ligger tidsmæssigt også omkring midten. På figur~\ref{cumm_diff_over_tid} ses resultatet af den kommulative difference på de forskellige sCT billeder. Det er tydeligt at se at der forkommer væsentligt flere punkter hvor sCT værdierne er for lave i forhold til det egentlige CT jo ældre model vi bruger. Eftersom vores sCT i forvejen ligger lavt i forhold til CT er modellen fra de tidlige patienter bedre end de to andre.
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{billeder/cumm_diff_over_tid.png}
+    \caption{En patient trænet med modeller fra tidlige, sene og middel patienter. Det ser ud til at værdierne bliver mindre over tid.}
+    \label{cumm_diff_over_tid}
+\end{figure}
 
 På figur~\ref{col:over_time_pet_pat1_pd} og
 figur~\ref{col:over_time_pet_pat2_pd} kan man se en jævn forskel i hele
