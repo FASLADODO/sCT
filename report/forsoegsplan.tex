@@ -22,15 +22,43 @@ Begge disse valideringsmetoder er objektive men skal evalueres manuelt. Vi forve
 
 \subsubsection{Korrekthed}
 
-For at bedømme korrektheden er vi nødt til at kende en parameter at måle på. Da vi har valgt at se på procent forskels billeder må vi derfor bestemme en procentvis afvigelse der er godt nok til klinisk brug. Vi har spurgt Ian der er overlæge på rigshospitalet om hvilken afvigelse han kan acceptere uden at det påvirker diagnosticeringen. Han mener at differencen i hjernen skal være under fem procent. Vi har også fundet en artikel af Matthias Hofmann der referere til en grænse på ti procent. Vi vil derfor se på billeder med en procentvis afvigelse på mindre end fem procent som "gold standard" - dvs. så godt som det kan blive, og billeder mellem fem og ti procent som acceptabelt~\cite{accepteretAfvigelse}.
+For at bedømme korrektheden er vi nødt til at kende en parameter at
+måle på. Da vi har valgt at se på procent forskels billeder må vi
+derfor bestemme en procentvis afvigelse der er godt nok til klinisk brug.
+Vi har spurgt Ian der er overlæge på rigshospitalet om hvilken afvigelse
+han kan acceptere uden at det påvirker diagnosticeringen. Han mener at
+differencen i hjernen skal være under fem procent. Vi har også fundet en
+artikel af Matthias Hofmann der referere til en grænse på ti procent. Vi
+vil derfor se på billeder med en procentvis afvigelse på mindre end fem
+procent som "gold standard" - dvs. så godt som det kan blive, og billeder
+mellem fem og ti procent som acceptabelt~\cite{accepteretAfvigelse}.
 
-\todo{skriv om måling af korrekthed med masker}
+\subsubsection{Regioner}
+
+
+Da analyse af PET billede som regel er regionsbaseret har vi valgt tre
+regioner til at sammenligne på. Vi har valgt lillehjernen, fordi den
+typisk bliver brugt til at normalisere ud fra. Derudover ved vi, at den er
+et udsat område for vores modeller, da T2 ofte ikke dækker hele
+lillehjernen. 
+
+Derudover har vi valgt det forreste og det bagerste af hjernen, vi
+oplever store udslag omkring øjnehulerne og langs kanten af hjernen. Vi
+er desuden interesserede i, om der er den samme forskel på tværs af
+hjernen, eller om den afviger mere i den ene region end den anden.
 
 \subsection{Leave-one-out cross validation (LOOCV)}
 \subsubsection{Fremgangsmåde}
-Leave-one-out cross validation (LOOCV) er en gængs metode der bruges til at teste korrektheden af en algoritme. I alt sin enkelthed går metoden ud på at vi udvælger fem patienter. Fra de fem patienter lægger vi en patient til side, fx. den første patient, og træner algoritmen på de resterende fire patienter. Derefter udregner vi et sCT for den første patient. Vi gør herefter det samme igen, men udelader patient nummer to, træner på de resterende fire og udregner nummer to's sCT. 
 
-Ved at rotere træningssættet får vi testet metoden med data fra forskellige patienter, og vi får en basis for at sammenligne sCT'et.
+Leave-one-out cross validation (LOOCV) er en gængs metode der bruges til
+at teste korrektheden af en algoritme. I alt sin enkelthed går metoden
+ud på at vi udvælger fem patienter. Fra de fem patienter lægger vi en
+patient til side, fx. den første patient, og træner algoritmen på de
+resterende fire patienter. Derefter udregner vi et sCT for den første
+patient. Vi gør herefter det samme igen, men udelader patient nummer to,
+træner på de resterende fire og udregner nummer to's sCT.  Ved at
+rotere træningssættet får vi testet metoden med data fra forskellige
+patienter, og vi får en basis for at sammenligne sCT'et.
 
 Vi har valgt dette test scenarie for at kunne sammenligne vores resultater med Johansson et al, da de benytter samme test.
 
@@ -183,9 +211,6 @@ hjernen, men rundt om ventriklen ser forskellen ikke ud til at være så
 stor. Procentforskellen i hjernen ser ud til at blive større jo tættere
 på knoglen.
 
-Vi har valgt at fokusere på tre regioner af hjernen, hvor udslaget ser ud
-til at være størst. Forrest i hjernen omkring næsen og øjnene, bag
-i hjernen øverst og lillehjernen.
 
 \begin{figure}
     \centering
