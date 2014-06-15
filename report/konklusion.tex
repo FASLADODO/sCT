@@ -1,3 +1,21 @@
 \section{Konklusion}
 
-\todo{Mangler at skrive konklusionen}
+Vores implementation af metoden til udregning af sCT beskrevet i Johansson
+et. al. lever ikke op til deres resultater. Vi får større udslag i forhold
+til CT billederne end de gør, og på PET billederne måler vi for store
+forskelle i forhold til dem, som er rekonstrueret med FullCT.  Metoden vil
+måske kunne bruges til hukommelses patienter, hvor man hovedsageligt
+registrerer regionale forskelle, men ikke til Patienter med hjernekræft,
+hvor der skal lokaliseres aktivitetsknuder i hjernen.
+
+Over tid ser der ud til at ske en værdiforskydning i PET billederne, som
+giver lavere værdi i sCT jo nyere patienter modellen er trænet på. Det
+betyder lavere attenuering og dermed højere værdier i de rekonstruerede
+PET billeder. Derfor må det anses som nødvendigt at træne nye modeller
+løbende.
+
+Vi har undervejs i projektet lavet nogle fejl, og vi har redegjort for
+muligheder for at forbedre implementationen, så bedre resultater burde
+være mulige.
+
+
