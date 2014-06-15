@@ -5,7 +5,7 @@
 
 Vi har genereret en del flere sCT, som ikke er blevet brugt i rekonstruktioner,  og de fleste er blevet af ret god kvalitet, som kan ses på figur~\ref{col:loocv_ct}. Omkring 20\% af sCT-billederne har dog større problemer i selve hjernen.
 
-\begin{figure}[H]
+\begin{figure}
    \includegraphics[width=\textwidth]{billeder/sct_problemer.png}
    \caption{sCT med problemer i hjernen. Der er mange punkter med både meget lave og meget høje værdier spredt rundt i selve hjernen.}
    \label{sct_problemer}
@@ -17,7 +17,7 @@ På en del af sCT-billederne er det muligt at se ventriklerne, hvilket man ikke 
 
 Et væsentligt problem for sCT-billederne ligger i, at knoglerne bliver tykkere end på de rigtige CT-billeder. Det kan ses på differens billederne på figur~\ref{col:loocv_ct_pat1_sub},~\ref{col:loocv_ct_pat1_sub},~\ref{col:loocv_ct_pat2_sub},~\ref{col:loocv_ct_pat3_sub},~\ref{col:loocv_ct_pat4_sub},~\ref{col:loocv_ct_pat5_sub}, da der er to lyse streger rundt om kraniet. Til gengæld ligger værdierne for sCT-knoglerne i gennemsnit under værdierne i CT-knoglerne, hvilket kan ses på farverne imellem figurene~\ref{col:loocv_ct_pat1_ct},~\ref{col:loocv_ct_pat2_ct},~\ref{col:loocv_ct_pat3_ct},~\ref{col:loocv_ct_pat4_ct},~\ref{col:loocv_ct_pat5_ct} og figurene~\ref{col:loocv_ct_pat1_sct},~\ref{col:loocv_ct_pat2_sct},~\ref{col:loocv_ct_pat3_sct},~\ref{col:loocv_ct_pat4_sct},~\ref{col:loocv_ct_pat5_sct}. Derfor ved vi ikke, om det har en stor eller lille indflydelse på PET rekonstruktionen.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
@@ -185,7 +185,7 @@ attenuationsproblemer i bunden af PET-billedet.
 
 For at undersøge om der er et problem med lavere værdier, jo senere modeller vi brugte, fandt vi en ny patient og generede sCT-billeder med modeller fra sene og tidlige patienter, samt en model med patienter fra midten. Den nye patient ligger tidsmæssigt også omkring midten. På figur~\ref{cumm_diff_over_tid} ses resultatet af den kumulative difference på de forskellige sCT-billeder. Det er tydeligt at se, at der forekommer væsentligt flere punkter, hvor sCT-værdierne er for lave i forhold til det egentlige CT jo ældre model, vi bruger. Eftersom vores sCT i forvejen ligger lavt i forhold til CT, er modellen fra de tidlige patienter bedre end de to andre.
 
-\begin{figure}[H]
+\begin{figure}
     \includegraphics[width=\textwidth]{billeder/cumm_diff_over_tid.png}
     \caption{En patient trænet med modeller fra tidlige, sene og middel patienter. Det ser ud til, at værdierne bliver mindre over tid.}
     \label{cumm_diff_over_tid}
