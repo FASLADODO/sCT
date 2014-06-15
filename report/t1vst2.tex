@@ -6,14 +6,14 @@ Rigshospitalet har dog bedre T1-sekvenser. De optager flere slices og dækker me
 
 Ved starten af projektet benyttede vi T1-sekvenserne, men vi måtte konstatere, at brug af T1-sekvensen i stedet for T2 resulterede i væsentlig misklassifikation omkring ventriklerne. Hjerneskallen blev for tyk, og fragmenter af knogle kunne også observeres i selve hjernemassen. De samme ting kan også observeres ved T2-sekvensen, men i meget mindre grad.
 
-På grund af disse observationer har vi valgt at undlade, at rekonstruere PET-billeder ved hjælp af sCT baseret på T1-sekvensen, da vi ikke mente, det var den væsentlige tidsinvestering værd.
+På grund af disse observationer har vi valgt at undlade at rekonstruere PET-billeder ved hjælp af sCT baseret på T1-sekvensen, da vi ikke mente, at det var den væsentlige tidsinvestering værd.
 
 T2-sekvensernes lave kvalitet har dog også påvirket de fremstillede sCT. Da T2 mangler toppen af kraniet og typisk det øverste af hjernen, mangler der data til at udregne yderområderne. Resultatet er større usikkerhed i toppen og bunden af kraniet. I nogle tilfælde mangler dele af knoglen helt på sCT-billedet. 
 
 T2-sekvensen stopper typisk midt i lillehjernen, og det har en tydelig effekt på sCT, hvor der går en “streg” igennem det nederste af kraniet, hvilket kan ses på figur~\ref{sct_problemer}. 
 
-Når vi rekonstruerer sCT trænet med T2-sekvenser, oplever vi relativt store udsving i lillehjernen, formentlig grundet ukorrekthed i sCT’et i den region. På nogle af vores PET-difference billeder kan man se værdier i det øverste af kraniet, som går over 20 \%, hvilket teknisk set ikke gør noget, men nogle gange går det også ned i hjernen, og så er det et problem.
+Når vi rekonstruerer sCT trænet med T2-sekvenser, oplever vi relativt store udsving i lillehjernen, formentlig grundet ukorrekthed i sCT’et i den region. På nogle af vores PET-difference billeder kan man se værdier i det øverste af kraniet, som går over 20\%, hvilket teknisk set ikke gør noget, men nogle gange går det også ned i hjernen, og så er det et problem.
 
 Vi har ikke forsøgt at håndtere problemerne forårsaget af T2’ens lave kvalitet, da det er et valg fra Rigshospitalets side ikke at gøre den bedre. Hvis metoden viser sig at være god, kan sekvensen fremover optages i god kvalitet. Det vil tage lidt ekstra tid for hver patient, men det er stadig hurtigere end at foretage en ekstra skanning.
 
-Johansson et al. har senere publiceret en artikel hvori de konkluderer at T2-sekvensen kan udelades~\cite{bettersCT}.  Det betyder, at Rigshospitalet formentlig ikke behøver at optage T2 i høj opløsning, og dermed spare tid i scanneren. Vi har ikke forsøgt at undlade det i vores implementering.
+Johansson et al. har senere publiceret en artikel hvori de konkluderer, at T2-sekvensen kan udelades~\cite{bettersCT}.  Det betyder, at Rigshospitalet formentlig ikke behøver at optage T2 i høj opløsning, og dermed spare tid i scanneren. Vi har ikke forsøgt at undlade det i vores implementering.

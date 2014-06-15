@@ -10,14 +10,14 @@ magnetiserer kroppen ganske svagt. Når dette stoppes vil kroppens
 magnetfelt bruge ganske kort tid på at gendannes, og der måles på
 denne for at kortlægge struktur.
 
-Vi benytter 5 MR-sekvenser: T1, som måles efter kroppen har gendannet en vis
+Vi benytter 5 MR-sekvenser: T2, som måles efter kroppen har gendannet en vis
 mændge magnetisme, og derudover 4 Ultrashort echo time MR-sekvenser (UTE)
 optaget fra 2 forskellige vinkler med varierende ekko tider. Når man sænker ekkotiden betydeligt, bliver det muligt at se knogle på MR-billeder, men ikke med
 en præcision, som kan matche CT.
 
-Mens vi ikke træner på Positron emission tomography-billeder (PET), så
-er målet med udregning af et sCT at producere attenuationskorrigerede
-PET-billeder. PET-billeder måles ved at injicere et radioaktivt
+Mens vi ikke træner på Positron Emission Tomography-billeder (PET), så
+er målet med udregning af et sCT, at producere attenuationskorrigerede
+PET-billeder. PET-billeder måles ved, at injicere et radioaktivt
 sukkersporstof ind i en patient og måle henfaldet af dette. Da
 kræftceller kræver mere energi end andre celler, vil størstedelen af
 sporstoffet blive bundet til kræftcellerne, og strålingsaktiviteten
@@ -29,8 +29,7 @@ Ved PET-billeder måles fotoner fra det radioaktive sporstof, som man
 har injiceret ind i blodet. Ved at se hvor fotonerne oprinder fra, kan
 man se, hvor meget blod der flyder til forskellige steder. Det er særligt
 brugbart til at identificere kræftknuder i hjernen, da kræftknuderne har
-et højere energiforbrug, og dermed får tilført mere af stoffet, kan
-man måle hvor de er. Ligeledes er det nyttigt ved patienter med
+et højere energiforbrug, og dermed får tilført mere af stoffet. Ligeledes er det nyttigt ved patienter med
 hukommelsesproblemer, da man kan se, hvor i hjernen der er for lidt
 aktivitet.
 
@@ -60,7 +59,7 @@ information i disse områder.
 
 \subsection{K-means}
 
-K-means er en metode, som organiserer et datasæt ${x_1,...,x_N}$
+K-means er en metode, der organiserer et datasæt ${x_1,...,x_N}$
 bestående af $N$ punkter i et flerdimensionalt rum ind i $K$ clusters~\cite{bishop}.
 Man definerer $K$ clusters med centrum $\mu_k$, og målet er da at
 minimere den summerede afstand for alle datapunkter til nærmeste clustercentrum. Hvis man for hvert datapunkt definerer $K$ binære indikatorvariable $r_{nk}$, som beskriver, hvilket cluster datapunktet tilhører,
@@ -75,15 +74,15 @@ $$
 Målet er da at minimere denne funktion ved at finde de korrekte
 tilhørsforhold $r_{nk}$ og clusterplaceringer $\mu_k$.
 
-Algoritmen startes med nogle clusterplacering, der typisk
+Algoritmen startes med nogle clusterplaceringer, der typisk
 er tilfældigt valgt. Derefter finder man for hvert datapunkt det
-nærmeste center og summerer den samlede afstand. For at finde den
+nærmeste center, og summerer den samlede afstand. For at finde den
 optimale inddeling skal denne afstand minimeres. Den minimeres iterativt
 ved at gentage to trin. Det første er at finde det nærmeste centrum for
 hvert datapunkt, og i næste trin rykkes hvert af centrene for at minimere
 den samlede afstand i forhold til deres tilhørende datapunkter. Dette
 gøres blot ved at udregne gennemsnit for alle punkterne i hvert cluster. Dette
-fortsættes, indtil afstanden stopper med at ændre sig, hvilket er sikret,
+fortsættes indtil afstanden stopper med at ændre sig, hvilket er sikret,
 da begge trin reducerer den summerede afstand.
 
 Den finder dog ikke nødvendigvis det globale minimum, men blot et lokalt
@@ -95,7 +94,7 @@ maximization, forsøger vi ikke at håndtere dette.
 \todolasse{Evt. omskriv EM}
 
 Expectation maximization (EM)~\cite{bishop} er en metode til at finde de mest
-sandsynlige parametre i en statistiks model, hvor variablerne er
+sandsynlige parametre i en statistisk model, hvor variablerne er
 ukendte. Metoden antager, at data består af flere multivariate gaussiske
 fordelinger, og returnerer en gaussisk mikstur fordelingsmodel.
 
@@ -103,7 +102,7 @@ Til forskel fra k-means, som udfører en hård klassificering, hvor
 hvert datapunkt tilhører en enkelt gruppe, så laver EM en blød
 klassificering, hvor man finder sandsynligheden for tilhørsforhold for
 hvert enkelt punkt og finder et vægtet snit over alle data punkter for at
-udregne $\mu_k$s position.
+udregne $\mu_k$'s position.
 
 Da metoden ikke nødvendigvis finder det globale minimum, men blot et
 lokalt, så startes den typisk med tilfældige værdier og køres flere
@@ -114,7 +113,7 @@ den med k-means, så har den allerede et bud på et cluster til alle
 datapunkter, og opgaven er da blot at "blødgøre" klassificeringen
 og lave gaussiske fordelinger i stedet. I expectation-trinet benyttes
 den nuværende estimering af de ukendte variable til at udregne den
-forventede loglikelihood funktion. Derefter i maximization-trinet findes
+forventede loglikelihood funktion. I maximization-trinet findes
 de parametre, som maximerer loglikelihoodfunktionen.
 
 K-means fordelingen har også den ulempe, at den splitter halvvejs mellem
@@ -131,7 +130,7 @@ fordelinger ikke nødvendigvis har ens spredning.
 FullCT er navnet på den implementation af CT-baseret
 attenuationskorrigering, der benyttes på Rigshospitalet.
 
-Det laves ved, at man ud over at tage et PET/MR, scan også foretager et CT-scan. T1-billedet fra MR scanneren og CT co-registreres herefter, og
+Det laves ved, at man ud over at tage et PET/MR-scan også tager et CT-scan. T1-billedet fra MR scanneren og CT co-registreres herefter, og
 benyttes til at udregne et attenuationskorrigerende $\mu$-map kaldet
 FullCT. Derudover benyttes headerdataen fra et Dixon $\mu$-map til
 at sætte dimensioner på det nye $\mu$-map. Dette rekonstrueres på
@@ -141,7 +140,7 @@ hospitalets scanner.
 
 For at kunne attenuationskorrigere PET-billeder har man behov for at
 genindlæse al scanningsinformationen, blot med ekstra viden, f.eks.
-CT information. Siemens-scanneren gemmer den rå uprocesserede rådata fra
+CT information. Siemens-scanneren gemmer den uprocesserede rådata fra
 skannet, så man blot kan hente sit $\mu$-map ind, og skanneren kan da
 processere rådataen med viden om knogleplacering og tage højde for det,
 når den gentager forsøget.

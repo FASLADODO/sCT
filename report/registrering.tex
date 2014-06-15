@@ -14,14 +14,14 @@ vi valgt to forskellige metoder.
 I samme omgang, som vi co-registrerer billederne, er vi interesserede i
 også at finde en maske. Masken skal bruges til at lette udregningen
 af sCT-billedet, så vi ikke bruger lang tid på at lede efter knogle i
-luften rundt om patienten. Masken skal også fjerne evt. nakkestøtte og
+luften rundt om patienten. Masken skal også fjerne eventuel nakkestøtte og
 hovedholdere på CT-billederne.
 
 \subsection{Co-registrering af UTE- og T2-billeder}
 
 Til co-registrering af UTE- og T2-billederne har vi valgt at bruge
 Insight ToolKit (ITK)\footnote{\url{http://www.itk.org/}}. Herfra benytter vi en implementation af Mattes
-Mutual Information algoritme samt lineær translation og interpolering.
+Mutual Information algoritme samt lineær translation og interpolering. Vi har valgt denne implementation fordi det var foreslået i dokumentationen for ITK.
 
 \subsection{Co-registrering af UTE- og CT-billeder}
 
@@ -38,7 +38,7 @@ Hvis ikke maskerne kun dækker punkter hvor der findes data på alle 16 billeder
 
 Til generering af masken bruger vi først en implementering af Otsu
 thresholding-algoritmen for at finde en binær repræsentation. For at
-sikre at vores maske ikke bliver for lille, udvider vi det binære billede
+sikre, at vores maske ikke bliver for lille, udvider vi det binære billede
 vha. en neighborhood-connected-algoritme med 2-3 pixel i x, y og z
 retningerne. Til sidst inverteres billedet, hvilket efterlader os med en
 binær maske.

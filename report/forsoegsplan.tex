@@ -6,9 +6,9 @@ Da flere af FullCT-billederne er lavet uden en perfekt maske, som skjuler hovedh
 
 \subsubsection{Fælles histogram}
 
-For at validere testresultaterne vil vi bl.a. benytte os af fælles histogrammer. For hvert sCT, vi generer, har vi det korrekte CT. Ved at plotte sCT-værdier ud af y-aksen og CT værdier ud af x-aksen får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk, vil der optræde en enkelt lige linje fra (0,0) til (max,max). Jo mere forskellige, des længere fra den lige linje ligger punkterne.
+For at validere testresultaterne vil vi bl.a. benytte os af fælles histogrammer. For hvert sCT, som vi generer, har vi det korrekte CT. Ved at plotte sCT-værdier ud af y-aksen og CT værdier ud af x-aksen får vi en visuel repræsentation af ligheden mellem billederne. Hvis resultatet er identisk vil der optræde en enkelt lige linje fra $(0,0$) til $(max,max)$. Jo mere forskellige, des længere fra den lige linje ligger punkterne.
 
-Fordelen ved denne metode er, at vi nemt kan aflæse, hvilke værdier vi har de største problemer med. Hvis vi har meget stor afvigelse i knoglerne, vil vi få en stor klump omkring nul, mens der kan være store ligheder i det bløde væv, hvilket giver en pæn linje omkring minus 500.
+Fordelen ved denne metode er, at vi nemt kan aflæse, hvilke værdier vi har de største problemer med. Hvis vi har meget stor afvigelse i knoglerne, vil vi få en stor klump omkring 500, mens der kan være store ligheder i det bløde væv, hvilket giver en pæn linje omkring minus 500.
 
 Derudover er det samme valideringsmetode, der bruges af Johansson et al., og vi vil derfor kunne sammenligne vores værdier med deres.
 
@@ -18,7 +18,7 @@ For at finde ud af om vores sCT er godt nok til attenuationskorrektion af PET-bi
 
 Ud fra procentforskelsbilledet kan vi se, hvilke regioner der er forskellige fra FullCT baserede PET-billeder, og det giver samtidigt et godt overblik over, hvor godt vores sCT-baserede PET-billede er blevet.
 
-Begge disse valideringsmetoder er objektive, men skal evalueres manuelt. Vi forventer, at kvaliteten af sCT-billedet, og dermed også at det sCT-baserede PET-billede, vil variere meget.
+Begge disse valideringsmetoder er objektive, men skal evalueres manuelt. Vi forventer, at kvaliteten af sCT-billedet, og dermed også at det sCT-baserede PET-billede vil variere meget.
 
 \subsubsection{Korrekthed}
 
@@ -27,19 +27,12 @@ derfor bestemme en procentvis afvigelse, der er godt nok til klinisk brug.
 Vi har spurgt Ian Law, som er overlæge på rigshospitalet, om hvilken afvigelse
 han kan acceptere, uden at det påvirker diagnosticeringen. Han mener, at
 differencen i hjernen skal være under fem procent. Vi har også fundet en
-artikel af Matthias Hofmann, der refererer til en grænse på ti procent. Vi
+artikel af Matthias Hofmann, der refererer til en grænse på ti procent~\cite{accepteretAfvigelse}. Vi
 vil derfor se på billeder med en procentvis afvigelse på mindre end fem
-procent som "gold standard" - dvs. så godt det kan blive og billeder
-mellem fem og ti procent som acceptable~\cite{accepteretAfvigelse}.
+procent som gold standard - dvs. så godt det kan blive og billeder
+mellem fem og ti procent som acceptable.
 
 \subsubsection{Regioner}
-
-\begin{figure}
-   \includegraphics[width=\textwidth]{billeder/masks.png}
-   \caption{De tre regioner vi har målt på. Den hvide er det forreste af hovedet. Den røde er den bagerste del af hovedet, den går ikke helt ud til siderne af hovedet. Den grønne er lillehjernen.}
-   \label{sct_problemer}
-\end{figure}
-
 
 Da analyse af PET-billeder som regel er regionsbaseret, har vi valgt tre
 regioner til at sammenligne. Vi har valgt lillehjernen, fordi den
@@ -47,28 +40,35 @@ typisk bliver brugt til at normalisere resten af hjernen ud fra. Derudover ved v
 et udsat område for vores modeller, da T2 ofte ikke dækker hele
 lillehjernen. 
 
-Derudover har vi valgt det forreste og det bagerste af hjernen, vi
-oplever store udslag omkring øjenhulerne og langs kanten af hjernen. Vi
-er desuden interesserede i, om der er den samme forskel på tværs af
+Derudover har vi valgt det forreste og det bagerste af hjernen fordi vi oplever store udslag omkring øjenhulerne og langs kanten af hjernen. Desuden er vi interesserede i, om der er den samme forskel på tværs af
 hjernen, eller om den afviger mere i den ene region end den anden.
+
+Maskerne kan ses på figur~\ref{masks}.
+
+\begin{figure}
+    \centering
+   \includegraphics[width=.5\textwidth]{billeder/masks.png}
+   \caption{De tre regioner vi har målt på. Den hvide er det forreste af hovedet. Den røde er den bagerste del af hovedet, den går ikke helt ud til siderne af hovedet. Den grønne er lillehjernen.}
+   \label{masks}
+\end{figure}
 
 \subsection{Leave-one-out cross validation}
 \subsubsection{Fremgangsmåde}
 
 Leave-one-out cross validation (LOOCV) er en gængs metode, der bruges til
 at teste korrektheden af en algoritme. I alt sin enkelthed går metoden
-ud på at vi udvælger fem patienter. Fra de fem patienter lægger vi en
+ud på, at vi udvælger fem patienter. Fra de fem patienter lægger vi en
 patient til side, fx. den første patient, og træner algoritmen på de
 resterende fire patienter. Derefter udregner vi et sCT for den første
 patient. Vi gør herefter det samme igen, men udelader patient nummer to,
 træner på de resterende fire og udregner nummer to's sCT.  Ved at
-rotere træningssættet, får vi testet metoden med data fra forskellige
+rotere træningssættet får vi testet metoden med data fra forskellige
 patienter, og vi får en basis for at sammenligne sCT'et.
 
 Vi har valgt dette testscenarie for at kunne sammenligne vores resultater med Johansson et al, da de benytter samme test.
 
 \subsubsection{Forventning}
-Vi forventer at vores fælles histogrammer, bliver dårligere end Johanssons et al.'s, da vores hidtidige sCT er visuelt dårligere end deres.
+Vi forventer at vores fælles histogrammer bliver dårligere end Johansson et al.'s, da vores hidtidige sCT er visuelt dårligere end deres.
 
 
 \subsubsection{Faldgrupper}
@@ -82,9 +82,9 @@ På fælleshistogrammet i figur~\ref{fig:loocv_j_h} kan vi se to koncentrationer
 
 På det kumulative diagram på figur~\ref{fig:cumm_diff_loocv} kan vi se, at vi generelt har et problem med for lave værdier i sCT i forhold til CT. Mere end 40\% af punkterne ligger for lavt.
 
-Ud fra procentdifference (PD) billederne kan vi se, at algoritmen leverer nogenlunde stabile resultater. Men vi kan også se, at der er store problemer ved ventriklerne, hvor den procentvise forskel på flere af billederne sniger sig op over de ti procent.
+Ud fra procentdifference (PD) billederne på figur~\ref{col:loocv_ct}  kan vi se, at algoritmen leverer nogenlunde stabile resultater. Men vi kan også se, at der er store problemer ved ventriklerne, hvor den procentvise forskel på flere af billederne sniger sig op over de ti procent.
 
-Hvis vi ser på et PD.billede lagt over et MR.billede, er det tydeligt, at jo tættere på hjerneskallen man ser, des større bliver afvigelsen.
+Hvis vi ser på et PD-billede lagt over et MR-billede, er det tydeligt, at jo tættere på kraniet man ser, des større bliver afvigelsen.
 
 Det er ikke muligt for os at evaluere korrektheden af algoritmen omkring mund- og næseregionen, da langt de fleste T2-sekvenser ikke indeholder data så langt nede. Ligeså er der problemer i toppen af kraniet, da T2-sekvenserne også mangler en skive eller to, og derfor ikke har hele hjerneskallen med.
 
@@ -213,7 +213,7 @@ FullCT'en end på sCT. Udover dette virker de meget ens.
 På forskelsbillederne ses ligeledes en stor forskel i top og bund af
 kraniet. Derudover ses en stor forskel i ventriklerne i midten af
 hjernen, men rundt om ventriklen ser forskellen ikke ud til at være så
-stor. Procentforskellen i hjernen virker til at blive større des tættere
+stor. Procentforskellen i hjernen virker til at blive større tættere
 på knoglen.
 
 
@@ -243,7 +243,7 @@ på knoglen.
         Patient 4 & 4,05 \% & 3,89 \% & 17,34 \% & 1,22 \% \\ \hline
         Patient 5 & 1,84 \% & 1,45 \% & 4,11 \% & 0,65 \% \\ \hline
     \end{tabular}
-    \caption{Tabel for forskellen i det bagerste af hjernen. Den bagerste del af hjernen er langt bedre end den forreste som set på figur~\ref{tab:loocv_forresthjerne}. Det skulle egentligt være godt, men det tyder også på, at vi har store regionale problemer med sCT, hvilket er værre, end hvis hele hjernen havde været ensformigt 10\% forkert.}
+    \caption{Tabel for forskellen i det bagerste af hjernen. Den bagerste del af hjernen er langt bedre end den forreste, som set på figur~\ref{tab:loocv_forresthjerne}. Det skulle egentligt være godt, men det tyder også på, at vi har store regionale problemer med sCT, hvilket er værre, end hvis hele hjernen havde været ensformigt 10\% forkert.}
     \label{tab:loocv_bagersthjerne}
 \end{figure}
 
@@ -291,11 +291,11 @@ Derudover tog vi de seks nyeste UTE-patienter, ligeledes uden artefakter.
 
 Derefter trænede vi to modeller. En på de gamle patienter og en på de
 nye. Vi lavede da sCT'er for de gamle patienter på den nye model og
-omvendt. For at vurdere om det virker, vil vi undersøge sammenhængen mellem værdierne i billederne, hvis de er forskellige på en ujævn måde, vil det være et problem Det vil betyde, at man løbende skal træne nye modeller for at få gode resultater.
+omvendt. For at vurdere om det virker, vil vi undersøge sammenhængen mellem værdierne i billederne, hvis de er forskellige på en ujævn måde, vil det være et problem. Det vil betyde, at man løbende skal træne nye modeller for at få gode resultater.
 
 \subsubsection{Forventning}
 
-Forventningen er at de to sCT er af samme kvalitet.
+Forventningen er, at de to sCT er af samme kvalitet.
 Ændringer på PET/MR-scanneren kan sagtens påvirke resultaterne af et MR-scan, men så længe ændringerne er nogenlunde lige fordelt, er det ikke
 et problem, da MR-units er arbitrære, og ikke kan sammenlignes fra scan til
 scan. Der skal være en region af hjernen, som bliver målt anderledes i

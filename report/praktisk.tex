@@ -10,7 +10,7 @@ For at beregne modellen skal vi først indlæse MR- og CT-billederne
 samt tilhørende maske for hver patient. Til det formål har vi brugt
 nii\_load fra matlab toolboxen "Tools for NIfTI and ANALYZE
 image\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image}}".
-Herefter løber vi billederne igennem og udtager de værdier- der ligger
+Herefter løber vi billederne igennem og udtager de værdier, der ligger
 inden for masken. Alle værdier lægges i én 16-dimensional liste.
 
 For at udregne k-means bruger vi den indbyggede k-means algoritme, på
@@ -30,13 +30,13 @@ Fordi beregningen er voxelbaseret, er det muligt for os at udregne flere
 punkter parallelt. Det tager os omtrent to minutter at udregne et sCT,
 hvilket er samme køretid Johannson et al. reporterer.
 
-Resultatet af algoritmen gemmer vi vha. nii\_save, det er ikke
+Resultatet af algoritmen gemmer vi ved hjælp af nii\_save, det er ikke
 nødvendigt for os at gemme headeren, eftersom vi i rekonstruktionen
 alligevel erstatter den med headeren fra det tilhørende $\mu$-map.
 
 \subsection{Transformering til \texorpdfstring{$\mu$}{u}-map} 
 
-Når vi har vores sCT, skal vi have lavet det om til et $\mu$-map
+Når vi har vores sCT skal vi have lavet det om til et $\mu$-map
 på Dicom format. For at opnå dette konverterer vi det først til
 Minc. I Minc lægger vi 2048 til for at gøre op for en justeringen i
 værdierne, der opstår i konverteringen fra Minc til Nifti. Derefter
