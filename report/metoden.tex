@@ -2,27 +2,27 @@
 \subsection{Gaussian Mixture Model}
 
 \subsubsection{At finde modellen}
-Vi bruger en mixtur af gaussians til at beregne voxel værdier
-for et sCT. For hver patient har vi 5 MR-billeder og 1 CT billede.
+Vi bruger en mikstur af gaussians til at beregne voxelværdier
+for et sCT. Til hver patient har vi fem MR-billeder og et CT-billede.
 
 For at øge præcisionen udregner vi for hvert MR-billede
 to nye billeder. De nye billeder beregnes ved at se på en 3x3x3
-kube omkring hvert voxel og finder henholdsvis middelværdi og varians.
+kube omkring hvert voxel og finde henholdsvis middelværdi og varians.
 
-Herefter har vi 15 MR-billeder og 1 CT-billede som vi vil klassificere
-med en mixtur af gaussians. Fra Johansson et al. ved vi at vi kan få
+Herefter har vi 15 MR-billeder og et CT-billede, som vi vil klassificere
+med en mikstur af gaussians. Fra Johansson et al. ved vi, at vi kan få
 gode resultater med 20 gaussiske fordelinger. 
 
-For at finde parametrene til hver gaussiske fordeling bruger vi
-Expecta\-tion-Maximization (EM) algoritmen på en sammensætning af patienter
+For at finde parametrene til hver gaussisk fordeling bruger vi
+Expecta\-tion-Maximization (EM) algoritmen på en sammensætning af patienter, som
 vi vil træne på. Vi starter EM algoritmen med resultatet af k-means på
-dataen, hvor k er sat til 20. Dette betyder at vi ikke behøver køre
-EM-algoritmen flere gang og øger sandsynligheden for et godt resultat, da
-dataen allerede er klassificeret.
+data, hvor k er sat til 20. Dette betyder, at vi ikke behøver køre
+EM-algoritmen flere gang, og øger sandsynligheden for et godt resultat, da
+data allerede er klassificeret.
 
 \subsubsection{Beregning af sCT}
 
-Vi generere sCT værdierne ved at udregne den forventede værdi af CT baseret på de 15 MR billeder. 
+Vi genererer sCT-værdierne ved at udregne den forventede værdi af CT baseret på de 15 MR-billeder. 
 
 Som beskrevet i Johansson et al., så udregnes den forventede værdi af CT ved
 
@@ -30,7 +30,7 @@ Som beskrevet i Johansson et al., så udregnes den forventede værdi af CT ved
 (X_1 | X_2 = x_2) = \frac{\Sigma^{N}_{i=1} \bar{\mu}_{1,i} a_i h_i(x_2)}{\Sigma^{N}_{i=1} a_i h_i(x_2)}
 \end{equation}
 
-Hvor $X_1$ er CT værdien, $X_2 = (X_2 \dots X_k)$ er MR værdierne, $a_i$ er blandingsforhold og $N$ er antallet af MR billeder samt
+Hvor $X_1$ er CT-værdien, $X_2 = (X_2 \dots X_k)$ er MR-værdierne, $a_i$ er blandingsforhold og $N$ er antallet af MR-billeder samt
 
 \begin{equation}
  \bar{\mu}_{1,i} = \mu_{1,i} + \Sigma_{1 2, i} \Sigma^{-1}_{22, i}(x_2 - \mu_{2,i})
@@ -58,11 +58,11 @@ $\mu_{1,i}$, $\mu_{2,i}$, $\Sigma_{1 1, i}$, $\Sigma_{1 2, i}$, $\Sigma_{2 1, i}
 \subsection{Hvordan han vi valgt at implementere den}
 
 Til metoden benytter vi for hvert træningssæt et CT, en T2 vægtet MR-sekvens
-og 4 MR UTE-sekvenser. Vi benytter ITK til at udregne et
-billede med middelværdi og et med varians for hvert MR billede.
+og fire MR UTE-sekvenser. Vi benytter ITK til at udregne et
+billede med middelværdi og et med varians for hvert MR-billede.
 
 Disse henter vi ind i matlab, hvor vi benytter fitgmdist til at lave en
-gaussisk mixture fordelingsmodel. Med denne kan vi udregne et sCT udfra den
-samme slags MR-sekvenser vi brugte til at lave modellen, samt deres
-mean- og variansbilleder.
+gaussisk mikstur fordelingsmodel. Med denne kan vi udregne et sCT udfra den
+samme slags MR-sekvenser, som vi brugte til at lave modellen, samt deres
+gennemsnits- og variansbilleder.
 

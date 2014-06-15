@@ -3,7 +3,7 @@
 \subsection{Kvalitet af sCT}
 
 
-Vi har genereret en del flere sCT som ikke er blevet brugt i rekonstruktioner,  og de fleste er blevet af ret god kvalitet, som kan ses på figur~\ref{col:loocv_ct}. Omkring 20\% af sCT billederne har dog større problemer i selve hjernen.
+Vi har genereret en del flere sCT, som ikke er blevet brugt i rekonstruktioner,  og de fleste er blevet af ret god kvalitet, som kan ses på figur~\ref{col:loocv_ct}. Omkring 20\% af sCT-billederne har dog større problemer i selve hjernen.
 
 \begin{figure}
    \includegraphics[width=\textwidth]{billeder/sct_problemer.png}
@@ -11,11 +11,11 @@ Vi har genereret en del flere sCT som ikke er blevet brugt i rekonstruktioner,  
    \label{sct_problemer}
 \end{figure}
 
-På figur~\ref{sct_problemer} kan man se mange steder med lave værdier mellem knoglen og hjernen. Også inde i midten af hjernen er der problemer med både for høje og lave værdier. Vi er ikke klar over hvorfor nogen patienter bliver meget dårligere end de fleste andre, men Johansson et al. nævner at der kan være problemer med sampling mønstret for UTE sekvenserne.
+På figur~\ref{sct_problemer} kan man se mange steder med lave værdier mellem knoglen og hjernen. Også inde i midten af hjernen er der problemer med både for høje og lave værdier. Vi er ikke klar over, hvorfor nogen patienter bliver meget dårligere end de fleste andre, men Johansson et al. nævner, at der kan være problemer med sampling mønstret for UTE sekvenserne.
 
-På en del af billederne er det muligt at se ventriklerne, hvilket man ikke kan på CT billederne i samme grad.
+På en del af sCT-billederne er det muligt at se ventriklerne, hvilket man ikke kan på CT-billederne i samme grad.
 
-Et væsentligt problem for sCT billederne ligger i at knoglerne bliver tykkere end på de rigtige CT billeder. Det kan ses på differens billederne på figure~\ref{col:loocv_ct_pat1_sub},~\ref{col:loocv_ct_pat1_sub},~\ref{col:loocv_ct_pat2_sub},~\ref{col:loocv_ct_pat3_sub},~\ref{col:loocv_ct_pat4_sub},~\ref{col:loocv_ct_pat5_sub}, da der en to lyse streger rundt om kraniet. Til gengæld ligger værdierne for sCT knoglerne i gennemsnit under værdierne i CT knoglerne, hvilket kan ses på farverne imellem figurene~\ref{col:loocv_ct_pat1_ct},~\ref{col:loocv_ct_pat2_ct},~\ref{col:loocv_ct_pat3_ct},~\ref{col:loocv_ct_pat4_ct},~\ref{col:loocv_ct_pat5_ct} og figurene~\ref{col:loocv_ct_pat1_sct},~\ref{col:loocv_ct_pat2_sct},~\ref{col:loocv_ct_pat3_sct},~\ref{col:loocv_ct_pat4_sct},~\ref{col:loocv_ct_pat5_sct}. Derfor ved vi ikke om det har en stor eller lille indflydelse på PET rekonstruktionen.
+Et væsentligt problem for sCT-billederne ligger i, at knoglerne bliver tykkere end på de rigtige CT-billeder. Det kan ses på differens billederne på figur~\ref{col:loocv_ct_pat1_sub},~\ref{col:loocv_ct_pat1_sub},~\ref{col:loocv_ct_pat2_sub},~\ref{col:loocv_ct_pat3_sub},~\ref{col:loocv_ct_pat4_sub},~\ref{col:loocv_ct_pat5_sub}, da der to lyse streger rundt om kraniet. Til gengæld ligger værdierne for sCT-knoglerne i gennemsnit under værdierne i CT-knoglerne, hvilket kan ses på farverne imellem figurene~\ref{col:loocv_ct_pat1_ct},~\ref{col:loocv_ct_pat2_ct},~\ref{col:loocv_ct_pat3_ct},~\ref{col:loocv_ct_pat4_ct},~\ref{col:loocv_ct_pat5_ct} og figurene~\ref{col:loocv_ct_pat1_sct},~\ref{col:loocv_ct_pat2_sct},~\ref{col:loocv_ct_pat3_sct},~\ref{col:loocv_ct_pat4_sct},~\ref{col:loocv_ct_pat5_sct}. Derfor ved vi ikke, om det har en stor eller lille indflydelse på PET rekonstruktionen.
 
 \begin{figure}
     \centering
@@ -116,41 +116,35 @@ Et væsentligt problem for sCT billederne ligger i at knoglerne bliver tykkere e
 \subsection{Sammenligning med Johansson et al}
 
 
-Som det ses på figur~\ref{fig:cumm_diff_loocv} er de fleste af vores sCT dårligere kvalitet i forhold til Johansson et al. Patient 1 følger nogenlunde samme kurve som Johansson et al. har fundet frem til. Ligeledes, hvis vi ser på figur~\ref{fig:loocv_j_h}, får vi samme features som Johansson et al. fremhæver.
+Som det ses på figur~\ref{fig:cumm_diff_loocv} er de fleste af vores sCT af dårligere kvalitet end Johansson et al.s sCT. Patient 1 følger nogenlunde samme kurve, som Johansson et al. har fundet frem til. Ligeledes, hvis vi ser på figur~\ref{fig:loocv_j_h}, får vi samme features, som Johansson et al. fremhæver.
 
+Vi er ikke sikre på, hvorfor de fleste af vores sCT er blevet dårligere, men vi tror, det er en kombination af flere ting. 
 
-Vi er ikke sikre på hvorfor vores de fleste af vores sCT er blevet dårligere. Vi tror det er en kombination af flere ting. 
+For det første er vores masker ikke optimale, hvilket kan resultere i dårlige modeller. For det andet kan registreringen af sCT og CT ligge en smule forkert. Eftersom vi sammenligner på voxelniveau, kræver det, at registreringen er så tæt på perfekt som muligt. Hvis alt er forskudt bare en enkelt voxel, kan det gøre en stor forskel. For det tredje har de formentligt brugt patienter med bedre T2-billeder.
 
+Dog mener vi ikke, at det har noget med algoritmen at gøre. Vi bruger EM initialiseret med k-means, hvilket gerne skulle give det samme output hver gang. Da Johansson et al. bruger samme fremgangsmetode, mener vi derfor problemet ligger i forbehandlingen af billederne.
 
-For det første er vores masker ikke optimale, hvilket kan resultere i dårlige modeller. For det andet kan registreringen af sCT og CT ligge en smule forkert. Eftersom vi sammenligner på voxel niveau kræver det at registreringen er så tæt på perfekt som muligt, hvis alt er forskudt bare en enkelt voxel kan det gøre en stor forskel. For det tredje har de formentligt brugt patienter med bedre T2 billeder.
-
-
-Dog mener vi ikke det har noget med algoritmen at gøre. Vi bruger EM, initialiseret med k-means, hvilket gerne skulle give det samme output hver gang. Da Johansson et al. bruger samme fremgangsmetode mener vi derfor problemet ligger i forbehandlingen af billederne.
-
-
-Vi prøvede at træne med dobbelt så mange patienter, for at se om det gav bedre resultater, men det havde ikke nogen mærkbar effekt på sCT billederne.
+Vi prøvede at træne med dobbelt så mange patienter, for at se om det gav bedre resultater, men det havde ikke nogen mærkbar effekt på sCT-billederne.
 
 
 \subsection{Billedformater}
 
 I løbet af projektet har vi oplevet en del problemer med konverteringer
-mellem filtyper. Vi benyttertre forskellige. Siemens scannerne producerer
-Dicom billeder som vi arbejder med i Osirix, der er et medicinsk
-billedbehandlisk program. Men det er et meget stort format, der ikke er
+mellem filtyper. Vi benytter tre forskellige. Siemens skannerne producerer
+Dicom-billeder ,som vi arbejder med i Osirix, der er et medicinsk
+billedbehandlingsprogram. Men det er et stort format, der ikke er
 let at arbejde med. 
 
 På Rigshospitalet er normen at konvertere til Minc, men vi havde planer,
-om at bruge ITK, og Nifti var bedre understøttet i det. I sidste ende
-endte vi med at registrere vores CT billeder i Minc, så vores billeder gik
+om at bruge ITK, og Nifti er bedre understøttet i det. I sidste ende
+endte vi med at registrere vores CT-billeder i Minc, så vores billeder gik
 igennem alle tre typer. 
 
-Fra Dicom til Minc mister man en skalar, som man skal tage højde for, når
-man konvertere tilbage. Ved konvertering fra Minc til Nifti, hvilket vi
-kun gør med vores registrerede CT billeder, bliver de laveste værdier til
--1024, dem trækker vi endnu 1025 fra, så de kommer til at matche vores
+Fra Dicom til Minc mister man en slope, som man skal tage højde for, når
+man konverterer tilbage. Ved konvertering fra Minc til Nifti, hvilket vi
+kun gør med vores registrerede CT-billeder, bliver de laveste værdier til
+-1024. Dem trækker vi endnu 1025 fra, så de kommer til at matche vores
 laveste værdier.
-
-\todo{Uddyb tab ved Dicom til Minc}
 
 At konvertere til Dicom er ikke helt trivielt, så vi konverterer først til
 Minc, hvor vi lægger 2048 til for at gøre op for det offset, der skete ved
@@ -158,40 +152,38 @@ den tidligere konvertering.
 
 Mange af disse problemer har vi opdaget så sent i processen, at vi ikke
 har kunnet nå at tage hånd om dem. Den gennemsnitlige værdi i alle vores
-Nifti billeder, som vi har trænet og testet på, har været for lav, og at
+Nifti-billeder, som vi har trænet og testet på, har været for lav, og at
 lægge en værdi til ved tilbagekonverteringen udbedrer det ikke, men ændrer
 bare værdierne til samme størrelse, som i det målte CT.
 
-
 \subsection{Fullct-PET og sCT-PET kvalitet}
 
-
-Værdierne i et PET-billede kan ikke sammenlignes direkte på tværs af patienter, de har kun betydning i forhold til resten af hjernen. Så hvis det forreste af hjernen, for eksempel, afviger mere fra resten af hjernen end normalt, så er der et problem der. På samme måde er det ikke noget problem, hvis de rekonstruerede PET billeder baseret på sCT afviger med en relativ faktor i hele hjernen i forhold til dem baseret på FullCT. På figur~\ref{col:loocv_pet} ses der på procentdifferensbillederne en nogenlunde jævn grøn nuance i det meste af hjernen (pånær patient 5), hvilket taler for kvaliteten af resultaterne. 
-
-
-Vi oplever store forskelle i ventriklerne, som set på figur~\ref{col:loocv_pet_pat3_pd}~og~\ref{col:loocv_pet_pat3_pd}  men det er ikke noget problem. De består hovedsageligt af vand, og der foregår ikke nogen aktivitet i dem. Derfor er værdierne i ventriklerne meget lave, så afvigelser vil give større udslag der end andre steder i hjernen. I det hele taget er forskelle i alt andet end selve hjernen ikke relevant. Hvis selve knoglen giver store udslag, eller der er problemer i ansigtet betyder det ikke noget.
+Værdierne i et PET-billede kan ikke sammenlignes direkte på tværs af patienter, de har kun betydning i forhold til resten af hjernen. Så hvis det forreste af hjernen, for eksempel, afviger mere fra resten af hjernen end normalt, så er der et problem der. På samme måde er det ikke noget problem, hvis de rekonstruerede PET-billeder baseret på sCT afviger med en relativ faktor i hele hjernen i forhold til dem baseret på FullCT. På figur~\ref{col:loocv_pet} ses der på procentdifferensbillederne en nogenlunde jævn grøn nuance i det meste af hjernen (på nær patient 5), hvilket taler for kvaliteten af resultaterne. 
 
 
-I forhold til vores ønske, om at holde forskellen under 5 \% eller i hvert fald 10 \%  er det ikke lykkedes. Bagerst i hjernen ser det meget godt ud, men i regionerne ved øjnene og i lillehjernen ser vi i snit en procentdifference på over 5 \% i mere end en femtedel af voxelsne (~\ref{tab:loocv_lillehjerne} og \ref{tab:loocv_lillehjerne}). På figur~\ref{col:loocv_pet_pat3_pd} og~\ref{col:loocv_pet_pat5_pd}  kan man se en hvide bjælke med forskelle på over 20 \%, der matcher, hvor T2’en slutter. Bjælken går igennem lillehjernen, og resultaterne bliver derfor kraftigt forværet, som set på figur~\ref{tab:loocv_lillehjerne}. Det er også tydeligt at se på figur~\ref{col:loocv_pet_pat3_pd} og~\ref{col:loocv_pet_pat4_pd} at der mangler T2 værdier ved den øverste del af kraniet.
+Vi oplever store forskelle i ventriklerne, som set på figur~\ref{col:loocv_pet_pat3_pd}~og~\ref{col:loocv_pet_pat3_pd},  men det er ikke noget problem. De består hovedsageligt af vand, og der foregår ikke nogen aktivitet i dem. Derfor er værdierne i ventriklerne meget lave, så afvigelser vil give større udslag der end andre steder i hjernen. I det hele taget er forskelle i alt andet end selve hjernen ikke relevante. Hvis selve knoglen giver store udslag, eller der er problemer i ansigtet, betyder det ikke noget.
 
 
-Derudover kan vi på figur~\ref{tab:loocv_forresthjerne} og figur~\ref{tab:loocv_lillehjerne} se at halvdelen af patienterne har store problemer forrest i hjernen og ved lillehjernen. Dette tyder på vi i yder områderne ikke kan hamle op med PET baseret på FullCT’et. Dette kan også ses på billeder ne i figur~\ref{col:loocv_pet_pat1_pd} og figur~\ref{col:loocv_pet_pat3_pd} hvor forskellen er større i den forreste del af hjernen i forhold til resten.
+I forhold til vores ønske, om at holde forskellen under 5 \% eller i hvert fald 10 \%,  er det ikke lykkedes. Bagerst i hjernen ser det meget godt ud, men i regionerne ved øjnene og i lillehjernen ser vi i snit en procentdifference på over 5 \% i mere end en femtedel af voxelsne (~\ref{tab:loocv_lillehjerne} og \ref{tab:loocv_lillehjerne}). På figur~\ref{col:loocv_pet_pat3_pd} og~\ref{col:loocv_pet_pat5_pd}  kan man se en hvid bjælke med forskelle på over 20 \%, der matcher, hvor T2’en slutter. Bjælken går igennem lillehjernen, og resultaterne bliver derfor kraftigt forværret, som set på figur~\ref{tab:loocv_lillehjerne}. Det er også tydeligt at se på figur~\ref{col:loocv_pet_pat3_pd} og~\ref{col:loocv_pet_pat4_pd}, at der mangler T2-værdier ved den øverste del af kraniet.
+
+
+Derudover kan vi på figur~\ref{tab:loocv_forresthjerne} og figur~\ref{tab:loocv_lillehjerne} se, at halvdelen af patienterne har store problemer forrest i hjernen og ved lillehjernen. Dette tyder på, vi i yder områderne ikke kan hamle op med PET baseret på FullCT. Dette kan også ses på billederne i figur~\ref{col:loocv_pet_pat1_pd} og figur~\ref{col:loocv_pet_pat3_pd}, hvor forskellen er større i den forreste del af hjernen i forhold til resten.
 
 \subsection{Over tid}
 
-På figur~\ref{col:over_time_sct} kan ses de producerede sCT’er ud fra
-de to modeller. Det er iøjnefaldende at dem lavet ud fra den sene model
-har meget tydeligt markeret fejl inde i hovedet, mens der de samme
+På figur~\ref{col:over_time_sct} kan ses sCT produceret ud fra
+de to modeller. Det er iøjnefaldende, at dem lavet ud fra den sene model
+har meget tydeligt markerede fejl inde i hovedet, mens der de samme
 steder i dem fra den tidlige model er langt svagere strukturer. Udover
 det er de sene også mørkere, og har dermed lavere værdier. Vi må
-konstatere at modellerne producerer ret forskelligt artede resultater.
-Vi har ikke håndplukket vores hjerner, men blot valgte de tidligste
+konstatere, at modellerne producerer ret forskelligt artede resultater.
+Vi har ikke håndplukket vores hjerner, men blot valgt de tidligste
 og seneste uden artefakter til at træne på, så det er muligt, at
 den ene model er bedre end den anden. Patient tre mangler desuden
 bunden af lillehjernen på T2-sekvensen, så formodentlig vil der være
-attenuationsproblemer i bunden af PET billedet.
+attenuationsproblemer i bunden af PET-billedet.
 
-For at undersøge om der var et problem med lavere værdier jo senere modeller vi brugte fandt vi en ny patient og generede sCT billeder med modeller fra sene og tidlige patienter, samt en model med patienter fra midten. Den nye patient ligger tidsmæssigt også omkring midten. På figur~\ref{cumm_diff_over_tid} ses resultatet af den kommulative difference på de forskellige sCT billeder. Det er tydeligt at se at der forkommer væsentligt flere punkter hvor sCT værdierne er for lave i forhold til det egentlige CT jo ældre model vi bruger. Eftersom vores sCT i forvejen ligger lavt i forhold til CT er modellen fra de tidlige patienter bedre end de to andre.
+For at undersøge om der er et problem med lavere værdier, jo senere modeller vi brugte, fandt vi en ny patient og generede sCT-billeder med modeller fra sene og tidlige patienter, samt en model med patienter fra midten. Den nye patient ligger tidsmæssigt også omkring midten. På figur~\ref{cumm_diff_over_tid} ses resultatet af den kumulative difference på de forskellige sCT-billeder. Det er tydeligt at se, at der forekommer væsentligt flere punkter, hvor sCT-værdierne er for lave i forhold til det egentlige CT jo ældre model, vi bruger. Eftersom vores sCT i forvejen ligger lavt i forhold til CT, er modellen fra de tidlige patienter bedre end de to andre.
 
 \begin{figure}
     \includegraphics[width=\textwidth]{billeder/cumm_diff_over_tid.png}
@@ -210,18 +202,18 @@ er mindre på billedet lavet ud fra modellen trænet på sene hjerner
 figur~\ref{col:over_time_pet_pat3_late} end den fra de tidlige
 figur~\ref{col:over_time_pet_pat3_early}.
 
-Hvis Patient 3’s store udslag er et enkeltstående tilfælde, eller
+Hvis patient 3’s store udslag er et enkeltstående tilfælde, eller
 blot flot en fejl fremprovokeret af en dårlig model, så er billederne
 formodentlig lig nok til, at man ikke behøver at gentræne modeller
-løbene. Udslagene i mellem billederne er nogenlunde jævnt fordelt, så
-der er ikke problematiske. I kanterne har vi generelt samme problemer
+løbende. Udslagene imellem billederne er nogenlunde jævnt fordelt, så
+de er ikke problematiske. I kanterne har vi generelt samme problemer,
 som vi ser i LOOCV-forsøget, så selvom der sker ændringer der, kan vi
 ikke påvise, om de bliver bedre eller dårligere.
 
 \subsection{Klinisk anvendelighed}
 
-Så kommer det store spørgsmål - kan sCT bruges klinisk ?  Ifølge Ian Law, overlæge på rigshospitalet, så ser billederne fornuftige ud for nogen patienter men mindre brugbare for andre. PET billeder tages med forskellige typer af sporstoffer der bruges til forskellige diagnosticeringer. Han mener at vores sCT kunne bruges sammen med sporstoffet FDG, hvilket bliver brugt til diagnosticering af alzheimers. FDG er interessant fordi vi ikke leder efter små uregelmæssigheder, som for eksempel en kræftcelle, men er mere interesseret i hele regioners optag i forhold til resten af hjernen. Vi har udelukkende brugt FDG patienter i vores forsøg, men det skyldes at Rigshospitalet har flest FDG patienter. Eftersom det kun tager få minutter at generere et sCT ville det også være muligt at inspicere sCT’et inden man tager et CT billede. Hvis der ingen synlige problemer med sCT billedet er, kunne det bruges til rekonstruktionen. Omvendt, hvis der er problemer kunne man derefter tage CT billedet.
+Så kommer det store spørgsmål - kan sCT bruges klinisk ?  Ifølge Ian Law, overlæge på Rigshospitalet, så ser billederne fornuftige ud for nogen patienter, men mindre brugbare for andre. PET-billeder tages med forskellige typer af sporstoffer, der bruges til forskellige diagnosticeringer. Han mener, at vores sCT kunne bruges sammen med sporstoffet FDG, hvilket bliver brugt til diagnosticering af alzheimers. FDG er interessant, fordi vi ikke leder efter små uregelmæssigheder, som for eksempel en kræftcelle, men er mere interesseret i hele regioners optag i forhold til resten af hjernen. Vi har udelukkende brugt FDG-patienter i vores forsøg, men det skyldes, at Rigshospitalet har flest FDG-patienter. Eftersom det kun tager få minutter at generere et sCT, ville det også være muligt at inspicere sCT’et inden, man foretager et CT-skan. Hvis der ikke er synlige problemer med sCT billedet, kunne det bruges til rekonstruktionen. Omvendt, hvis der er problemer, kunne man derefter foretage CT-scannet.
 
-På den anden side, så fortæller vores procentdifferensbilleder en anden historie. Vi har vist at der er store problemer i den forreste del af hjernen, og kvaliteten ser ikke ud til at være stabil. Det er muligt at man kan finde en model, der virker godt på langt de fleste patienter og dermed gøre sCT mere brugbare.
+På den anden side, så fortæller vores procentdifferensbilleder en anden historie. Vi har vist, at der er store problemer i den forreste del af hjernen, og kvaliteten ser ikke ud til at være stabil. Det er muligt, at man kan finde en model, der virker godt på langt de fleste patienter, og dermed gøre sCT mere brugbare.
 
-Vi har ikke kigget på patienter med artefakter på MR billederne, men omtrent halvdelen har artefakter. Vi er ret sikre på at artefakter i MR billederne vil resultere i ens artefakter i sCT billederne. Dermed bliver anvendeligheden af sCT reduceret en del, eftersom CT ikke vil have artefakterne.
+Vi har ikke kigget på patienter med artefakter på MR-billederne, men omtrent halvdelen har artefakter. Vi er ret sikre på, at artefakter i MR-billederne vil resultere i ens artefakter i sCT billederne. Dermed bliver anvendeligheden af sCT reduceret en del, eftersom CT ikke vil have artefakterne.

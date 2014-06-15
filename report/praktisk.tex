@@ -2,56 +2,46 @@
 
 \subsection{Beregning af modellen}
 
-Vi har valgt at implementerer metoden i Matlab da det giver os mulighed
+Vi har valgt at implementere metoden i Matlab, da det giver os mulighed
 for hurtig prototyping. Derudover indeholder Matlab også en standard
-implementering af både k-means og EM algoritmerne.
+implementering af både k-means og EM-algoritmen.
 
-For at beregne modellen skal vi først indlæse MR og CT billederne
+For at beregne modellen skal vi først indlæse MR- og CT-billederne
 samt tilhørende maske for hver patient. Til det formål har vi brugt
 nii\_load fra matlab toolboxen "Tools for NIfTI and ANALYZE
-image\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nif ti-and-analyze-image}}".
-Herefter løber vi billederne igennem og udtager de værdier der ligger
-inden for masken. Alle værdier lægges i én 16-dimensionel liste.
+image\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/8797-tools-for-nifti-and-analyze-image}}".
+Herefter løber vi billederne igennem og udtager de værdier- der ligger
+inden for masken. Alle værdier lægges i én 16-dimensional liste.
 
-For at udregne k-means bruger vi den indbyggede k-means algoritme, samt
+For at udregne k-means bruger vi den indbyggede k-means algoritme, på
 en sammensat liste med de patienter, som vi ønsker at træne på
 modellen.
 
-Output fra k-means algoritmen gives til EM algoritmen, samt samme liste
-med patienter. Output herfra er vores endelige model parametre.
+Output fra k-means algoritmen gives til EM algoritmen, med samme liste. Output herfra er vores endelige modelparametre.
 
 \subsection{Beregning af sCT}
 
-Selve udregningen af sCT implementeres på samme måde, som beskrevet i
-teorien. Koden er en mindre overskuelig ud, men det er primært fordi
-vi var nødt til at omstrukturere flere arrays, da de påvirkede
-køretiden negativt i en ekstrem grad. Vi udregner også de konstante dele
-af algoritmen på forhånd, igen for at mindske køretiden.
+Selve udregningen af sCT er implementeret på samme måde, som beskrevet i
+teorien. Koden ser uoverskuelig ud, men det er primært, fordi
+vi var nødt til at omstrukturere flere arrays, da de kraftigt øgede køretiden. Vi udregner også de konstante dele
+af algoritmen på forhånd for at mindske køretiden.
 
-Fordi beregningen er voxel baseret er det muligt for os at udregne flere
-punkter parallelt. Det tager os omtrent to minutter at udregne et sCT
-hvilket er samme køretid Johannson et al. nævner.
+Fordi beregningen er voxelbaseret, er det muligt for os at udregne flere
+punkter parallelt. Det tager os omtrent to minutter at udregne et sCT,
+hvilket er samme køretid Johannson et al. reporterer.
 
 Resultatet af algoritmen gemmer vi vha. nii\_save, det er ikke
 nødvendigt for os at gemme headeren, eftersom vi i rekonstruktionen
-alligevel erstatter den med headeren fra tilhørende $\mu$-map.
+alligevel erstatter den med headeren fra det tilhørende $\mu$-map.
 
 \subsection{Transformering til \texorpdfstring{$\mu$}{u}-map} 
 
 Når vi har vores sCT, skal vi have lavet det om til et $\mu$-map
 på Dicom format. For at opnå dette konverterer vi det først til
 Minc. I Minc lægger vi 2048 til for at gøre op for en justeringen i
-værdierne, der opstår i konveteringen fra Minc til Nifti. Derefter
-resampler vi billederne til samme format, som UTE $\mu$-mappet fra den
+værdierne, der opstår i konverteringen fra Minc til Nifti. Derefter
+resampler vi billederne til samme format som UTE $\mu$-mappet fra den
 tilhørende scanning og erstatter header information i sCT'et med det fra
 $\mu$-mappet, så det kan benyttes, som et $\mu$-map på scanneren. Til
-sidst konverterer vi det videre til Dicom, hvilket er det format scanneren
-benytter.
-
-
-
-
-
-
-
+sidst konverterer vi det videre til Dicom, hvilket er det format scanneren benytter.
 

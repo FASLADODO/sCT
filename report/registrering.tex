@@ -1,49 +1,49 @@
 \section{Registrering}
 
-Billeder taget på MR/PET og PET/CT skannere kan som regel ikke
+Billeder taget på MR/PET- og PET/CT-skannere kan som regel ikke
 processeres sammen grundet flere faktorer. Patienten ligger sjældent
 præcis på samme måde, billederne bliver taget i forskellige
-opløsninger og de bliver optaget i forskellige billederum. For at
+opløsninger, og de bliver optaget i forskellige billedrum. For at
 klargøre billederne skal de derfor co-registreres.
 
 Ved co-registrering forsøger man at få alle billederne til at ligge i
-samme rum. I forhold til MRI billederne er co-registrering ofte trivielt.
-At co-registrere et MR og CT billede er derimod vanskeligere. Derfor har
+samme rum. I forhold til MR-billederne er co-registrering ofte trivielt.
+At co-registrere et MR- og CT-billede er derimod vanskeligere. Derfor har
 vi valgt to forskellige metoder.
 
-I samme omgang som vi co-registrere billederne er vi interesserede i
-også at finde en maske. Masken skal bruges til at begrænse udregningen
-af sCT billedet så vi ikke bruger lang tid på at lede efter knogle i
+I samme omgang, som vi co-registrerer billederne, er vi interesserede i
+også at finde en maske. Masken skal bruges til at lette udregningen
+af sCT-billedet, så vi ikke bruger lang tid på at lede efter knogle i
 luften rundt om patienten. Masken skal også fjerne evt. nakkestøtte og
-hovedholdere på CT billederne.
+hovedholdere på CT-billederne.
 
-\subsection{Co-registrering af UTE og T1 billeder}
+\subsection{Co-registrering af UTE- og T2-billeder}
 
-Til co-registrering af UTE og T2 billederne har vi valgt at bruge
+Til co-registrering af UTE- og T2-billederne har vi valgt at bruge
 Insight ToolKit (ITK)\footnote{\url{http://www.itk.org/}}. Herfra benytter vi en implementation af Mattes
-Mutual Information algoritme samt linær translation og interpolering.
+Mutual Information algoritme samt lineær translation og interpolering.
 
-\subsection{Co-registrering af UTE og CT}
+\subsection{Co-registrering af UTE- og CT-billeder}
 
-Co-registrering af UTE og CT billeder er modsat UTE/T2 en ikke-triviel
+Co-registrering af UTE- og CT-billeder er, modsat UTE/T2, en ikke-triviel
 opgave. Vi har valgt en landmark baseret løsning fra MINC's toolkit\footnote{\url{http://www.bic.mni.mcgill.ca/ServicesSoftware/ServicesSoftwareMincToolK it}}.
 Vi har ikke selv skrevet denne løsning, men bruger i stedet samme
 løsning som Rigshospitalet.
 
 \subsection{Generering af maske}
 
-For udregning af modellerne har maskerne en væsentlig betydning for korrektheden af klassifikationen. Vi har flere gange undervejs måtte ændre hvilke billeder vi brugte til at genskabe modellerne, og har ikke haft tid til at generere de tilhørende masker hver gang.
+Til udregning af modellerne har maskerne en væsentlig betydning for korrektheden af klassifikationen. Vi har flere gange undervejs måtte ændre hvilke billeder, som vi bruger til at genskabe modellerne, og har ikke haft tid til at generere de tilhørende masker hver gang.
 
 Hvis ikke maskerne kun dækker punkter hvor der findes data på alle 16 billeder, risikerer vi en misklassificering. 
 
 Til generering af masken bruger vi først en implementering af Otsu
-thresholding algoritmen for at finde en binær repræsentation. For at
-sikre vores maske ikke bliver for lille udvider vi det binære billede
-vha. en neighborhood-connected algoritme med 2-3 pixel i x, y og z
-retningerne. Til sidst inverteres billedet hvilket efterlader os med en
+thresholding-algoritmen for at finde en binær repræsentation. For at
+sikre at vores maske ikke bliver for lille, udvider vi det binære billede
+vha. en neighborhood-connected-algoritme med 2-3 pixel i x, y og z
+retningerne. Til sidst inverteres billedet, hvilket efterlader os med en
 binær maske.
 
-De endelige masker vi brugte var alt for store i forhold til T2 sekvenserne, hvilket kan have haft en betydelig negativ effekt på kvaliteten af vores T2.
+De endelige masker vi brugte var alt for store i forhold til T2-sekvenserne, hvilket kan have haft en betydelig negativ effekt på kvaliteten af vores T2.
 
-Da det tager forholdsvis lang tid at udregne modellerne og endnu længere tid at lave rekonstruktionerne havde vi ikke tid til at prøve med nye masker.
+Da det tager forholdsvis lang tid at udregne modellerne og endnu længere tid at lave rekonstruktionerne, havde vi ikke tid til at prøve med nye masker.
 

@@ -1,24 +1,23 @@
 \section{Teori}
-\subsection{Kort introduktion til de forskellige type data og dannelse af disse.}
+\subsection{Kort introduktion til de forskellige datatyper og dannelsen af disse.}
 
 
 Til metoden benyttes Magnetic resonance- (MR) og Computed
-tomography-billedsekvenser (CT). CT er en røngtenscanning, som måler
+tomography-billedsekvenser (CT). CT er en røntgenscanning, som måler
 vævs evne til at blokere stråling, hvilket har en direkte relation
-til elektrondensitet. Knoglen er meget tydelig i disse billeder. MR
-magnetiserer kroppen ganske svagt, når dette stoppes vil kroppens
+til elektrondensitet. Knoglen er meget tydelig på disse billeder. MR
+magnetiserer kroppen ganske svagt. Når dette stoppes vil kroppens
 magnetfelt bruge ganske kort tid på at gendannes, og der måles på
 denne for at kortlægge struktur.
 
 Vi benytter 5 MR-sekvenser: T1, som måles efter kroppen har gendannet en vis
 mændge magnetisme, og derudover 4 Ultrashort echo time MR-sekvenser (UTE)
-taget fra 2 forskellige vinkler og varierende ekko tider. Når man sænker echo
-tiden betydeligt bliver det muligt at se knogle på MR billeder, men ikke med
+optaget fra 2 forskellige vinkler med varierende ekko tider. Når man sænker ekkotiden betydeligt, bliver det muligt at se knogle på MR-billeder, men ikke med
 en præcision, som kan matche CT.
 
 Mens vi ikke træner på Positron emission tomography-billeder (PET), så
-er målet med udregning af et sCT, at producere attenuationskorrigerede
-PET-billeder. PET-billeder måles ved at injektere et radioaktivt
+er målet med udregning af et sCT at producere attenuationskorrigerede
+PET-billeder. PET-billeder måles ved at injicere et radioaktivt
 sukkersporstof ind i en patient og måle henfaldet af dette. Da
 kræftceller kræver mere energi end andre celler, vil størstedelen af
 sporstoffet blive bundet til kræftcellerne, og strålingsaktiviteten
@@ -26,67 +25,65 @@ vil derfor være størst i dette område.
 
 \subsection{Attenuation correction} 
 
-Ved PET billeder måles photoner fra det radioaktive sporstof, som man
-har injekterer ind i blodet. Ved at se på hvor photonerne kommer fra kan
-man se hvor meget blod der flyder til forskellige steder. Det er særligt
-brugbart til at identificere kræftknuder i hjernen da kræftknuderne har
+Ved PET-billeder måles fotoner fra det radioaktive sporstof, som man
+har injiceret ind i blodet. Ved at se hvor fotonerne oprinder fra, kan
+man se, hvor meget blod der flyder til forskellige steder. Det er særligt
+brugbart til at identificere kræftknuder i hjernen, da kræftknuderne har
 et højere energiforbrug, og dermed får tilført mere af stoffet, kan
-man måle hvor de er henne. Ligeledes er det nyttigt ved patienter med
+man måle hvor de er. Ligeledes er det nyttigt ved patienter med
 hukommelsesproblemer, da man kan se, hvor i hjernen der er for lidt
 aktivitet.
 
-Men photonerne går ikke igennem alle materialer lige let, det bløde væv
+Men fotonerne går ikke igennem alle materialer lige let. Det bløde væv
 inde i hjernen har en nogenlunde jævn modstand, mens kranie afbøjer
-meget mere kraftigt og luft næsten slet ikke gør. Da billederne bliver
-optaget på en PET/MR scanner, er det ikke muligt, at se forskel på luft
-og knogle, derfor kan man ikke korrigere for disse målingsfejl og de
+meget kraftigt, og luft næsten slet ikke gør. Da billederne bliver
+optaget på en PET/MR-scanner, er det ikke muligt, at se forskel på luft
+og knogle. Derfor kan man ikke korrigere for disse målingsfejl, og de
 målte værdier bliver forvrængede.
 
-For at udbedre dette benyttes der, for eksempel, et CT billede målt
-på en anden scanner til at korrigere. Man erstatter $\mu$-mappet
-optaget på PET/MR scanneren med CT'et og rekonstruerer PET billedet med
+For at udbedre dette benyttes der et CT billede, målt
+på en anden scanner, til at korrigere. Man erstatter $\mu$-mappet
+optaget på PET/MR-skanneren med CT'et og rekonstruerer PET-billedet med
 korrigerede værdier.
 
-\subsection{Artifakter i hjerner}
+\subsection{Artefakter i hjerner}
 
-Artifakter i hjernen betegner mangler i MR-billederne. Ofte er de
-forårsaget af implantater i tænderne der forstyrrer magnetfelterne.
+Artefakter i hjernen betegner mangler i MR-billederne. Ofte er de
+forårsaget af implantater i tænderne, der forstyrrer magnetfelterne.
 På MR-billederne optræder de som sorte områder uden data.
 
 I forhold til vores metode er der åbenlyse problemer ved både at
-træne med MR-billeder med artifakter eller udregne sCT-billeder fra
-MR-billeder med artifakter, eftersom der simpelthen ikke er noget
+træne med MR-billeder der har artefakter eller udregne sCT-billeder fra
+MR-billeder med artefakter, eftersom der ikke er noget
 information i disse områder.
 
 
-\subsection{k-means}
+\subsection{K-means}
 
 K-means er en metode, som organiserer et datasæt ${x_1,...,x_N}$
-beståemde af $N$ punkter i et flerdimensionalt rum ind i $K$ clusters~\cite{bishop}.
+bestående af $N$ punkter i et flerdimensionalt rum ind i $K$ clusters~\cite{bishop}.
 Man definerer $K$ clusters med centrum $\mu_k$, og målet er da at
-minimere den summerede afstand for alle datapunkter til nærmeste cluster
-centrum. Hvis man for hvert datapunkt definerer $K$ binære indikator
-variable $r_{nk}$, som beskriver hvilket cluster datapunktet tilhører,
-hvor $r_{nk}$ er lig 1, hvis den tilhører det $k$'te cluster og resten
+minimere den summerede afstand for alle datapunkter til nærmeste clustercentrum. Hvis man for hvert datapunkt definerer $K$ binære indikatorvariable $r_{nk}$, som beskriver, hvilket cluster datapunktet tilhører,
+hvor $r_{nk}$ er lig 1, hvis den tilhører det $k$'te cluster, og resten
 er lig 0. Da kan man definere en funktion, som beskriver den summerede
-afstand som
+afstand som:
 
 $$
 J = \sum_{n=1}^{N} \sum_{k=1}^{K} r_{nk} || x_n - \mu_k ||^2
 $$
 
 Målet er da at minimere denne funktion ved at finde de korrekte
-tilhørsforhold $r_{nk}$ og cluster placeringer $\mu_k$.
+tilhørsforhold $r_{nk}$ og clusterplaceringer $\mu_k$.
 
-Algoritmen startes med nogle nogle clusterplacering, der typisk
-er tilfældigt valgt. Derefter finder man for hvert data punkt det
+Algoritmen startes med nogle clusterplacering, der typisk
+er tilfældigt valgt. Derefter finder man for hvert datapunkt det
 nærmeste center og summerer den samlede afstand. For at finde den
 optimale inddeling skal denne afstand minimeres. Den minimeres iterativt
 ved at gentage to trin. Det første er at finde det nærmeste centrum for
-hvert datapunkt og i næste trin rykkes hvert af centrene for at minimere
-den samlede afstand i forhold til deres tilhørende datapunkter, dette
-gøres blot ved at udregne mean for alle punkterne i hvert cluster. Dette
-fortsættes indtil afstanden stopper med at ændre sig, hvilket er sikret,
+hvert datapunkt, og i næste trin rykkes hvert af centrene for at minimere
+den samlede afstand i forhold til deres tilhørende datapunkter. Dette
+gøres blot ved at udregne gennemsnit for alle punkterne i hvert cluster. Dette
+fortsættes, indtil afstanden stopper med at ændre sig, hvilket er sikret,
 da begge trin reducerer den summerede afstand.
 
 Den finder dog ikke nødvendigvis det globale minimum, men blot et lokalt
@@ -99,12 +96,12 @@ maximization, forsøger vi ikke at håndtere dette.
 
 Expectation maximization (EM)~\cite{bishop} er en metode til at finde de mest
 sandsynlige parametre i en statistiks model, hvor variablerne er
-ukendte. Metoden antager at data består af flere multivariate gaussiske
-fordelinger og returnerer en gaussisk mikstur fordelingsmodel.
+ukendte. Metoden antager, at data består af flere multivariate gaussiske
+fordelinger, og returnerer en gaussisk mikstur fordelingsmodel.
 
 Til forskel fra k-means, som udfører en hård klassificering, hvor
 hvert datapunkt tilhører en enkelt gruppe, så laver EM en blød
-klassificering, hvor man finder sandsynlighed for tilhørsforhold for
+klassificering, hvor man finder sandsynligheden for tilhørsforhold for
 hvert enkelt punkt og finder et vægtet snit over alle data punkter for at
 udregne $\mu_k$s position.
 
@@ -112,7 +109,7 @@ Da metoden ikke nødvendigvis finder det globale minimum, men blot et
 lokalt, så startes den typisk med tilfældige værdier og køres flere
 gange, og den mest sandsynlige model returneres. Alternativt kan den
 initialiseres med data, for at forbedre chancen for et godt resultat,
-og forhindre at metoden skal køres flere gange. Når vi initialiserer
+og forhindre, at metoden skal køres flere gange. Når vi initialiserer
 den med k-means, så har den allerede et bud på et cluster til alle
 datapunkter, og opgaven er da blot at "blødgøre" klassificeringen
 og lave gaussiske fordelinger i stedet. I expectation-trinet benyttes
@@ -122,8 +119,8 @@ de parametre, som maximerer loglikelihoodfunktionen.
 
 K-means fordelingen har også den ulempe, at den splitter halvvejs mellem
 centrene, så ved clusters af ulige størrelse, vil de mindre clusters ofte
-inddrage yder punkter fra de store. Dette undgår EM, da de gaussiske
-fordelinger, ikke nødvendigvis har ens spredning.
+inddrage yderpunkter fra de store. Dette undgår EM, da de gaussiske
+fordelinger ikke nødvendigvis har ens spredning.
 
 
 \subsection{Arbejdsgangen}
@@ -131,11 +128,10 @@ fordelinger, ikke nødvendigvis har ens spredning.
 
 \subsubsection{FullCT}
 
-FullCT er navnet på den implementation af CT baseret
+FullCT er navnet på den implementation af CT-baseret
 attenuationskorrigering, der benyttes på Rigshospitalet.
 
-Det laves ved, at man udover at tage et PET/MR scan også lavet et CT
-scan. T1 billedet fra MR scanneren og CT co-registreres herefter og
+Det laves ved, at man ud over at tage et PET/MR, scan også foretager et CT-scan. T1-billedet fra MR scanneren og CT co-registreres herefter, og
 benyttes til at udregne et attenuationskorrigerende $\mu$-map kaldet
 FullCT. Derudover benyttes headerdataen fra et Dixon $\mu$-map til
 at sætte dimensioner på det nye $\mu$-map. Dette rekonstrueres på
@@ -143,10 +139,10 @@ hospitalets scanner.
 
 \subsubsection{Rekonstruktion}
 
-For at kunne attenuationskorrigere PET billeder har man behov for at
-genindlæse alt scanningsinformationen, blot med ekstra viden, f.eks.
-CT information. Siemens scanneren gemmer den rå uprocesserede data fra
-scannet, så man kan blot hente sit $\mu$-map ind og scanneren vil da
+For at kunne attenuationskorrigere PET-billeder har man behov for at
+genindlæse al scanningsinformationen, blot med ekstra viden, f.eks.
+CT information. Siemens-scanneren gemmer den rå uprocesserede rådata fra
+skannet, så man blot kan hente sit $\mu$-map ind, og skanneren kan da
 processere rådataen med viden om knogleplacering og tage højde for det,
 når den gentager forsøget.
 
